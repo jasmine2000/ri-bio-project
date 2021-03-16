@@ -1,0 +1,4 @@
+[console_scripts]
+uspto-pbd = uspto.pbd.command:run
+uspto-peds = uspto.peds.command:run
+

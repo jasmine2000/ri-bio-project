@@ -1,0 +1,1 @@
+https://github.com/kennethreitz/clint/tarball/9d3693d6#egg=clint-0.5.1
