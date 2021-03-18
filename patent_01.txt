@@ -1,0 +1,2980 @@
+(19) United States 
+(12) Patent Application Publication  (10) Pub. No.: US 2014/0171482 A1 
+Jun. 19, 2014 
+
+(43)  Pub. Date: 
+
+Webster et al. 
+
+9 
+
+US 201401.71482A1 
+
+(54)  NANOTUBES AS CARRIERS OF NUCLEIC 
+
+ACDS INTO CELLS 
+
+(75)  Inventors:  Thomas J. Webster, Barrington, RI 
+(US); Qian Chen, Barrington, RI (US); 
+Yupeng Chen, Mansfield, MA (US) 
+
+(73)  Assignees: RHODE ISLAND HOSPITAL, 
+
+Publication Classification 
+
+51)  Int. Cl. 
+( 
+
+CI2N 15/87 
+CI2N 15/I 15 
+CI2O I/68 
+A613 L/713 
+A647/48 
+
+(2006.01) 
+(2006.01) 
+(2006.01) 
+(2006.01) 
+(2006.01) 
+
+Providence, RI (US); Brown University, 
+Providence, RI (US) 
+
+(52)  U.S. Cl. 
+
+(21)  Appl. No.: 
+
+13/977,138 
+
+(22)  PCT Filed: 
+
+Jan. 3, 2012 
+
+(86).  PCT No.: 
+
+PCT/US12A2O056 
+
+S371 (c)(1), 
+(2), (4) Date: 
+
+Feb. 25, 2014 
+Related U.S. Application Data 
+(60)  Provisional application No. 61/429,555, filed on Jan. 
+
+4, 2011. 
+
+CPC ..............  CI2N 15/87 (2013.01); A61 K3I/713 
+(2013.01); A61K 47/48061 (2013.01); C12O 
+I/6841 (2013.01); C12N 15/115 (2013.01) 
+USPC ..........  514/44. A 435/375; 435/455; 435/471; 
+435/252.1435/6.11536/24.5 
+
+s 
+
+s 
+
+(57) 
+
+ABSTRACT 
+
+The present invention is directed to transfection complexes of 
+rosette nanotubes and one or more nucleic acids. 
+
+Patent Application Publication 
+
+Jun. 19, 2014 Sheet 1 of 24 
+
+US 2014/0171482 A1 
+
+XXXX-XXXxxxx. 
+
+  
+
+Patent Application Publication 
+
+Jun. 19, 2014 Sheet 2 of 24 
+
+US 2014/0171482 A1 
+
+---- RNT 
+a  - RNA 
+- RNTIRNA 
+
+200 
+
+220 
+
+240 
+
+260 
+
+280 
+
+300 
+
+320 
+
+FIG.2 
+
+  
+
+0.4 
+
+  
+
+200 
+
+220 
+
+240 
+
+260 
+Wavelength/nm 
+
+280 
+
+300 
+
+320 
+
+Patent Application Publication 
+
+Jun. 19, 2014 Sheet 3 of 24 
+
+US 2014/0171482 A1 
+
+    
+
+- - - - RNT 
+
+- RNTIRNA 
+
+200 
+
+220 
+
+240 
+
+280 
+260 
+Wavelength (nm) 
+
+300 
+
+320 
+
+  
+
+- RNTIRNA 
+- RNT signal + RNA signal 
+
+5.0 
+4.5 
+4.0 
+
+3.5 
+3.0 
+2.5 
+
+2.0 
+
+15 
+1.0 
+
+0.5 
+O.0 
+200 
+
+a8  . 
+
+220 
+
+240 
+
+28O 
+260 
+Wavelength (nm) 
+
+300 
+
+320 
+
+Patent Application Publication 
+
+Jun. 19, 2014 Sheet 4 of 24 
+
+US 2014/0171482 A1 
+
+FIG. 4 
+
+0. 
+
+O 
+
+mara RNTS 
+-- First derivative of UV absorbance CUWE 
+
+O 
+
+20 
+
+40 
+
+60 
+
+80 
+
+100 
+
+Temperature (C) 
+
+320 
+
+  
+
+mam RN/RNA 
+-- First derivative of UV absorbance curve 
+
+() 
+
+20 
+
+60 
+40 
+Temperature (C) 
+
+80 
+
+100 
+
+Patent Application Publication 
+
+Jun. 19, 2014 Sheet 5 of 24 
+
+US 2014/0171482 A1 
+
+  
+
+Patent Application Publication 
+
+Jun. 19, 2014 Sheet 6 of 24 
+
+US 2014/0171482 A1 
+
+  
+
+Patent Application Publication 
+
+Jun. 19, 2014 Sheet 7 of 24 
+
+US 2014/0171482 A1 
+
+  
+
+Patent Application Publication 
+
+Jun. 19, 2014 Sheet 8 of 24 
+
+US 2014/0171482 A1 
+
+  
+
+Patent Application Publication 
+
+Jun. 19, 2014 Sheet 9 of 24 
+
+US 2014/0171482 A1 
+
+  
+
+Patent Application Publication 
+
+Jun. 19, 2014 Sheet 10 of 24 
+
+US 2014/0171482 A1 
+
+  
+
+  
+
+  
+
+  
+
+  
+
+& 
+
+*** 
+
+**** 
+
+#ccccccccccc******** 
+
+Patent Application Publication 
+
+Jun. 19, 2014 Sheet 11 of 24 
+
+US 2014/0171482 A1 
+
+1.2 
+
+0.9 
+
+0.6 
+
+5 
+
+9. 
+x 
+
+c 
+Y 
+E  0.3 
+
+1.11 E-15 
+
+  
+
+1.2 
+
+0.9 
+
+0.6 
+
+C 
+
+g 
+O. 
+
+c 
+1. E  0.3 
+
+-1.11 E-15 
+
+RNTs+ miR365 
+
+Controls 
+(scrambled  inhibitor 
+RNA) 
+F.G. 12A 
+
+TBLS+ miR365 
+
+Controls 
+(scrambled  inhibitor 
+RNA) 
+FIG. 12B 
+
+Patent Application Publication 
+
+Jun. 19, 2014 Sheet 12 of 24 
+
+US 2014/0171482 A1 
+
+  
+
+Patent Application Publication 
+
+Jun. 19, 2014 Sheet 13 of 24 
+
+US 2014/0171482 A1 
+
+  
+
+Patent Application Publication 
+
+Jun. 19, 2014 Sheet 14 of 24 
+
+US 2014/0171482 A1 
+
+  
+
+Patent Application Publication 
+
+Jun. 19, 2014 Sheet 15 of 24 
+
+US 2014/0171482 A1 
+
+  
+
+Patent Application Publication 
+
+Jun. 19, 2014 Sheet 16 of 24 
+
+US 2014/0171482 A1 
+
+  
+
+Patent Application Publication 
+
+Jun. 19, 2014 Sheet 17 of 24 
+
+US 2014/0171482 A1 
+
+  
+
+?$ 
+
+Patent Application Publication 
+
+Jun. 19, 2014 Sheet 18 of 24 
+
+US 2014/0171482 A1 
+
+  
+
+$ 
+
+Patent Application Publication 
+
+Jun. 19, 2014 Sheet 19 of 24 
+
+US 2014/0171482 A1 
+
+  
+
+Patent Application Publication 
+
+Jun. 19, 2014 Sheet 20 of 24 
+
+US 2014/0171482 A1 
+
+  
+
+Patent Application Publication 
+
+Jun. 19, 2014 Sheet 21 of 24 
+
+US 2014/0171482 A1 
+
+  
+
+Patent Application Publication 
+
+Jun. 19, 2014 Sheet 22 of 24 
+
+US 2014/0171482 A1 
+
+E  0. O O 4 
+
+Beacon only 
+RNTIBeacon 
+
+30 mins  1 day  3 days  5 days  7 days 
+
+FIG. 23 
+
+siRNA only 
+
+RNTIRNA 
+
+  
+
+: 
+
+Lipofectamine?RNA 
+s. 
+
+O 
+
+  
+
+    
+
+ozoano sooooooo 10 
+
+FSCH 
+siRNAonly 1.31% 
+positive Cells 
+
+  
+
+  
+
+Patent Application Publication 
+
+Jun. 19, 2014 Sheet 23 of 24 
+
+US 2014/0171482 A1 
+
+  
+
+Patent Application Publication 
+
+Jun. 19, 2014 Sheet 24 of 24 
+
+US 2014/0171482 A1 
+
+25 
+
+20 
+
+  
+
+Controls 
+
+Lipofectamine 
+--miR365 
+mimic 
+
+TBLS 
++miR365 
+mimic 
+
+RNTS 
++miR365 
+mimic 
+
+FG. 26 
+
+US 2014/0171482 A1 
+
+Jun. 19, 2014 
+
+NANOTUBES AS CARRIERS OF NUCLEC 
+ACDS INTO CELLS 
+
+RELATED APPLICATION DATA 
+0001.  This application claims priority to U.S. Provisional 
+Patent Application No. 61/429,555, filed on Jan. 4, 2012 and 
+is hereby incorporated herein by reference in its entirety for 
+all purposes. 
+
+STATEMENT OF GOVERNMENT INTERESTS 
+0002  This invention was made with government support 
+under National  Institutes  of Health  grant  number NIH 
+P2ORRO24484 and R21 AGO27521. The Government has 
+certain rights in the invention. 
+
+FIELD 
+0003  Embodiments of the present disclosure relate to the 
+use of rosette nanotubes to deliver nucleic acids into cells. 
+Embodiments of the present disclosure still further relate to 
+complexes of rosette nanotubes and nucleic acids and com 
+positions thereof and the use of such complexes to deliver 
+nucleic acids into the cells of individuals for therapeutic 
+purposes.  Embodiments of the present disclosure further 
+relate to the use of rosette nanotubes to deliver interference 
+RNA into cells. Embodiments of the present disclosure fur 
+ther relate to methods of inhibiting target RNA within a cell 
+using  complexes  of rosette  nanotubes and Small  RNA. 
+Embodiments of the present disclosure still further relate to 
+transfection complexes of rosette nanotubes and nucleic acids 
+such as DNA and RNA and compositions thereof and the use 
+of such transfection complexes to introduce the DNA or RNA 
+into cells, for example as a therapeutic treatment. 
+
+BACKGROUND 
+
+0004  RNA interference (RNAi) is a system in living cells 
+that helps control genes activity. Mediators of RNAi include 
+two classes of small RNA including microRNA (miRNA) and 
+small interfering RNA (siRNA). Interference RNA molecules 
+have been used to silence genes and consequently their gene 
+products and more efficiently than antisense RNA alone. See 
+Rocheleau CE, et al., Cell 1997: 90:707-716.) Interference 
+RNA molecules have been used to study the role of proteins in 
+signal transduction pathways and it has also been Suggested 
+that these molecules might be useful in treating a variety of 
+diseases in which the causative protein is overexpressed. See 
+Arenz et al., Naturwissenschafien 2003: 90:345-359; Coburn 
+et al., J Antimicrob Chemother 2003; 51:753-756. To avoid 
+nonspecific  gene  silencing  induced  by  longer  double 
+stranded RNA, small interfering RNAs, a duplex of 21-23 
+nucleotides, have been used as mediators to degrade target 
+mRNA. See Fire et al., Nature 1998; 391:806-811.) Once 
+inside the cell, siRNA is incorporated into an RNA-induced 
+silence complex (RISC), a protein-RNA complex that results 
+in unwinding and strand separation of the RNA duplex. The 
+antisense RNA then guides the activated RISC to anneal and 
+cleave the target mRNA. See Hammond et al., Nature 2000; 
+404:293-296; Reynolds et al., Nat Biotechnol 2004; 22:326 
+330; Hammond et al., Science 2001; 293:1146-1150; and 
+Bernstein et al., Nature 2001: 409:363-366. 
+0005.  Both viral and nonviral carriers have been used to 
+carry interference RNA to their cytosolic mRNA target. See 
+Simeoni et  al.,  Nucleic Acids  Res 2003;  31:2717-2724. 
+
+Highly branched HK peptides have also been Suggested as 
+carriers of siRNA to transfect eukaryotic cells. See U.S. Pat. 
+No. 7,772.201. 
+0006.  The lipophilic  nature  of biological  membranes 
+restricts direct intracellular delivery of potential drugs or 
+molecular probes. There is a need in the art for transfection 
+complexes  having  transfection  efficiencies  sufficient  to 
+deliver small RNA into the interior of cells, such as therapeu 
+tically effective amounts of siRNA into target cells. There is 
+also a need in the art for carriers that are stable in serum for 
+delivery systems to be effective both in vitro and in vivo. 
+0007.  It is a further object of the present invention to create 
+complexes of RNA with rosette nanotubes that can be deliv 
+ered into target cells where the RNA can then function to 
+silence certain RNA and thereby prevent expression of an 
+associated protein or proteins. It is a further object of the 
+present invention to provide methods of treating individuals 
+using a delivery system of a complex of RNA with a rosette 
+nanotube which transfects cells of the individual in a manner 
+to prevent expression of an associated protein or proteins. 
+These and other objects, features, and advantages of the 
+invention or certain embodiments of the invention will be 
+apparent to those skilled in the art from the following disclo 
+Sure and description of exemplary embodiments. 
+
+SUMMARY 
+
+0008  Embodiments of the present disclosure are directed 
+to methods of transfecting cells with nucleic acids or poly 
+nucleotides such as DNA or RNA, such as small RNA and its 
+derivatives, mimic, and inhibitors. RNA according to aspects 
+of the present disclosure includes a duplex of nucleic acids of 
+between about 10 to about 30 nucleotides. Embodiments of 
+the present disclosure include the formation of a composite or 
+complex or combination of one or more nucleic acids, such as 
+RNA, and a rosette nanotube where the one or more nucleic 
+acids are attached to or otherwise bound to the rosette nano 
+tube.  Embodiments of the present disclosure are further 
+directed to a product made by the process of mixing together 
+rosette nanotubes as described herein or modules forming 
+rosette nanotubes as described herein and one or more nucleic 
+acids in aqueous media under conditions which cause the 
+rosette nanotubes to combine with the one or more nucleic 
+acids to form a complex or combination in aqueous media 
+where the one or more nucleic acids are attached or otherwise 
+bound through steric, ionic, covalent or other forces to the 
+rosette nanotube. 
+0009  Embodiments further include delivering the com 
+posite  into  living  cells.  Embodiments further  include  a 
+method of treating an individual requiring treatment compris 
+ing administering a complex of a rosette nanotube and one or 
+more nucleic acids to the individual in a manner to transfect 
+cells within the individual with the one or more nucleic acids. 
+Embodiments further include a method of treating an indi 
+vidual requiring treatment comprising administering a com 
+plex of a rosette nanotube and one or more nucleic acids to the 
+individual in a manner to transfect cells within the individual 
+with the one or more nucleic acids and wherein the cells either 
+express the one or more nucleic acids in a therapeutic manner 
+or the one or more nucleic acids inhibit expression of one or 
+more proteins within the cells in a therapeutic manner. 
+00.10  Embodiments  further  include  modulating  gene 
+expression or cell function by using small RNA delivered by 
+a composite of a rosette nanotube and small RNA. The result 
+
+US 2014/0171482 A1 
+
+Jun. 19, 2014 
+
+of the modulation of gene expression or cell function can be 
+therapeutic for particular indications. 
+0011 
+Further aspects include delivering small RNA into 
+cells and the use of the delivered small RNA to regulate cell 
+signaling and function and influencing tissue or organ activi 
+ties. In particular, methods are provided of introducing Small 
+RNA into cells using rosette nanotubes that advantageously 
+do not require additional chemical modification of the com 
+ponents of the delivery complex. The rosette nanotube and 
+small RNA complexes of the present disclosure are advanta 
+geous in that they are nontoxic at administration levels and 
+they lack metals associated with known carriers. 
+0012.  In particular,  the  methods include contacting a 
+transfection complex with one or more cells, where the trans 
+fection complex includes a rosette nanotube (“RNT) and a 
+nucleic acid such as DNA or RNA, for example siRNA or 
+miRNA.  Rosette  nanotubes  or  RNTs include  nanotubes 
+formed from modules having twin bases with a linker or TBL. 
+Such rosette nanotubes may be referred to herein as “TBLs.” 
+According to this aspect, the nucleic acid is delivered into the 
+cell. According to one aspect, the DNA is expressed by the 
+transfected cell. According to an additional aspect, the RNA 
+interacts  with target  RNA to  regulate  gene expression. 
+According to one aspect, the DNA or RNA is released from 
+the rosette nanotube after entry into the cell. According to an 
+additional aspect, the DNA or RNA remains attached to, 
+bound to, or complexed with or combined with the rosette 
+nanotube. 
+0013.  According to one aspect, a transfection complex is 
+produced by combining modules of a self-assembled rosette 
+nanotube and one or more nucleic acids as DNA or RNA, for 
+example siRNA or miRNA, in media where the modules 
+self-assemble into a rosette nanotube which incorporates the 
+one or more nucleic acids to form a complex of a rosette 
+nanotube and the one or more nucleic acids. According to an 
+additional aspect, a transfection complex is produced by com 
+bining a self-assembled rosette nanotube and one or more 
+nucleic acids such as DNA or RNA, for example siRNA or 
+miRNA, in media whereupon the one or more nucleic acids 
+are incorporated into the rosette nanotube to form a complex 
+of a rosette nanotube and one or more nucleic acids. The 
+transfection complex may then be contacted to cells where 
+upon the transfection complex enters the cells. Without wish 
+ing to be bound by scientific theory, it is believes that the 
+complex may enter cells by endocytosis. According to certain 
+embodiments, the cells may be transformed cells, recombi 
+nant cells, malignant cells, or cells from primary cell lines. 
+The transfection method may be performed on cells in vitro or 
+1  V1VO. 
+0014.  The modules may be any of those known to persons 
+of ordinary skill in the art such as GMC motifs, unmodified or 
+modified to include moieties or sidechains, which self-as 
+semble into helical  rosette  nanotubes. According to  one 
+embodiment, modules are placed into an aqueous medium 
+where they self assemble into a Substructure such as a ring 
+structure, such as a rosette, and the ring structures then self 
+assemble by stacking one on top of another to form a tubular 
+structure, commonly referred to as a nanotube. Such modules, 
+Substructures and nanometer scale molecular structures and 
+their self-assembly is described in U.S. Pat. No. 6,696.565, 
+Fenniri et al.,  J. Am. Cheni. Soc.  2001, 123, 3854-3855, 
+Moralez et al., J. Am. Chem. Soc., 2005, 127, 8307-8309, Fine 
+et al., International Journal of Nanomedicine 2009:49.1-97; 
+
+and Zhang et al., Biomaterials 2009; 30(7): 1309-1320 each 
+of which are hereby incorporated by reference in their entire 
+ties for all purposes. 
+0015  Rosette nanotubes of the present disclosure are very 
+stable in water and lack virus-related safety concerns and 
+toxicity at amounts of about 1  g/ml. See Int. J. Nanomedi 
+cine,  2008, 3(3):373-383. Small. 2008, 4(6): 817-823; and 
+Am. J.  Physiol Lung Cell Mol. Physiol. 2005, November; 
+289(5):L698-708 each of which are hereby incorporated by 
+reference in their entireties. 
+0016.  According to one aspect of the present disclosure, 
+methods are provided where the self-assembly of precursers 
+or modules incorporates the nucleic acid into or otherwise 
+complexes the nucleic acid with, the self-assembled rosette 
+nanotube. According to  another aspect,  fully  assembled 
+rosette nanotubes can be incubated with one or more or a 
+plurality of nucleic acids and the one or more or plurality of 
+nucleic acids can complex with the fully assembled rosette 
+nanotube to form a composite. According to one further 
+aspect, the one or more or plurality of nucleic acids are joined 
+to or bound to the self-assembled rosette nanotube through 
+steric, ionic, Van der Waals, dispersion or other noncovalent 
+interactions to form a rosette nanotube and nucleic acid com 
+plex useful as a transfection agent and in some cases in the 
+preparation of a pharmaceutical agent to be administered to 
+an individual. According to an additional further aspect, the 
+one or more nucleic acids are covalently attached by methods 
+known to those of skill in the art to the rosette nanotube to 
+form a rosette nanotube and RNA complex useful as a trans 
+fection agent and in Some cases in the preparation of a phar 
+maceutical agent to be administered to an individual. 
+0017.  According to certain aspects, rosette nanotubes are 
+functionalized with small  RNA to  form a complex, for 
+example RNA is bound to the rosette nanotube, the complex 
+is translocated into a cell, and the intracellular small RNA is 
+present within the cell in an amount Sufficient for gene silenc 
+ing resulting in the inhibition of the production of target 
+proteins. In this aspect, the rosette nanotube is a delivery 
+vehicle or carrier for the small RNA into a cell for RNA 
+interference purposes. 
+0018.  According to an alternate aspect, nanotubes are 
+functionalized with desired DNA to form a complex, the 
+complex is translocated into a cell, and the desired DNA is 
+released from the complex and incorporated into the DNA of 
+the cell. The desired DNA is then expressed by the cell. In this 
+aspect, the rosette nanotube is a delivery vehicle or carrier for 
+the desired DNA into a cell for expression purposes. One of 
+skill in the art will readily understand based on the present 
+disclosure that target DNA, such as a gene to be expressed, 
+can be transfected into a cell using the delivery vehicles and 
+techniques described herein or readily available to those of 
+skill in the art, and thereafter expressed using methods known 
+to those of skill in the art. 
+0019  Embodiments of the present invention are still fur 
+ther directed to compositions including rosette nanotube? 
+nucleic acid complexes used as a vehicle for the delivery of 
+the nucleic acid. Such as RNA into aparticular cell. According 
+to certain embodiments, the rosette nanotube and RNA com 
+plexes are mixed with a pharmaceutically acceptable excipi 
+ent or delivery vehicle and then delivered to the desired loca 
+tion and in a manner to transfect cells with the RNA, for 
+example, for therapeutic purposes through the inhibition or 
+alteration of the expression of a target gene. In addition, 
+transfection kits are provided that include the rosette nano 
+
+US 2014/0171482 A1 
+
+Jun. 19, 2014 
+
+tubes of the present invention for complexing with one or 
+more desired nucleic acids using the methods described 
+herein pursuant to instructions and optional reagents pro 
+vided in the kit to form a transfection reagent for transfection 
+of a desired cell. 
+
+BRIEF DESCRIPTION OF THE DRAWINGS 
+0020  FIG. 1 shows the structure of an exemplary module 
+used to form a rosette nanotube. Shown in schematic form is 
+a rosette nanotube and also shown is an image of rosette 
+nanotubes of the present disclosure. 
+FIG. 2 is a graphical comparison of RNT (rosette 
+0021 
+nanotubes), RNA, RNT/RNA composites (Left); RNT/RNA 
+composites and the sum of absorbance RNTs and RNA 
+(Right) in UV-vis spectroscopy. 
+0022  FIG. 3 is a graphical comparison of RNT, RNA, 
+RNT/RNA composites (Left); RNT/RNA composites and the 
+sum of absorbance RNTs and RNA (Right in CD spectros 
+copy. 
+0023  FIG. 4 is a graphical comparison of RNT denatur 
+ation curve (Left) and RNT/RNA composites denaturation 
+curve (Right) with the first derivative of such curve demon 
+strating the denaturation temperature of RNT/RNA compos 
+ites. 
+0024  FIG. 5 are images of the electrophoresis of RNTs 
+and RNT/RNA composites. 
+0025  FIG. 6 is  an atomic force microscopic image of 
+rosette nanotubes only. 
+0026  FIG. 7A is an atomic force microscopic image of a 
+complex of rosette nanotubes and RNA. FIG. 7B is a trans 
+mission electron microscope image of RNTs. FIG. 7C is a 
+transmission electron microscope image of a complex of 
+RNTS and RNA. 
+0027  FIG. 8 are images of fluorescence microscopy of the 
+treated cells revealing internalized RNT/SiRNA. Light (A 
+and C) and fluorescent (B and D) pictures of chondrocytes 
+cultured with only FITC-RNA (A and B) or with FITC-RNA 
+RNTs (C and D). 
+0028  FIG.9 depicts images of internalized RNT/SiRNA 
+located in the cytoplasm. Confocal images of FITC-SiRNA 
+(A) and HDAC4 (B), DAP1 (C) as well as overlay (D). FIG. 
+9(E) is a 2D confocal image of FITC-SiRNA internalized by 
+cells. FIG. 9(F) is a 3D confocal image of FITC-SiRNA 
+internalized by cells. 
+0029  FIG. 10 depicts images showing that siRNA deliv 
+ered into chondrocytes by RNT induced the RNAi response. 
+HDAC4 mRNA level was determined by the real-time PCR 
+(A) and HDAC4 protein expression by western blot (B) and 
+quantitative  analysis  of HDAC4 protein  expression  (C). 
+*P<0.05 compared with the consiRNA. 
+0030  FIG. 11 is a graph demonstrating that miRNA was 
+functionally delivered into chondrocytes by RNTs to induce 
+RNAi response with an increase of miRNA 365 expression 
+level. *P<0.05 compared with the controls. 
+0031 
+FIG. 12(A) is a graph demonstrating that miRNA 
+inhibitor was functionally delivered into chondrocytes by 
+RNTs to induce RNAi response with a decrease of miRNA 
+365 expression level. FIG. 12(B) a graph demonstrating that 
+miRNA inhibitor was functionally delivered into chondro 
+cytes by TBLs to induce RNAi response with a decrease of 
+miRNA 365 expression level. *P<0.05 compared with the 
+controls (scrambled RNA). 
+0032  FIG.  13  depicts  images  of internalized  RNT/ 
+GAPDH molecular beacons located in the cytoplasm. Light 
+
+(A and C) and fluorescent (B and D) pictures of ADTC5 
+chondrocytes cultured with only GAPDH molecular beacons 
+(A and B) or with RNT/GAPDH molecular beacons (C and 
+D). 
+0033  FIG.  14  depicts  images  of internalized  RNT/ 
+GAPDH molecular beacons located in the cytoplasm. Light 
+(A and C) and fluorescent (B and D) pictures of primary 
+chicken chondrocytes cultured with only GAPDH molecular 
+beacons (A and B) or with RNT/GAPDH molecular beacons 
+(C and D). 
+0034  FIG.  15  depicts  images  of internalized  RNT/ 
+miR365 molecular beacons located in the cytoplasm. Light 
+(A and C) and fluorescent (B and D) pictures of mouse chon 
+drocytes cultured with only GAPDH molecular beacons (A 
+and B) or with RNT/GAPDH molecular beacons (C and D). 
+0035  FIG. 16 depicts images of internalized RNT/green 
+fluorescence labeled siRNA located in the cytoplasm. Light 
+(A and C) and fluorescent (B and D) pictures of primary 
+human chondrocytes cultured with only siRNA (A and B) or 
+with RNT/siRNA (C and D). 
+0036  FIG. 17 depicts images of internalized RNT/green 
+fluorescence labeled siRNA located in the cytoplasm. Light 
+(A and C) and fluorescent (B and D) pictures of primary pig 
+chondrocytes cultured with only siRNA (A and B) or with 
+RNT/siRNA (C and D). 
+0037  FIG. 18 depicts images of internalized RNT/green 
+fluorescence labeled siRNA located in the cytoplasm. Light 
+(A and C) and fluorescent (Band D) pictures of human breast 
+cancer cell line (MCF7) cultured with only siRNA (A and B) 
+or with RNT/siRNA (C and D). 
+0038  FIG. 19 depicts images of internalized RNT/green 
+fluorescence labeled siRNA located in the cytoplasm. Light 
+(A and C) and fluorescent (Band D) pictures of rat astrocyte 
+cell line (CRL2005) cultured with only siRNA (A and B) or 
+with RNT/siRNA (C and D). 
+0039  FIG. 20 depicts images of internalized RNT/green 
+fluorescence labeled siRNA located in the cytoplasm. Light 
+(A and C) and fluorescent (B and D) pictures of human 
+chondrosarcoma cells cultured with only siRNA (A and B) or 
+with RNT/siRNA (C and D). 
+0040  FIG. 21 depicts images of internalized RNT/green 
+fluorescence labeled siRNA located in the cytoplasm. Light 
+(A and C) and fluorescent (B and D) pictures of mouse mac 
+rophage cell line (RAW264.7) cultured with only siRNA (A 
+and B) or with RNT/siRNA (C and D). 
+0041 
+FIG. 22 depicts images of internalized RNT/green 
+fluorescence labeled siRNA located in the cytoplasm. Light 
+(A and C) and fluorescent (B and D) pictures of primary 
+chicken liver cells cultured with only siRNA (A and B) or 
+with RNT/siRNA (C and D). 
+0042  FIG. 23 is the quantitative analysis of the fluores 
+cence molecular tomography in the mouse. *P<0.05 com 
+pared with the control group (Beacon only) at the respective 
+time point. 
+0043  FIG. 24 is flow cytometry data showing the fluores 
+cence of cells cultured with siRNA only, RNT/RNA and 
+Lipofectamine/RNA. 
+0044  FIG. 25 is a graph comparing the ability of lipo 
+fectamine and RNTs to deliver GAPDH molecular beacons 
+into cells. Light (A and C) and fluorescent (B and D) pictures 
+of primary mouse chondrocytes cultured with lipofectamine? 
+GAPDH molecular beacons (A and B) or with RNT/GAPDH 
+molecular beacons (C and D). 
+
+US 2014/0171482 A1 
+
+Jun. 19, 2014 
+
+O 
+
+NH2 
+
+HN 
+
+ls 
+
+X 
+
+NN 
+
+1s 
+
+O 
+
+HN 
+
+R 
+
+(CH2)n 
+
+Y 
+
+0049.  An exemplary module within the scope of formula I 
+is shown in FIG. 1 along with a schematic representation of a 
+nanotube and an image of nanotubes formed from the exem 
+plary module. 
+0050  Alternative linker groups R can join the Y group to 
+the carbon of the (CH) group or the Natom either by the 
+amino group or the carboxyl group of the amino acid or 
+polypeptide. 
+0051  Alternative Linker moieties within the scope of the 
+present disclosure include NH' and the following 
+
+  
+
+0045  FIG. 26 a graph comparing the ability  of lipo 
+fectamine, TBLs and RNTs to deliver miR365 mimic into 
+cells and to influence expression of downstream gene. *P<0. 
+05 compared with the controls and lipofectamine/miR365 
+mimic. **P<0.05 compared with the controls. 
+
+DETAILED DESCRIPTION OF CERTAIN 
+EXEMPLARY EMBODIMENTS 
+
+0046.  The aspects, advantages and other features of the 
+disclosure will become apparent in view of the following 
+detailed description, which discloses various non-limiting 
+embodiments of the disclosure. In describing embodiments 
+of the present disclosure, specific terminology is employed 
+for the sake of clarity. However, the disclosure is not intended 
+to be limited to the specific terminology so selected. It is to be 
+understood that each specific element includes all technical 
+equivalents that operate in a similar manner to accomplish a 
+similar purpose. Additionally, all of the citations herein are 
+incorporated by reference in their entirety. 
+0047  Embodiments of the  present  disclosure  involve 
+transfecting cells with one or more nucleic acids, such as 
+DNA or RNA. RNA can be small RNA including siRNA and 
+miRNA. In  particular,  disclosed herein are novel siRNA 
+transport complexes, comprising an unexpectedly advanta 
+geous transport vehicle. Methods of the present invention 
+include contacting a transfection complex described herein 
+with one or more cells,  where the transfection complex 
+includes a rosette nanotube and one or more nucleic acids 
+such as DNA and RNA, for example siRNA. The rosette 
+nanotube is a carrier that is formed from self-assembled mod 
+ules as described below and those modules recognized in the 
+art. 
+0048  Modules according to the present disclosure include 
+compounds of Formula I below: 
+
+O 
+
+NH2 
+
+HN 
+
+ls 
+
+X 
+
+NN 
+
+1s 
+
+O 
+
+N 
+
+HN 
+
+R 
+
+R2 
+
+Y 
+
+wherein X is CH or nitrogen; n is an integer of 1, 2, 3, or 4: 
+R is hydrogen or a linker group for example (CH), or other 
+linker groups described herein;Y is absent when R is hydro 
+gen or is an amino acid or polypeptide having an amino group 
+covalently bound to an O-carbon of the amino acid and the 
+amino group is covalently bound to the linker group R, and 
+R is hydrogen or an aliphatic moiety, such as alkyl, straight 
+or branched chain, Saturated or unsaturated; and salts thereof. 
+Preferably R is C to Coalkyl, C to Cs alkyl, C to C alkyl, 
+or methyl. Compounds within the scope of the invention 
+include those where the Y group can be connected to the 
+linker group either by the amino group or the carboxyl group 
+of the amino acid or polypeptide. An exemplary linker group 
+is shown in the formula below. 
+
+0.052  Compounds of Formula I can be prepared by the 
+methods described in U.S. Pat. No. 6,696.565 hereby incor 
+porated by reference herein in its entirety alone or combined 
+with methods known to those of skill in the art. 
+0053  Modules according to the present disclosure also 
+include compounds of Formula II below: 
+
+-continued 
+
+A- Me  x 
+
+US 2014/0171482 A1 
+
+Jun. 19, 2014 
+
+O 
+
+NH2 
+
+HN 
+
+ls 
+
+X 
+
+NN 
+
+1. 
+
+O 
+
+N 
+
+I 
+R 
+
+O 
+
++HN 
+-'n'-1a 
+N 
+
+l 
+
+N 
+
+R 
+
+Y 
+
+Y 
+
+h  N  NH2 
+
+R 
+
+NN 
+H 
+
+N 
+H 
+
+O 
+
+wherein X is CH or nitrogen; R is hydrogen or a linker group 
+for example (CH), where n is an integer of 1, 2, 3, or 4 or 
+(CH2)CO other linker groups described herein; Y is absent 
+when R  is hydrogen or is an amino acid or polypeptide 
+having an amino group covalently bound to an O-carbon of 
+the amino acid and the amino group is covalently bound to the 
+linker group R, and R is hydrogen or an aliphatic moiety, 
+Such alkyl, straight or branched chain, Saturated or unsatur 
+ated; and salts thereof. Preferably R is C to Coalkyl, C to 
+Cs alkyl, C to C alkyl, or methyl. An exemplary linkergroup 
+is shown in the formula below. 
+
+O 
+
+NH2 
+
+HN 
+
+ls 
+
+X 
+
+NN 
+
+1s 
+
+O 
+
+N 
+
+I 
+R 
+
+O 
+
+,--- N-1 n 
+
++HN 
+
+O 
+
+l 
+h 
+h  N  NH2 
+
+R 
+
+NN 
+H 
+
+N 
+H 
+
+O 
+
+0054  Compounds within the scope of the present disclo 
+sure include those where the Y group can be connected to the 
+linker group either by the amino group or the carboxyl group 
+of the amino acid or polypeptide. Alternative linker groups R. 
+connecting the NH group and the Y group include 
+
+GE) 
+NH 
+
+GE) 
+NH 
+
+GE) 
+NH 
+
+NHGE) 
+
+St. 
+
+O 
+
+N 
+
+ls 
+
+O 
+
+N 
+
+e H3 
+
+  
+
+O 
+
+--~~  21 
+
+H 
+
+0055  According to certain aspects of the present disclo 
+sure, the structure of Formula II is referred to as a twin base 
+with a linker (TBL) or twin base linkers insofar as two similar 
+double ring structures are present as shown in Formula II and 
+are linked to an amino acid or polypeptide. However, it is to be 
+understood that the two double ring structures need not be 
+identical insofar as they may have different X and R groups. 
+0056.  The term “amino acid' is inclusive of the 20 com 
+mon amino acids, as well as “nonstandard amino acids.” for 
+example, D-amino acids and chemically (or biologically) 
+produced derivatives of “common  amino acids, including 
+for example, 3-amino acids. 
+0057  Accordingly, amino acids according to the present 
+disclosure include the commonly known amino acids such as 
+glycine (Gly, G), alanine (Ala., A), Valine (Val, V), leucine 
+(Leu, L), isoleucine (Ile, I), proline (Pro, P), hydroxyproline, 
+phenylalanine (Phe, F), tyrosine (Tyr,Y), tryptophan (Trp, W) 
+cysteine (Cys, C), methionine (Met,  M) serine (Ser,  S), 
+o-phosphoserine, threonine (Thr, T), lysine (LyS, K), arginine 
+(Arg, R), histidine (H is, H), aspartate (Asp, D), glutamate 
+(Glu,  E),  Y-carboxyglutamate,  asparagine  (ASn,  N), 
+glutamine (Gln, Q) and the like. Amino acids also include 
+Stereoisomers thereof and compounds structurally similar to 
+the  amino acids  or modifications  or derivatives  thereof. 
+Exemplary amino acids within the scope of the present dis 
+closure include lysine, arginine, serine, glycine, aspartate and 
+the like. 
+0058.  The term "peptide' is inclusive of both straight and 
+branched amino acid chains, as well as cyclic amino acid 
+chains, which comprise at least 2 amino acid residues. The 
+terms “peptide' and “polypeptide' are used interchangeably 
+herein. Accordingly, polypeptides according to the present 
+disclosure include two or more amino acids covalently linked 
+
+US 2014/0171482 A1 
+
+Jun. 19, 2014 
+
+together. According to one aspect, the two or more amino 
+acids are covalently linked together at least in part by one or 
+more peptide bonds. 
+0059.  According to aspects of the present disclosure, mod 
+ules (compounds) according to Formula I and Formula II 
+self-assemble into  Substructures  also  called  Supermacro 
+cycles which themselves will self-assemble into nanometer 
+scale architectures or structures Such as discrete nanotubular 
+assemblies in water or aqueous solutions. Supermacrocycles 
+are defined herein as being a number of organic molecules 
+covalently or noncovalently bound together so as to form a 
+ring structure. For example, compounds of Formula I will 
+self-assemble into a 6-merring structure, sometimes referred 
+to as a rosette. The process of forming nanotubes with the 
+modules of the present disclosure is hierarchical. In particu 
+lar, the modules of the present invention first self-assemble 
+into Supermacrocycles, and then the Supermacrocycles self 
+assembly into nanotubes. Such self-assembly is described in 
+U.S. Pat. No. 6,696.565. For the compounds of Formula II 
+referred to as twin base linkers, the compounds will also 
+assemble into a 6-merring structure. However, a single Super 
+macrocycle formed will include two base layers owing to the 
+presence of the two bases in each of the compound of Formula 
+II. 
+0060  According to preferred aspects of the present dis 
+closure, the compounds of Formula and Formula II include 
+low molecular weight synthetic DNA base analogues referred 
+to by the nomenclature CM G. See Fennirietal, J. Am. Chem. 
+Soc. 2001, 123,3854-3855. The CAG moiety, referred to as 
+a single CM G motif, possess the Watson-Crick donor-donor 
+acceptor of guanine and the acceptor-acceptor-donor of 
+cytosine and undergoes a self-assembly process, fueled by an 
+array of hydrogen bonds, to produce a six-membered Super 
+macrocycle or rosette. Stacking of these rosettes produced a 
+nanotube of very high aspect ratio. Compounds within the 
+scope of the present invention include a twin G M C motif 
+denoted as (CMG). Like the single CMG motif, the twin C 
+m G motif (CMG), also possesses the Watson-Crick donor 
+donor-acceptor of guanine and the acceptor-acceptor-donor 
+of cytosine and undergoes a self assembly process, fueled by 
+an array of hydrogen bonds, to produce a six-membered 
+Supermacrocycle or ring structure (rosette) of twin configu 
+ration. Stacking of these twin rosettes produces a nanotube of 
+very high aspect ratio and higher stability. 
+0061.  It should be understood that the above described 
+Formula I  and Formula II  demonstrate that electrostatic, 
+stacking and hydrophobic interactions can be effectively 
+orchestrated by hydrogen bonds to direct the hierarchical 
+assembly and organization of helical nanotubular architec 
+tures in an aqueous milieu. Helical nanotubular architectures 
+within  the scope of the present invention include those 
+formed entirely from compounds of Formula I. Helical nano 
+tubular architectures within the scope of the present invention 
+include those formed entirely from compounds of Formula II. 
+Further, helical nanotubular architectures within the scope of 
+the present invention include those formed from one or more 
+of the compounds of Formula I and one or more of the com 
+pounds of Formula II. For example, a Supermacrocycle ring 
+Substructure having particular amino acid or polypeptide side 
+chains formed from the compounds of Formula I can be 
+stacked with a Supermacrocycle ring Substructure having par 
+ticular amino acid or polypeptide side chains formed from 
+compounds of Formula II. The rosette substructures formed 
+from the compounds of Formula I and Formula II can be 
+
+stacked in any desired sequence to form nanotubular struc 
+tures of the present invention. Utilizing this aspect of the 
+present invention, a wide variety of structurally different 
+modules (i.e.  molecules) can be synthesized and self-as 
+sembled into Supermacrocycles and then nanotubular struc 
+tures according to methods of the present invention. 
+0062  According to certain aspects of the present disclo 
+Sure, nanotubes range in lengths between about 1  nm and 
+about 999 microns, about 1 nm to about 500 nm, about 10 nm. 
+to about 300 nm, or about 20 nm to about 100 nm. The 
+nanotubes range in diameters between about 1 angstrom and 
+about 100 nm, about 1 nm to about 30 nm, or from about 3 nm. 
+to about 15 nm. The openings or inner diameters through the 
+nanotubes range in diameters between about 1 angstrom and 
+about 100 nm, about 1 nm to about 30 nm, or from about 3 nm. 
+to about 15 nm. According to certain embodiments, the open 
+ing or inner diameter through the nanotube has a diameter of 
+about 1  nm. According to certain embodiments, the nano 
+tubes formed from the twin base linkers of formula II have a 
+different opening or inner diameter compared to nanotubes 
+formed from the compounds of formula I. This aspect which 
+allows for the incorporation into the nanotube of different 
+sizes of agents, such as nucleic acids. 
+0063.  According to certain preferred aspects of the present 
+invention, a nanotube is prepared from single base ring struc 
+tures and twin base ring structures in any desired order. The 
+nanotube can have one or more single base ring structures and 
+one or more twin base ring structures. Likewise, a nanotube 
+within the scope of the present invention can include a plu 
+rality of single base ring structures formed from compounds 
+of Formula I and a plurality of twin base ring structures 
+formed from compounds of Formula II stacked together, i.e. 
+one next to the other via hydrogen bonding, to form the 
+nanotube. 
+0064.  As may be used herein, the terms “nucleic acid.” 
+“nucleic acid molecule.” “nucleic acid oligomer.” “oligo 
+nucleotide.” “nucleic acid sequence.” “nucleic acid frag 
+ment” and “polynucleotide' are used interchangeably and are 
+intended to include, but are not limited to, a polymeric form of 
+nucleotides covalently linked together that may have various 
+lengths, either deoxyribonucleotides or ribonucleotides, or 
+analogs, derivatives or modifications thereof. Different poly 
+nucleotides may have different three-dimensional structures, 
+and may perform various functions, known or unknown. 
+Non-limiting examples of polynucleotides include a gene, a 
+gene fragment, an exon, an intron, intergenic DNA (includ 
+ing, without limitation, heterochromatic DNA), messenger 
+RNA (mRNA), transfer RNA, ribosomal RNA, a ribozyme, 
+cDNA, a recombinant polynucleotide, a branched polynucle 
+otide, a plasmid, a vector, isolated DNA of a sequence, iso 
+lated RNA of a sequence, a nucleic acid probe, and a primer. 
+Polynucleotides useful in the methods of the invention may 
+comprise natural nucleic acid sequences and variants thereof, 
+artificial nucleic acid sequences, or a combination of Such 
+sequences. As used herein, one of skill in the art will under 
+stand that the term “nucleic acid probe' includes probes 
+known as molecular beacons which include synthetic oligo 
+nucleotide hybridization probes that can report the presence 
+of specific nucleic acids in homogenous solutions or in cells. 
+Species of molecular beacons include hairpin shaped mol 
+ecules with an internally quenched fluorophore whose fluo 
+rescence is restored when they bind to a target nucleic acid 
+sequence. Technically, molecular beacons can be designed to 
+
+US 2014/0171482 A1 
+
+Jun. 19, 2014 
+
+acid 
+
+uracil-5-oxyacetic 
+
+target any gene and can be linked with fluorescent molecules 
+of different fluorescence wavelengths. 
+0065.  A polynucleotide is typically composed of, a spe 
+cific sequence of four nucleotide bases: adenine (A): cytosine 
+(C); guanine (G); and thymine (T) (uracil (U) for thymine (T) 
+when the polynucleotide is RNA). Thus, the term “polynucle 
+otide sequence' is the alphabetical representation of a poly 
+nucleotide molecule; alternatively, the term may be applied to 
+the polynucleotide molecule itself. This alphabetical repre 
+sentation can be input into databases in a computer having a 
+central processing unit and used for bioinformatics applica 
+tions such as functional genomics and homology searching. 
+Polynucleotides may optionally include one or more non 
+standard nucleotide(s), nucleotide analog(s) and/or modified 
+nucleotides. 
+0066  Examples of modified nucleotides include, but are 
+not limited to 5-fluorouracil, 5-bromouracil, 5-chlorouracil, 
+5-iodouracil,  hypoxanthine,  Xantine,  4-acetylcytosine, 
+5-(carboxyhydroxylmethyl)uracil, 
+5-carboxymethylami 
+nomethyl-2-thiouridine, 
+5-carboxymethylaminomethylu 
+racil,  dihydrouracil,  beta-D-galactosylqueosine,  inosine, 
+N6-isopentenyladenine, 1-methylguanine, 1-methylinosine, 
+2,2-dimethylguanine,  2-methyladenine,  2-methylguanine, 
+3-methylcytosine,  5-methylcytosine, N6-adenine, 7-meth 
+ylguanine, 5-methylaminomethyluracil, 5-methoxyaminom 
+ethyl-2-thiouracil,  beta-D-mannosylqueosine,  5'-methoxy 
+carboxymethyluracil, 5-methoxyuracil, 2-methylthio-D46 
+(V). 
+isopentenyladenine, 
+Wybutoxosine, pseudouracil, queosine, 2-thiocytosine, 5-me 
+thyl-2-thiouracil, 2-thiouracil, 4-thiouracil, 5-methyluracil, 
+uracil-5-oxyacetic acid methylester, uracil-5-oxyacetic acid 
+(v),  5-methyl-2-thiouracil,  3-(3-amino-3-N-2-carboxypro 
+pyl) uracil, (acp3)w, 2,6-diaminopurine and the like. Nucleic 
+acid molecules may also be modified at the base moiety, Sugar 
+moiety or phosphate backbone. 
+0067.  According  to  certain  aspects,  nucleic  acids  or 
+polypeptides includes small RNA being a duplex of between 
+about 10 to about 30 nucleic acids, between about 15 to about 
+25 nucleic acids and between about 20 to about 23 nucleic 
+acids, and any values and ranges in between whether over 
+lapping or not. The small RNA can be formed by one or more 
+oligonucleotides.  Small  RNA includes  RNA commonly 
+referred to as interference RNA, dsRNA, ssRNA, saRNA, 
+siRNA or miRNA or their derivatives, analogs, mimics and 
+inhibitors. According to certain aspects, siRNA is involved in 
+the RNA interference (RNAi) pathway, where it interferes 
+with the expression of a specific gene. In addition to their role 
+in the RNAi pathway, siRNAs also act in the RNAi-related 
+pathways. siRNA within the scope of the present disclosure 
+includes double stranded RNA of about 21 nucleotides with a 
+2 nucleotide 3' overhang on either end of the siRNA. Each 
+siRNA strand has a 5" phosphate group and a 3’ hydroxyl 
+(—OH) group. The structure is the result of processing by 
+dicer, an enzyme that converts either long dsRNAs or small 
+hairpin RNAs into siRNAs. Particular exemplary sequences 
+of siRNA are readily available to those of skill in the art 
+through published literature and siRNA is  commercially 
+available from, for example, Qiagen. It is to be understood 
+that the present disclosure is not to be limited to any particular 
+siRNA sequence, but rather the present disclosure broadly 
+describes the incorporation of siRNA into or with rosette 
+nanotubes. One of skill in the art will readily recognize that all 
+siRNA sequences, given the similar structure and function of 
+covalently connected nucleotides, can be incorporated into or 
+
+complexed  with  rosette  nanotubes  using  the  methods 
+described herein and that an exhaustive listing of publicly 
+known siRNA sequences need not be provided herein. 
+0068  According to additional aspects, DNA includes any 
+DNA desired to be expressed by a cell. DNA includes genes 
+having known functions and expressing known proteins. 
+Likewise, DNA suitable for transfecting a cell will be appar 
+ent to those of skill in the art of transfection and gene expres 
+S1O. 
+0069.  The present disclosure is directed to methods of 
+forming a transfection complex, for example, by mixing one 
+or more nucleic acids with fully formed rosette nanotubes or 
+modules that self-assemble into rosette nanotubes, such as the 
+compounds of formula I  or formula II.  According to one 
+aspect, fully formed rosette nanotubes in the form of a powder 
+is dissolved in water and heated to boiling. The solution is 
+then cooled to room temperature. One or more nucleic acids 
+in the form of a solution is then added to the solution of 
+nanotubes at a suitable temperature and for a suitable period 
+of time until a complex of the nanotube and one or more 
+nucleic acids forms. Suitable ratios of the nucleic acid to 
+nanotube include about 0.01:1 (wit/wt) to about 1:0.1 (wt/wt). 
+0070  The invention is  further directed to  transfection 
+complexes, which include small RNA, such as siRNA and a 
+rosette nanotube. Transfection complexes in accordance with 
+the present invention may include any of the rosette nano 
+tubes of the present invention in combination with small RNA 
+known to those of skill in the art. 
+0071  According to certain aspects, cells within the scope 
+of the present invention that can be transfected include osteo 
+blasts, fibroblasts, endothelial cells, stem cells, keratinocytes, 
+cardiac myocytes, chondrocytes, synoviocytes, mesenchy 
+mal stem cells,  neural stem cells, islet cells, hepatocytes, 
+Smooth muscle cells, urothelial cells, neurons, Schwann cells, 
+microglial cells, cancerous and non cancerous cells, epithelial 
+cells, endothelial cells, myofibroblasts, osteoclasts, macroph 
+ages, leukocytes, osteocytes, astrocytes etc. and the like. 
+Additional cells include bacterial cells such as Staphylococ 
+cus aureus, Staphylococcus epidermis, Pseudomonas aerugi 
+nosa, MRSA, E. coli, candida (yeast), Candida albacans, 
+Streptococcus pneumoniae, Neisseria meningitides, Haemo 
+philus influenzae, Streptococcus agalactiae, Listeria mono 
+cytogenes, Mycoplasma pneumoniae, Chlamydia pneumo 
+niae, Legionella pneumophila, Mycobacterium, tuberculosis, 
+Streptococcus pyogenes, Chlamydia trachomatis, Neisseria 
+gonorrhoeae,  Treponema pallidum,  Ureaplasma urealyti 
+cum, Haemophilus ducreyi,  Helicobacter pylori, Campylo 
+bacter jejuni, Salmonella, Shigella, Clostridium, Enterobac 
+teriaceae, Staphylococcus saprophyticus and the like. The 
+above list is intended to be exemplary and not exhaustive. One 
+of skill in the art will readily be able to identify additional 
+cells within the scope of the present disclosure. 
+0072  According to aspects of the present disclosure, com 
+posites of rosette nanotubes and small RNA can be combined 
+with a pharmaceutically acceptable agent and administered as 
+a delivery composition to an individual for therapeutic pur 
+poses. As used herein, a “pharmaceutically acceptable agent' 
+(such as a salt, carrier, excipient or diluent) is a component 
+which (1) is compatible with the RNT/small RNA composites 
+in that it can be included in the delivery composition-without 
+eliminating the capacity of the RNT/small RNA composites 
+to transfect cells and deliver small RNA; and (2) where the 
+delivery composition is intended for therapeutic uses, is Suit 
+able for use with an animal (e.g., a human) without undue 
+
+US 2014/0171482 A1 
+
+Jun. 19, 2014 
+
+adverse side effects, such as toxicity, irritation, and allergic 
+response. Side effects are “undue' when their risk outweighs 
+the benefit provided by the pharmaceutical agent. 
+0073.  The term “small RNA is used as it is in the art, and 
+includes a duplex of RNA (30 bases or less in each strand) that 
+targets mRNA. Small RNA may be chemically or enzymati 
+cally synthesized. Small RNA in accordance with the present 
+invention may be incorporated and then activated in RISC 
+(RNA-induced silencing complex). 
+0074.  A “therapeutically effective amount” is an amount 
+necessary to prevent, delay or reduce the severity of the onset 
+of disease, or an amount necessary to arrest or reduce the 
+severity of an ongoing disease, and also includes an amount 
+necessary to enhance normal physiological functioning. 
+0075.  The word “transfect” is broadly used herein to refer 
+to introduction of an exogenous compound, such as a poly 
+nucleotide sequence, into a prokaryotic or eukaryotic cell; the 
+term includes, without limitation, introduction of an exog 
+enous nucleic acid into a cell, which may result in a perma 
+nent or temporary alteration of genotype in an immortal or 
+non-immortal cell line. Accordingly, embodiments of the 
+present disclosure include the introduction of a polynucle 
+otide sequence to either be expressed or to inhibit expression 
+of a target gene. 
+0076.  In general, a cell to be transfected includes, but is not 
+limited to, any animal, plant or bacterial cell that is suscep 
+tible to intracellular delivery of DNA or RNA such as siRNA 
+using the transfection complex of the present invention either 
+in vitro or in vivo. For example, cells from different species 
+Such as human, mouse, rat, pig, chicken, etc. may be used 
+according to the present disclosure. Likewise, cells from dif 
+ferent tissues or organs, such as liver, fibroblast, beast cells, 
+macrophages from the immune system, astrocytes from the 
+neuronal  system  may be used.  Likewise,  primary  cells 
+obtained directly from animals, plants or bacteria may be 
+used and cell lines, such as commercially available immor 
+talized cell, may be used. Likewise, normal cells may be used 
+and diseased cells may be used. Such as cancer cells.  For 
+example, Suitable cellular targets include, without limitation, 
+epithelial cells, endothelial cells, keratinocytes, fibroblasts, 
+muscle cells, hepatocytes, blood cells such as T lymphocytes, 
+B lymphocytes, monocytes, macrophages, neutrophils, eosi 
+nophils, megalaryocytes, granulocytes, various stem or pro 
+genitor cells, in particular hematopoietic stem or progenitor 
+cells, e.g., as obtained from bone marrow, umbilical cord 
+blood, peripheral blood, fetal liver, and the like. In certain 
+aspects, the cell is selected from the group consisting of lung 
+cells, liver cells, endothelial cells, muscle cells, skin cells, 
+hematopoietic stem cells and tumor cells. 
+0077  According to certain embodiments, the cells include 
+one or more cells selected from the group consisting of trans 
+formed, recombinant, malignant, and primary cell lines. It is 
+believed that the rosette nanotubes of the present invention 
+will be effective as carriers of DNA or RNA Such as siRNA in 
+most, if not all cell types and cell lines. Since complexes of the 
+rosette  nanotubes  and  nucleic  acids  are  composed  of 
+covalently bound base pairs, one of skill would expect that 
+such complexes will be universally recognized by all cell 
+types for transfecting purposes. 
+0078  Methods of transfecting cells in accordance with the 
+present invention may also include forming the transfection 
+complex by combining in aqueous media the modules of the 
+rosette nanotube and one or more DNA sequences and/or one 
+or more RNA sequences. The complex is allowed to form. 
+
+Cells are then contacted with the complex. According to one 
+aspect, one of skill in the art will recognize from the benefit of 
+the present disclosure that doses, concentrations, ratios and 
+conditions of RNT/nucleic acids incorporation can be within 
+ranges. For example, between about 1 uL to about 100 uL, for 
+example 10 uL, of 1 mg/mL RNTs can be mixed with about 4 
+uL to about 100LL, for example 20LL, of 5uM nucleic acids, 
+such as siRNA, miRNA, nucleic acid probes or other nucleic 
+acids, at a temperature of between about 0°C. to about 37°C. 
+for between about 0.5 hours to about 48 hours and added into 
+1  mL cell culture medium for transfection. For example, the 
+combination of RNT and nucleic acids can be maintained at 
+4°C. for 24 hours or can be maintained at room temperature 
+for two hours. Mixing can be accomplished by simple mixing, 
+mixing while heating to about 60° C. to about 100° C., soni 
+cation or other methods known to those of skill in the art. If 
+heated, the combination may then be subjected to a tempera 
+ture of between about 0°C. to about 37° C. for between about 
+0.5 hours to about 48 hours to result information or assembly 
+of the nanotube/nucleic acid complex. 
+007.9  The present invention also provides methods of 
+treating diseases comprising using the complexes or compo 
+sitions of the present invention. In particular, methods are 
+provided for treating a patient having a disease, by adminis 
+tering to the patient a therapeutically effective amount of a 
+complex or composition of the present invention. For in vivo 
+therapies based on local injection (e.g., intratumoral, intra 
+muscularly, into the peritoneal cavity, intracardiac, and aero 
+solized treatments) the RNT/small RNA complex is advanta 
+geously water soluble and so may be administered as an 
+aqueous injection. 
+0080.  In accordance with certain examples, complexes of 
+the present invention can be incorporated into pharmaceutical 
+compositions suitable for administration. Such compositions 
+typically comprise the complexes disclosed here and a phar 
+maceutically acceptable carrier. As used herein the term 
+“pharmaceutically acceptable carrier  is intended to include 
+any and all solvents; dispersion media, coatings, antibacterial 
+and antifungal  agents,  isotonic and absorption  delaying 
+agents, and the like, compatible with pharmaceutical admin 
+istration. The use of Such media and agents for pharmaceuti 
+cally active substances is well known in the art. Exceptinsofar 
+as any conventional media or agent is incompatible with the 
+active compound, use thereof in the compositions is contem 
+plated. Supplementary active compounds can also be incor 
+porated into the compositions. 
+I0081.  In accordance with certain examples, a pharmaceu 
+tical composition of the invention is formulated to be com 
+patible with its intended route of administration. Such phar 
+maceutical compositions may be administered by inhalation, 
+transdermally, orally, rectally, transmucosally, intestinally, 
+parenterally, intramuscularly, Subcutaneously, intravenously 
+or other suitable methods that will be readily selected by the 
+person of ordinary skill in the art, given the benefit of this 
+disclosure. For example, Solutions or Suspensions used for 
+parenteral,  intradermal,  or Subcutaneous application  can 
+include the following components: a sterile diluent Such as 
+water for injection, Saline Solution, fixed oils, polyethylene 
+glycols, glycerin, propylene glycol or other synthetic Sol 
+vents; antibacterial agents such as benzyl alcohol or methyl 
+parabens;  antioxidants  such as ascorbic  acid or sodium 
+bisulfite; chelating agents such as ethylenediaminetetraacetic 
+acid; buffers such as acetates, citrates or phosphates and 
+agents for the adjustment of tonicity Such as Sodium chloride 
+
+US 2014/0171482 A1 
+
+Jun. 19, 2014 
+
+or dextrose. pH can be adjusted with acids or bases, such as 
+hydrochloric acid or sodium hydroxide. The parenteral prepa 
+ration can be enclosed in ampules, disposable syringes or 
+multiple dose vials made of glass or plastic. 
+0082  Also encompassed are methods for treating a patient 
+having a disease, by administering to the patient cells that 
+have been transfected by the methods disclosed herein. An 
+aspect of an ex vivo delivery method of the present invention 
+may include for example, (i) removing a cell from a subject; 
+(ii) introducing siRNA into a cell by contacting the cell with 
+a delivery composition (transfection complex or composition 
+comprising Such a transfection complex) comprising siRNA 
+and a rosette nanotube; and (iii) reintroducing the cell into the 
+Subject. In addition, nanotubes having nucleic acids com 
+plexed therewith as described herein may be delivered in vivo 
+to an individual in need of treatment where the nanotubes 
+having nucleic acids complexed therewith enter cells within 
+the individual and the nucleic acids regulate cellular expres 
+sion of proteins. For example the nucleic acids may silence 
+genes in a therapeutic manner to the extent that a protein is not 
+expressed resulting in treatment or the nucleic acids may be 
+expressed by the cell to produce proteins in a therapeutic 
+manner resulting in treatment. 
+0083.  Examples of genetic and/or non-neoplastic diseases 
+potentially treatable with the complex, compositions, and 
+methods include, but are not limited to the following: adenos 
+ine deaminase deficiency; purine nucleoside phosphorylase 
+deficiency;  chronic granulomatous disease with defective 
+p47phox; sickle cell with HbS, L-thalassemia; Faconi's ane 
+mia; familial hypercholesterolemia; phenylketonuria; orni 
+thine transcarbamylase deficiency;  apolipoprotein E defi 
+ciency; hemophilia A and B; muscular dystrophy;  cystic 
+fibrosis; Parkinsons, retinitis pigmentosa, lysosomal storage 
+disease (e.g., mucopolysaccharide type 1, Hunter, Hurler and 
+Gaucher), diabetic retinopathy, human immunodeficiency 
+virus disease virus infection, acquired anemia, cardiac and 
+peripheral vascular disease,  osteoporosis and arthritis.  In 
+Some of these examples of diseases, the therapeutic gene may 
+encode a replacement enzyme or protein of the genetic or 
+acquired disease, an antisense or ribozyme molecule, a decoy 
+molecule, or a Suicide gene product. 
+0084  Ex vivo and in vivo gene therapy with siRNA could 
+also be used in cancer. These RNAi applications toward can 
+cer include, but are not limited to, 1) reducing expression of 
+growth factors, reducing proteins that augment the cell cycle 
+(e.g.,  Raf-1,  P1-3 kinase),  growth factor receptors (e.g., 
+EGFR, Her-2), or proteins critical for supporting cells of the 
+tumor (e.g., VEGF, VEGFR1-2 for tumor endothelial cells); 
+2) targeting or reducing expression of factors that are anti 
+apoptotic (e.g., BCL-2); and 3) targeting proteins or enzymes 
+that reduce immune activation toward tumor. 
+0085  Cancers or neoplasms contemplated within  the 
+Scope of the disclosure include, but are not limited to, carci 
+nomas (i.e., malignant tumors derived from epithelial cells 
+Such as, for example, common forms of breast, prostate, lung 
+and colon cancer), sarcomas (i.e., malignant tumors derived 
+from connective tissue or mesenchymal cells), lymphomas 
+(i.e., malignancies derived from hematopoietic cells), leuke 
+mias (i.e., malignancies derived from hematopoietic cells), 
+germ cell tumors (i.e., tumors derived from totipotent cells. In 
+adults most often found in the testicle or ovary; in fetuses, 
+babies and young children, most often found on the body 
+midline, particularly at the tip of the tailbone), blastic tumors 
+
+(i.e., a typically malignant tumor which resembles an imma 
+ture or embryonic tissue) and the like. 
+I0086  Examples of specific  neoplasms intended to  be 
+encompassed by the present invention include, but are not 
+limited to, acute lymphoblastic leukemia; myeloid leukemia, 
+acute myeloid leukemia, childhood; adrenocortical carci 
+noma; AIDS-related cancers: AIDS-related lymphoma; anal 
+cancer, appendix cancer; astrocytoma (e.g., cerebellar, cere 
+bral); atypical teratoid/rhabdoid tumor; basal cell carcinoma; 
+bile duct cancer, extrahepatic; bladder cancer, bone cancer, 
+osteosarcoma and malignant fibrous  histiocytoma;  brain 
+tumor (e.g., brain stem glioma, central nervous system atypi 
+cal  teratoid/rhabdoid  tumors,  central  nervous  system 
+embryonal tumors, cerebellar astrocytoma, cerebral astrocy 
+toma/malignant glioma, craniopharyngioma, ependymoblas 
+toma, ependymoma, medulloblastoma, medulloepithelioma, 
+pineal parenchymal tumors of intermediate differentiation, 
+Supratentorial primitive neuroectodermal tumors and/or pine 
+oblastoma,  visual  pathway and/or hypothalamic glioma, 
+brain  and spinal  cord tumors);  breast cancer;  bronchial 
+tumors;  Burkitt  lymphoma;  carcinoid  tumor (e.g.,  gas 
+trointestinal); carcinoma of unknown primary; central ner 
+Vous system (e.g., atypical teratoid/rhabdoid tumor, embryo 
+nal  tumors  (e.g.,  lymphoma,  primary);  cerebellar 
+astrocytoma; cerebral astrocytoma/malignant glioma; cervi 
+cal  cancer,  chordoma;  chronic  lymphocytic  leukemia; 
+chronic myelogenous leukemia; chronic myeloproliferative 
+disorders;  colon cancer,  colorectal  cancer, craniopharyn 
+gioma; cutaneous T-cell lymphoma; embryonal tumors, cen 
+tral nervous system; endometrial cancer; ependymoblastoma; 
+ependymoma; esophageal cancer, Ewing family of tumors; 
+extracranial germ cell tumor; extragonadal germ cell tumor; 
+extrahepatic bile duct cancer, eye cancer (e.g., intraocular 
+melanoma, retinoblastoma); gallbladder cancer, gastric can 
+cer; gastrointestinal tumor (e.g.,  carcinoid tumor, stromal 
+tumor (gist),  stromal cell  tumor); germ cell tumor (e.g., 
+extracranial, extragonadal, ovarian); gestational trophoblas 
+tic tumor; glioma (e.g., brain stem, cerebral astrocytoma); 
+hairy cell leukemia; head and neck cancer; hepatocellular 
+cancer, Hodgkin lymphoma; hypopharyngeal cancer; hypo 
+thalamic and visual pathway glioma; intraocular melanoma; 
+islet cell tumors; Kaposi sarcoma, kidney cancer, large cell 
+tumors; laryngeal cancer (e.g., acute lymphoblastic, acute 
+myeloid); leukemia (e.g., acute myeloid, chronic lympho 
+cytic, chronic myelogenous, hairy cell); lip and/or oral cavity 
+cancer, liver cancer; lung cancer (e.g., non-Small cell, Small 
+cell);  lymphoma (e.g.,  AIDS-related,  Burkitt,  cutaneous 
+Tcell, Hodgkin, non-Hodgkin, primary central nervous sys 
+tem); macroglobulinemia, Waldenström; malignant fibrous 
+histiocytoma of bone and/or osteosarcoma;  medulloblas 
+toma; medulloepithelioma:  melanoma; merkel cell  carci 
+noma; mesothelioma;  metastatic  squamous neck cancer, 
+mouth cancer, multiple endocrine neoplasia syndrome; mul 
+tiple  myeloma/plasma cell  neoplasm; mycosis fungoides; 
+myelodysplastic syndromes; myelodysplastic/myeloprolif 
+erative diseases; myelogenous leukemia (e.g., chronic, acute, 
+multiple); myeloproliferative disorders, chronic; nasal cavity 
+and/or paranasal sinus cancer, nasopharyngeal cancer; neu 
+roblastoma; non-Hodgkin lymphoma; non-Small cell lung 
+cancer, oral cancer, oral cavity cancer, oropharyngeal cancer, 
+osteosarcoma and/or malignant fibrous histiocytoma of bone; 
+ovarian cancer (e.g., ovarian epithelial cancer, ovarian germ 
+cell tumor, ovarian low malignant potential tumor); pancre 
+atic cancer (e.g., islet cell tumors); papillomatosis; paranasal 
+
+US 2014/0171482 A1 
+
+Jun. 19, 2014 
+
+sinus and/or nasal cavity cancer; parathyroid cancer, penile 
+cancer,  pharyngeal  cancer,  pheochromocytoma;  pineal 
+parenchymal tumors of intermediate differentiation; pine 
+oblastoma  and  Supratentorial  primitive  neuroectodermal 
+tumors;  pituitary  tumor,  plasma  cell  neoplasm/multiple 
+myeloma; pleuropulmonary blastoma; primary central ner 
+Vous system lymphoma; prostate cancer, rectal cancer, renal 
+cell cancer, renal, pelvis and/or ureter, transitional cell can 
+cer, respiratory tract carcinoma involving the nut gene on 
+chromosome 15; retinoblastoma, rhabdomyosarcoma; Sali 
+vary gland cancer, sarcoma (e.g., Ewing family of tumors, 
+Kaposi, soft tissue, uterine); Sézary syndrome; skin cancer 
+(e.g., non-melanoma, melanoma, merkel cell); Small cell lung 
+cancer, Small intestine cancer, Soft tissue sarcoma; squamous 
+cell carcinoma; squamous neck cancer with occult primary, 
+metastatic; Stomach cancer, Supratentorial primitive neuroec 
+todermal tumors; T-cell lymphoma, cutaneous; testicular can 
+cer; throat cancer; thymoma and/or thymic carcinoma; thy 
+roid cancer, transitional cell cancer of the renal, pelvis and/or 
+ureter,  trophoblastic tumor; unknown primary site  carci 
+noma; urethral cancer, uterine cancer, endometrial; uterine 
+sarcoma; vaginal cancer, visual pathway and/or hypotha 
+lamic glioma; Vulvar cancer, Waldenström macroglobuline 
+mia; Wilms tumor and the like. For a review, see the National 
+Cancer Institute's Worldwide Website (cancer.gov/cancer 
+topics/alphalist). One of skill in the art will understand that 
+this list is exemplary only and is not exhaustive, as one of skill 
+in the art will readily be able to identify additional cancers 
+and/or neoplasms based on the disclosure herein. 
+0087  Recombinant cells may be produced using the com 
+plexes of the present invention. Resulting recombinant cells 
+can be delivered to a subject by various methods known in the 
+art.  In  certain  embodiments, the  recombinant  cells  are 
+injected, e.g., Subcutaneously. In other embodiments, recom 
+binant skin cells may be applied as a skin graft onto a patient. 
+Recombinant blood cells (e.g., hematopoietic stem or pro 
+genitor cells) are preferably administered intravenously. The 
+cells can also be encapsulated in a Suitable vehicle and then 
+implanted in the subject (see, e.g., Dionne et al. PCT Publi 
+cation WO92/19195, dated Nov. 12, 1992). The amount of 
+cells administered depends on a variety of factors known in 
+the art, for example, the desired effect, subject state, rate of 
+expression of the chimeric polypeptides, etc., and can readily 
+be determined by one skilled in the art. 
+
+EXAMPLES 
+0088.  The following examples are specific embodiments 
+of the present invention but are not intended to limit it. 
+
+Cell Culture of Chondrocytes 
+0089.  Primary mouse chondrocytes were isolated from the 
+rib cage of 5 days old mice. Human chondrocyte cell line 
+C2812 and ADTC5 mouse chondrocyte were incubated in 
+growth media including DMEM/F12 supplement with 10% 
+fetal calf serum. 
+
+Example 1 
+
+Example 2 
+
+Preparation of RNT/Nucleic Acid Complexes 
+0090  According to an aspect of the present disclosure, 
+nucleic acids are incorporated or complexed with rosette 
+
+nanotubes formed from the compounds of Formula I (RNTs) 
+or with rosette nanotubes formed from the compounds of 
+Formula II (TBLs). RNTs were formed using a compound of 
+Formula I where R is methyl, X is nitrogen, R is the linker 
+(CH2) and Y is lysine. TBLS were formed using a compound 
+of Formula II where R is methyl, X is nitrogen, R is the 
+linker (CH) and Y is NH. Specifically and without limi 
+tation, 1 mg of modules of rosette nanotubes in powder form 
+were dissolved in 1  ml of distilled water and sonicated and 
+heated to boiling so that rosette nanotubes were formed. The 
+structures of the rosette nanotubes were described in U.S. Pat. 
+No. 6,696,565; Fenniri, J. Am. Chem. Soc, 2001, 123,3854 
+3855; and Moralez, J. Am. Chem. Soc. 2005, 127, 8307-8309 
+each of which are hereby incorporated by reference in their 
+entireties. One particular module forming the rosette nano 
+tube is shown in FIG. 1. The solution was cooled to room 
+temperature. 2 ul of the solution was mixed with 45 ul of an 
+siRNA solution containing 0.16 nmol FITC labeled siRNA 
+(Qiagen, Hilden, Germany) at 4C overnight. 
+0091  Alternatively,  modules  of rosette  nanotubes  as 
+described above in powder form are combined with a water 
+and a solution of an siRNA solution containing FITC labeled 
+siRNA (Qiagen, Hilden, Germany) are sonicated and heated 
+to boiling. The combination is then cooled to room tempera 
+ture and maintained at 4°C. overnight. 
+0092  Alternatively, purified rosette nanotubes were ster 
+ilized in boiled water. 0.5 ng/ml rosette nanotubes were incu 
+bated with  100 nmol FITC labeled Scrambled siRNA or 
+HDAC4 siRNAs (Qiagen, Hilden, Germany) at CC for over 
+night. 
+0093  Small RNAs were incorporated into and complexed 
+with rosettes nanotubes. 1 uL of 50M scrambled siRNA was 
+incorporated with 5 uL of 1 mg/mL RNTs according to the 
+method described above. Then, the solution was added into 1 
+mL water for UV-Vis measurement. Solutions of siRNA only 
+and RNT only were also prepared at the same concentration 
+as above for UV-Vis measurement. As shown in FIG. 2, the 
+incorporation was determined by a lower light absorbance of 
+the RNT/siRNA composites in UV-Vis spectroscopy com 
+pared with the total absorbance of siRNA and RNTs tested 
+separately. This demonstrated that the small RNA and the 
+RNTs were physically mixed together and with their bases 
+also packed together. 
+0094  Moreover, a CD spectroscopy was applied to detect 
+the change in the chirality of RNT/siRNA composites and to 
+verify their physical incorporation. 1 uL of 50 uM scrambled 
+siRNA was incorporated with 5uL of 1 mg/mL RNTs accord 
+ing to the method described above. Then, the solution was 
+added into 1  mL water for CD spectroscopy. Solutions of 
+siRNA only and RNT only were also prepared at the same 
+concentration as above for the experiment. As shown in FIG. 
+3, a change of molecular chirality demonstrated the incorpo 
+ration between RNTS and siRNA. 
+0.095  Thermo analysis experiments were conducted to 
+determine disassembly of the siRNAs from RNTs. 1 uL of 50 
+uM scrambled siRNA was incorporated with  5 uL of 1 
+mg/mL RNTs as the method mentioned above. Then, the 
+solution was added into 0.3 mL water for thermo analysis. 
+Temperatures increased from 4°C. to 99°C. with 1 minute 
+equilibrium time at every temperature. RNT only solution 
+was also prepared at the same concentration as above. As 
+shown in FIG. 4, transition temperatures of RNTs in RNT/ 
+siRNA composites in  thermo analysis experiments were 
+lower than the melting temperatures of RNTs alone. This 
+
+US 2014/0171482 A1 
+
+Jun. 19, 2014 
+
+demonstrated the ability of siRNAs to disassemble from 
+RNTs so that after delivery into a cell, siRNA could release 
+from RNTs for desired functions. 
+0096  Electrophoresis was carried out to determine the 
+incorporation of siRNAs into RNTs. 1 u, of 50 uMscrambled 
+siRNA was incorporated with or without 5 uL of 1 mg/mL 
+RNTs according to the method described above. 4% agarose 
+gel was prepared for electrophoresis with ethidium bromide 
+as fluorescence stain. Then, RNT/siRNA and RNT solution 
+were mixed glycerol and the gel was run under 30V at 4°C. 
+for 2 hours. Electrophoresis demonstrated the incorporation 
+between RNTs and siRNAs and RNT/siRNA composites 
+have a neutral total charge compared to negatively charged 
+siRNA as shown in FIG. 5. 
+0097  Atomic force microscopic studies were carried out 
+to analyze the surface of a network of RNTs and RNT/siRNA 
+composites.  RNT/siRNA composites  were  prepared  as 
+described above. 6 ul acetone was added to 10ul of a solution 
+of RNT/siRNA solution and a drop placed onto a clean glass 
+slide. After air-drying, the glass slide was analyzed under 
+atomic force microscopy. As shown in FIG. 6, RNTs formed 
+a network morphology in a relatively high concentration. As 
+shown in  FIG. 7A, RNTs complexed with small  RNAs 
+showed regions of regions RNAs referred to as “clots’ indi 
+cated by circles and “bundles' indicated by the arrow. Trans 
+mission electron microscopy was also used to analyze the 
+morphologies of RNTs and RNT/siRNA composites. RNT/ 
+siRNA composites were prepared as described above. A cop 
+per grid was dip into RNT or RNT/siRNA solutions. After 
+air-drying, the copper grid was negatively stained with uranyl 
+acetate and analyzed under transmission electron micros 
+copy. As shown in FIG. 7(B), RNTs formed a network mor 
+phology. Consistent with atomic force microscopy: FIG.7(C) 
+shows that RNTs complexed with small RNAs and experi 
+enced a morphological transformation from net-work struc 
+tures to particle-like structures. 
+
+Example 3 
+Chondrocytes Transfected with RNT/siRNA 
+Complexes 
+0098.  To visualize internalization of siRNA by RNT deliv 
+ery into chondrocytes, RNTS/FITC-siRNA complex were 
+added into ADTC5 mouse chondrocyte cell lines and incu 
+bated for 24 hours. The transfected cells were washed twice 
+with PBS and then fixed in 4% formalin. Thereafter, cells 
+were permeabilized with PBS/0.1% TritonX-100 and stained 
+with HDAC4 antibody and incubated with DAPI for nuclear 
+counterstaining. Confocal imaging was performed with a 
+Zeiss AXiovert confocal laser scanning microscope. Fluores 
+cence microscopy of the treated cells revealed internalized 
+RNT/SiRNA. FIG. 8 depicts light (A and C) and fluorescent 
+(Band D) pictures of chondrocytes cultured with only FITC 
+RNA (A and B) or with FITC-RNA-RNTs (C and D). As 
+shown in FIG.8B, fluorescence labeled siRNA alone was not 
+able to enter the cells. After incubation of fluorescent labeled 
+siRNA with RNT as a carrier, the cells showed intracellular 
+green fluorescent signals as shown in FIG. 8D. This demon 
+strates efficient uptake of RNT/RNA by chondrocytes. 
+
+Example 4 
+Primary Chondrocytes Transfected with RNT/siRNA 
+Complexes 
+0099]  To test whether RNT can carry siRNA into primary 
+chondrocytes, mouse primary chondrocytes were incubated 
+
+with RNT/siRNA complex for 24 hours and observed by 
+confocal microscophy. Briefly, the cells were washed twice 
+with PBS and then fixed in 4% formalin. Thereafter, cells 
+were permeabilized with PBS/0.1% TritonX-100 and stained 
+with rhodamine and incubated with DAPI for nuclear coun 
+terstaining. The internalized HDAC4 siRNA accumulated in 
+the cytoplasm and colocalized with HDAC4 protein as shown 
+in FIG. 9. In particular, FIGS. 9(E) and 9(F) are 2D and 3D 
+images of green fluorescent siRNA delivered by RNTs inside 
+a chondrocyte. Red fluorescence indicates the cytoskeleton 
+and blue fluorescence indicates the cell nuclei. 
+
+Example 5 
+
+Inhibition of Protein Expression Using RNT/siRNA 
+Complexes 
+0100.  To evaluate the ability of RNT/siRNA complex to 
+interfere with RNA in primary mouse chondrocytes, RNA 
+was isolated and HDAC4 gene silencing was evaluated by 
+real-time PCR. Chondrocytes were lyzed in RIPA lysis buffer 
+and equal amount of cell lysates were separated by 10% 
+SDS-PAGE and transferred on a nitrocellulose membrane. 
+Membranes were blot with HDAC4 or Actin antibody. Immu 
+noblotting coupled with fluorescent signal detection with an 
+Odyssey fluorescence  scanner.  As shown in  FIG.  10A, 
+expression level of HDAC4 mRNA was suppressed by nearly 
+80%. As shown in FIG. 10B, Western blot analysis indicated 
+that HDAC4 protein expression was successfully inhibited. 
+The efficient gene silencing indicates that siRNA delivered by 
+RNT was functional in the cells. FIG. 10C depicts the quan 
+titative analysis of the Western blots of FIG. 10B demonstrat 
+ing that siRNAs were highly functional after delivery by 
+RNTs into cells. 
+
+Example 6 
+
+Alteration of miRNA Expression Using 
+RNT/miR365 Mimic or Inhibitor Complexes 
+0101  To evaluate the ability of RNTs to deliver miRNA 
+mimic into cells, RNT/miR365 mimic complexes were pre 
+pared using the methods described above. Human chondro 
+cytes (C2812) were contacted with the complexes and then 
+the expression levels of miR365 were determined. Briefly, 
+total RNA was extracted from cells using a commercially 
+available kit by following the manufacturer's instructions. 
+Then, the RNA was reverse transcribed using the miscript 
+reverse transcription kit and analyzed by real-time PCR using 
+the appropriate miscript primer assay as per the manufactur 
+er's instructions. For gene expression assay, the same amount 
+of RNA was used for each sample. The 18 S RNA was 
+amplified at the same time and used as an internal control. As 
+shown in FIG. 11, the RNT/miR365 mimic complexes suc 
+cessfully delivered miR365 mimic into cells and the delivered 
+miR365 mimic was functional to  increase miR365 gene 
+expression. 
+0102)  To evaluate the ability of RNTs to deliver miRNA 
+inhibitor into cells, RNT/miR365 inhibitor complexes were 
+prepared using the methods described above. Human chon 
+drocytes (C2812) were contacted with the complexes and 
+then the expression levels  of miR365 were determined. 
+Briefly, total RNA was extracted from cells using a commer 
+cially available kit by following the manufacturers instruc 
+tions. Then, the RNA was reverse transcribed using the mis 
+cript reverse transcription kit and analyzed by real-time PCR 
+
+US 2014/0171482 A1 
+
+Jun. 19, 2014 
+
+using the appropriate miscript primer assay as per the manu 
+facturers instructions. For gene expression assay, the same 
+amount of RNA was used for each sample. The 18 S RNA was 
+amplified at the same time and used as an internal control. As 
+shown in FIG. 12A, the RNT/miR365 inhibitor complexes 
+successfully delivered miR365 inhibitor into the cells and the 
+delivered  miR365  inhibitor  was  functional  to  decrease 
+miR365 gene expression. 
+(0103)  To evaluate the ability of RNTs such as TBLs to 
+deliver miRNA inhibitor into cells, TBL/miR365 inhibitor 
+complexes were prepared using the methods described above. 
+Human chondrocytes (C2812) were contacted with the com 
+plexes and then the expression levels of miR365 determined. 
+Briefly, total RNA was extracted from cells using a commer 
+cially available kit by following the manufacturers instruc 
+tions. Then, the RNA was reverse transcribed using the mis 
+cript reverse transcription kit and analyzed by real-time PCR 
+using the appropriate miscript primer assay as per the manu 
+facturers instructions. For gene expression assay, the same 
+amount of RNA was used for each sample. The 18 S RNA was 
+amplified at the same time and used as an internal control. As 
+shown in FIG. 12B, the TBL/miR365 inhibitor complexes 
+successfully delivered miR365 inhibitor into the cells and the 
+delivered  miR365  inhibitor  was  functional  to  decrease 
+miR365 gene expression.  As indicated  in  a comparison 
+between FIG. 12A and FIG.12B, the miR365 inhibitor deliv 
+ered using rosette nanotubes made from the TBL decreased 
+the miR365 expression to a greater extent than the miR365 
+inhibitor delivered using rosette nanotubes made from the 
+RNT. 
+
+Example 7 
+
+Mouse Chondrocytes (ADTC5) Transfected with 
+RNT/Probe Complexes 
+0104.  To test whether RNT can carry a nucleic acid probe, 
+Such as a molecular beacon capable of hybridizing with or 
+otherwise binding to a target gene, RNT/molecular beacon 
+complexes were prepared using the methods described above. 
+Mouse chondrocytes (ADTC5) were incubated with RNT/ 
+GAPDH molecular beacon targeting GAPDH expression 
+complex for 24 hours and observed by confocal microscopy. 
+Briefly, the cells were washed twice with PBS and then fixed 
+in 4% formalin, for confocal. Microscopy. FIG. 13 depicts 
+light (A and C) and fluorescent (B and D) pictures of chon 
+drocytes cultured with only the GAPDH molecular beacon (A 
+and B) or with RNT/GAPDH molecular beacon complex (C 
+and D). As shown in FIG. 13B, fluorescence labeled GAPDH 
+molecular beacon alone was notable to enter the cells. After 
+incubation of fluorescent labeled GAPDH molecular beacon 
+with RNT as a carrier, cells showed intracellular green fluo 
+rescent signals as shown in FIG. 13D. This demonstrates 
+efficient uptake of RNT/GAPDH molecular beacon com 
+plexes by mouse chondrocytes. 
+
+Example 8 
+
+Chicken Primary Chondrocytes Transfected with 
+RNT/Probe Complexes 
+0105  To test whether RNT can carry a nucleic acid probe, 
+Such as a molecular beacon capable of hybridizing with or 
+otherwise binding to a target gene, RNT/molecular beacon 
+complexes were prepared using the methods described above. 
+Chicken primary chondrocytes were incubated with RNT/ 
+
+GAPDH molecular beacon targeting GAPDH expression 
+complex for 24 hours and observed by confocal microscopy. 
+Briefly, the cells were washed twice with PBS and then fixed 
+in 4% formalin for confocal microscopy. FIG. 14 depicts light 
+(A and C) and fluorescent (B and D) pictures of chondrocytes 
+cultured with only GAPDH molecular beacon (A and B) or 
+with RNT/GAPDH molecular beacon complex (Cand D). As 
+shown in FIG. 14B, fluorescence labeled GAPDH molecular 
+beacon alone was notable to enter the cells. After incubation 
+of fluorescent labeled GAPDH molecular beacon with RNT 
+as a carrier, cells showed intracellular green fluorescent sig 
+nals as shown in FIG.14D. This demonstrates efficient uptake 
+of RNT/GAPDH molecular beacon complexes by chicken 
+chondrocytes. 
+
+Example 9 
+
+Mouse Chondrocytes Transfected with RNT/Probe 
+Complexes 
+0106  To test whether RNT can carry a nucleic acid probe, 
+Such as a molecular beacon capable of hybridizing with or 
+otherwise binding to a target gene, RNT/molecular beacon 
+complexes were prepared using the methods described above. 
+Primary mouse chondrocytes were incubated with RNT/ 
+miR365 molecular beacon  targeting  miR365 expression 
+complex for 24 hours and observed by confocal microscopy. 
+Briefly, the cells were washed twice with PBS and then fixed 
+in 4% formalin for confocal microscopy. FIG. 15 depicts light 
+(A and C) and fluorescent (Band D) pictures of chondrocytes 
+cultured with only miR365 molecular beacon (A and B) or 
+with RNT/miR365 molecular beacon complex (C and D). As 
+shown in FIG. 15B, fluorescence labeled miR365 molecular 
+beacon alone was notable to enter the cells. After incubation 
+offluorescent labeled miR365 molecular beacon with RNT as 
+a carrier, cells showed intracellular green fluorescent signals 
+as shown in FIG. 15D. This demonstrates efficient uptake of 
+RNT/miR365 molecular beacon complexes by mouse chon 
+drocytes. 
+
+Example 10 
+
+Additional Cells Transfected with RNT/Probe 
+Complexes 
+0107  To test whether RNT can carry a nucleic acid into 
+various cells, RNT/FITC-siRNA complexes were prepared 
+using the methods described above. The RNT/FITC-siRNA 
+complexes were separately incubated for 24 hours with pri 
+mary human fibroblasts,  primary pig fibroblasts,  human 
+breast cancer cell line MCF7, ratastrocyte cell line CRL2005, 
+human chondrosarcoma cells, mouse macrophage cell line 
+RAW264.7, and primary chicken liver cells. The transfected 
+cells were washed, fixed and stained as previously described. 
+Fluorescence microscopy of the treated cells revealed inter 
+nalized RNT/siRNA. 
+0.108 
+FIG. 16 depicts light (A and C) and fluorescent (B 
+and D) pictures of primary human fibroblasts cultured with 
+only FITC-siRNA (A and B) or with RNT/FITC-siRNA com 
+plex (C and D). As shown in FIG. 16B, FITC-siRNA alone 
+was not able to enter the cells. After incubation of FITC 
+siRNA with RNT as a carrier, cells showed intracellular green 
+fluorescent signals as shown in FIG.16D. This demonstrates 
+efficient uptake of RNT/FITC-siRNA complexes by primary 
+human fibroblasts. 
+
+US 2014/0171482 A1 
+
+Jun. 19, 2014 
+
+0109  FIG. 17 depicts light (A and C) and fluorescent (B 
+and D) pictures of primary pig fibroblasts cultured with only 
+FITC-siRNA (A and B) or with RNT/FITC-siRNA complex 
+(Cand D). As shown in FIG.17B, FITC-siRNA alone was not 
+able to enter the cells. After incubation of FITC-siRNA with 
+RNT as a carrier, cells showed intracellular green fluorescent 
+signals as shown in FIG. 16D. This demonstrates efficient 
+uptake of RNT/FITC-siRNA complexes by primary pig 
+fibroblasts. 
+0110  FIG. 18 depicts light (A and C) and fluorescent (B 
+and D) pictures of human breast cancer cell line MCF7 cul 
+tured with only FITC-siRNA (A and B) or with RNT/FITC 
+siRNA complex (C and D). As shown in FIG. 18B, FITC 
+siRNA alone was notable to enter the cells. After incubation 
+of FITC-siRNA with RNT as a carrier, cells showed intrac 
+ellular green fluorescent signals as shown in FIG. 18D. This 
+demonstrates efficient uptake of RNT/FITC-siRNA com 
+plexes by human breast cancer cell line MCF7. 
+0111 
+FIG. 19 depicts light (A and C) and fluorescent (B 
+and D) pictures of rat astrocyte cell line CRL2005 cultured 
+with only FITC-siRNA (A and B) or with RNT/FITC-siRNA 
+complex (C and D). As shown in FIG. 19B, FITC-siRNA 
+alone was not able to enter the cells. After incubation of 
+FITC-siRNA with RNT as a carrier, cells showed intracellu 
+lar green fluorescent signals as shown in FIG. 19D. This 
+demonstrates efficient uptake of RNT/FITC-siRNA com 
+plexes by rat astrocyte cell line CRL2005. 
+0112  FIG. 20 depicts light (A and C) and fluorescent (B 
+and D) pictures of human chondrosarcoma cells cultured with 
+only FITC-siRNA (A and B) or with RNT/FITC-siRNA com 
+plex (C and D). As shown in FIG. 20B, FITC-siRNA alone 
+was not able to enter the cells. After incubation of FITC 
+siRNA with RNT as a carrier, cells showed intracellular green 
+fluorescent signals as shown in FIG. 20D. This demonstrates 
+efficient uptake of RNT/FITC-siRNA complexes by human 
+chondrosarcoma cells. 
+0113  FIG. 21 depicts light (A and C) and fluorescent (B 
+and D) pictures of mouse macrophage cell line RAW264.7 
+cultured with only FITC-siRNA (A and B) or with RNT/ 
+FITC-siRNA complex (C and D). As shown in FIG. 21B, 
+FITC-siRNA alone was not able to enter the cells. After 
+incubation  of FITC-siRNA with  RNT as a carrier,  cells 
+showed intracellular green fluorescent signals as shown in 
+FIG. 21D. This demonstrates efficient uptake of RNT/FITC 
+siRNA complexes by mouse macrophage cell line RAW264. 
+7. 
+0114  FIG. 22 depicts light (A and C) and fluorescent (B 
+and D) pictures of primary chicken liver cells cultured with 
+only FITC-siRNA (A and B) or with RNT/FITC-siRNA com 
+plex (C and D). As shown in FIG. 22B, FITC-siRNA alone 
+was not able to enter the cells. After incubation of FITC 
+siRNA with RNT as a carrier, cells showed intracellular green 
+fluorescent signals as shown in FIG.22D. This demonstrates 
+efficient uptake of RNT/FITC-siRNA complexes by primary 
+chicken liver cells. 
+
+Example 11 
+
+In Vivo Delivery of RNT/Probe Complexes to Cells 
+0115  To test whether RNT can carry nucleic acids to cells 
+in an animal in vivo, RNT/GAPDH molecular beacon target 
+ing GAPDH expression was prepared using the methods 
+described above. The right femur of a 3 month old male 
+mouse was injected with the GAPDH molecular beacon in a 
+
+30 ul saline solution. The left femur of a 3 month old male 
+mouse was injected with the RNT/GAPDH molecular beacon 
+complex in a 30 ul saline solution. After injection, fluores 
+cence molecular tomography was used to measure the fluo 
+rescence of the molecular beacons at 30 minutes, 1  day, 3 
+days, 5 days and 7 days. FIG. 23 shows a significantly higher 
+fluorescence signal from the left femur which was injected 
+with the RNT/molecular beacon complex compared to the 
+right femur which was injected with the molecular beacon 
+only. This demonstrates that the RNTs were able to deliver the 
+molecular beacons into cells in vivo. 
+
+Example 12 
+
+Comparison with Lipofectamine 
+0116.  The ability of RNTs to deliversiRNA was compared 
+with that of lipofectamine. Briefly, RNT/fluorescence labeled 
+siRNA were prepared using the methods mentioned above 
+and Lipofectamine/fluorescence labeled siRNA complexes 
+were prepared as per the standard commercially available 
+protocol.  Mouse chondrocytes (ADTC5) were incubated 
+with RNA only, RNT/RNA and Lipofectamine/RNA for 24 
+hours. Then, the cells were washed with PBS, detached from 
+the culture dishes and fixed by 4% formalin. Flow cytometry 
+was used to determine the percentage of fluorescent cells. 
+Fluorescence positive  cells  demonstrated  the  uptake  of 
+siRNA. Results demonstrated that RNTS deliver siRNA into 
+cells while siRNA alone was not capable of entering cells. 
+Flow cytometry data as depicted in FIG. 24 shows that deliv 
+ery of siRNA into cells was as good as or better than lipo 
+fectamine. Especially, RNTs showed a more even distribution 
+of fluorescence among cells. 
+0117  To compare the ability of RNT and lipofectamine to 
+deliver a GAPDH molecular beacon, RNT/GAPDH molecu 
+lar  beacon  complexes  were  prepared  using  methods 
+described above and Lipofectamine/GAPDH molecular bea 
+con complexes were prepared as per the standard commer 
+cially available protocol. Primary mouse chondrocytes were 
+incubated with GAPDH molecular beacon, RNT/GAPDH 
+molecular beacon complexes, and Lipofectamine/GAPDH 
+molecular beacon complexes for 24 hours and observed by 
+confocal microscopy. As shown in FIG. 25, RNTS demon 
+strated  a  significantly  better  delivery  ability  to  deliver 
+molecular beacons into chondrocytes that lipofectamine at 
+the same dose. 
+
+Example 13 
+
+Downstream Gene Expression Comparison with 
+Lipofectamine 
+0118.  The ability of RNTs, TBLs and lipofectamine to 
+deliver miR365 mimic into human chondrocytes (C2812) and 
+to influence expression of the downstream gene RUNX2 was 
+determined. Briefly, total RNA was extracted from cells using 
+a commercially available kit by following the manufacturers 
+instructions. Then, the RNA was reverse transcribed using the 
+miscript reverse transcription kit and analyzed by real-time 
+PCR using the appropriate miscript primer assay as per the 
+manufacturers instructions. For gene expression assay, the 
+same amount of RNA was used for each sample. The 18 S 
+RNA was amplified at the same time and used as an internal 
+control. RNT/miR365 mimic and TBL/miR365 mimic com 
+plexes were prepared using the methods described herein and 
+lipofectamine/miR365 mimic was prepared as the standard 
+
+US 2014/0171482 A1 
+
+Jun. 19, 2014 
+
+commercially available protocol. As shown in FIG. 26, deliv 
+ery of miR365 mimic into cells  using RNTs and TBLs 
+increased expression of the downstream gene RUNX2 and to 
+a greater extent compared with lipofectamine. 
+0119  Given the  benefit  of the  above disclosure  and 
+description of exemplary embodiments, it will be apparent to 
+those skilled in the art that numerous alternative and different 
+embodiments are possible in keeping with the general prin 
+ciples of the invention disclosed here. Those skilled in this art 
+will recognize that all such various modifications and alter 
+native embodiments are within the true scope and spirit of the 
+invention.  While the  invention  has  been  illustrated  and 
+described in detail in the drawings and foregoing description, 
+Such illustration and description is to be considered as exem 
+plary and not restrictive in character, it being understood that, 
+only  the  preferred  embodiments have been  shown and 
+described and that all changes and modifications that come 
+within the spirit of the invention are desired to be protected. 
+The appended claims are intended to cover all such modifi 
+cations and alternative embodiments. It should be understood 
+that the use of a singular indefinite or definite article (e.g., “a. 
+“an.” “the  etc.) in this disclosure and in the following claims 
+follows the traditional approach in patents of meaning “at 
+least one' unless in a particular instance it is clear from 
+context that the term is intended in that particular instance to 
+mean specifically one and only one. Likewise, the term "com 
+prising  is open ended, not excluding additional items, fea 
+tures,  components, etc.  References  identified  herein  are 
+expressly incorporated herein by reference in their entireties 
+unless otherwise indicated. 
+
+1. A method of delivering one or more nucleic acids into a 
+cell comprising contacting the cell with a complex of a rosette 
+nanotube and the one or more nucleic acids in a manner to 
+deliver the complex into the cell. 
+
+2. The method of claim 1 wherein the nanotube is formed 
+
+from the self-assembly of compounds having the formula 
+
+O 
+
+NH2 
+
+HN 
+
+ls 
+
+X 
+
+NN 
+
+1. 
+
+O 
+
+N 
+
+I 
+R 
+
+O 
+
++HN 
+1  n1n 
+N 
+
+l 
+
+N 
+
+R 
+
+1 
+
+Y 
+
+h  N  NH2 
+
+R 
+
+NN 
+H 
+
+N 
+H 
+
+O 
+
+whereinX is CH or nitrogen; R is hydrogen or a linker group; 
+Y is absent when R  is hydrogen or is an amino acid or 
+polypeptide having an amino group covalently bound to an 
+C-carbon of the amino acid and the amino group is covalently 
+bound to the linker group R, and R  is  hydrogen or an 
+aliphatic moiety; and salts thereof. 
+
+3. The method of claim 1 wherein the nanotube is formed 
+
+from the self-assembly of compounds having the formula 
+
+O 
+
+NH2 
+
+HN 
+
+ls 
+
+X 
+
+NN 
+
+1s 
+
+O 
+
+N 
+
+HN 
+
+R 
+
+R 
+
+Y 
+
+whereinX is CH or nitrogen; R is hydrogen or a linker group; 
+Y is absent when R  is hydrogen or is an amino acid or 
+polypeptide having an amino group covalently bound to an 
+C-carbon of the amino acid and the amino group is covalently 
+bound to the linker group R, and R  is hydrogen or an 
+aliphatic moiety; and salts thereof. 
+
+4. The method of claim 1 wherein the one or more nucleic 
+acids include DNA, RNA, a gene, a gene fragment, an exon, 
+an intron, intergenic DNA, heterochromatic DNA, messenger 
+RNA, transfer RNA, interference  RNA, dsRNA, ssRNA, 
+saRNA, siRNA,  miRNA, ribosomal  RNA, a  ribozyme, 
+cDNA, a recombinant polynucleotide, a branched polynucle 
+otide, a plasmid, a vector, isolated DNA of a sequence, iso 
+lated RNA of a sequence, a nucleic acid probe, a molecular 
+beacon or a primer. 
+
+5. The method of claim 1 wherein the one or more nucleic 
+acids includes siRNA having between about 10 to about 30 
+nucleic acids in length. 
+
+6. The method of claim 1 wherein the cells includes an 
+
+animal, plant or bacterial cell. 
+
+7. A method of treating an individual requiring treatment 
+comprising administering a complex of a rosette nanotube 
+and one or more nucleic acids to the individual in a manner to 
+deliver the one or more nucleic acids into cells within the 
+individual and wherein the cells either express the one or 
+more nucleic acids in a therapeutic manner or the one or more 
+nucleic acids inhibit expression of one or more proteins 
+within the cells in a therapeutic manner. 
+
+8. A method of making a complex comprising 
+mixing together rosette nanotubes and one or more nucleic 
+acids in aqueous media under conditions which cause 
+the rosette nanotubes to combine with the one or more 
+nucleic acids to form a stable complex in aqueous media. 
+
+9. A product made by the process comprising 
+mixing together rosette nanotubes and one or more nucleic 
+acids in aqueous media under conditions which cause 
+the rosette nanotubes to combine with the one or more 
+nucleic acids to form a stable complex in aqueous media. 
+10. A complex comprising a rosette nanotube including 
+
+one or more nucleic acids. 
+
+11. A complex comprising one or more nucleic acids and a 
+rosette nanotube formed from the self assembly of com 
+pounds having the formula 
+
+US 2014/0171482 A1 
+
+Jun. 19, 2014 
+
+15 
+
+O 
+
+NH2 
+
+HN 
+
+ins, 
+l, 
+
+NN 
+
+1s. 
+
+O 
+
+-*.  - 
+
+h  N  NH2 
+
+*in 
+
+H 
+
+N 
+H 
+
+O 
+
+wherein X is CH or nitrogen; R is hydrogen or a linker group: 
+Y is absent when R  is hydrogen or is an amino acid or 
+polypeptide having an amino group covalently bound to an 
+C-carbon of the amino acid and the amino group is covalently 
+bound to the linker group R, and R  is  hydrogen or an 
+aliphatic moiety; and salts thereof. 
+
+12. A complex comprising one or more nucleic acids and a 
+rosette nanotube formed from the self assembly of com 
+pounds having the formula 
+
+whereinX is CH or nitrogen; R is hydrogen or a linker group; 
+Y is absent when R  is hydrogen or is an amino acid or 
+polypeptide having an amino group covalently bound to an 
+C-carbon of the amino acid and the amino group is covalently 
+bound to the linker group R, and R  is  hydrogen or an 
+aliphatic moiety; and salts thereof. 
+
+13. A complex comprising one or more nucleic acids and a 
+rosette nanotube formed from the self assembly in aqueous 
+media of one or more compounds having the formula 
+
+O 
+
+NH2 
+
+HN 
+
+ls 
+
+X 
+
+NN 
+
+1. 
+
+O 
+
+N 
+
+HN 
+
+R 
+
+R2 
+
+Y 
+
+O 
+
+NH2 
+
+HN 
+
+ls 
+
+X 
+
+NN 
+
+1s 
+
+O 
+
+N 
+
+HN 
+
+R 
+
+R 
+
+Y 
+
+bound to the linker group R, and R  is hydrogen or an 
+aliphatic moiety; and salts thereof, 
+and one or more compounds having the formula 
+
+O 
+
+NH2 
+
+HN 
+
+ls 
+
+X 
+
+NN 
+
+1s 
+
+O 
+
+N 
+
+I 
+R 
+
+O 
+
++HN 
+- "n-1N 
+
+l 
+N 
+
+Y  2 
+
+Y 
+
+h  N  NH2 
+
+R 
+
+NN 
+H 
+
+N 
+H 
+
+O 
+
+wherein X is CH or nitrogen; R is hydrogen or a linker group: 
+Y is absent when R  is hydrogen or is an amino acid or 
+polypeptide having an amino group covalently bound to an 
+C-carbon of the amino acid and the amino group is covalently 
+bound to the linker group R, and R  is hydrogen or an 
+aliphatic moiety; and salts thereof. 
+
+14. The method of claim 2 wherein the aliphatic moiety is 
+a straight chain or a branched alkyl group being Saturated or 
+unsaturated. 
+
+15. The method of claim 3 wherein the aliphatic moiety is 
+a straight chain or a branched alkyl group being Saturated or 
+unsaturated. 
+
+16. The complex of claim 11 wherein the aliphatic moiety 
+is a straight chain or a branched alkyl group being Saturated or 
+unsaturated. 
+
+17. The complex of claim 12 wherein the aliphatic moiety 
+is a straight chain or a branched alkyl group being Saturated or 
+unsaturated. 
+
+18. The complex of claim 13 wherein the aliphatic moiety 
+is a straight chain or a branched alkyl group being Saturated or 
+unsaturated. 
+
+19. The method of claim 2 wherein the linker group is 
+
+(CH), where n is an integer of 1, 2, 3, or 4, (CH2)CO, 
+
+NH 
+
+whereinX is CH or nitrogen; R is hydrogen or a linker group; 
+Y is absent when R  is hydrogen or is an amino acid or 
+polypeptide having an amino group covalently bound to an 
+C-carbon of the amino acid and the amino group is covalently 
+
+OH A-. 
+UC 
+
+US 2014/0171482 A1 
+
+Jun. 19, 2014 
+
+16 
+
+G 
+NH 
+
+GE 
+NH 
+
+-continued 
+O 
+
+N 
+H 
+
+NH 
+GE) 
+O 
+
+N 
+H 
+
+NH 
+GE) 
+
+GE) 
+NH 
+
+GE 
+NH 
+
+GE 
+NH 
+
+A- Me  x 
+
+N-N 
+
+O 
+
+NH 
+GE) 
+
+g 
+NH 
+
+20. The method of claim 3 wherein the linker group is 
+
+(CH), where n is an integer of 1, 2, 3, or 4, (CH2)CO, 
+
+  
+
+G 
+NH 
+
+GE) 
+NH 
+
+G 
+NH 
+
+A- Me  A --> 
+
+T 
+
+O 
+
+N 
+
+t 
+
+GE) 
+NH 
+
+NH 
+GE) 
+O 
+
+N 
+H 
+
+NH 
+GE) 
+
+22. The method of claim 12 wherein the linker group is 
+
+(CH), where n is an integer of 1, 2, 3, or 4, (CH2)CO, 
+
+x- GE) 
+
+GE) 
+NH 
+
+GE 
+
+GE) 
+NH 
+
+OH  Me 
+
+  
+
+  
+
+21. The method of claim 11 wherein the linker group is 
+
+(CH), where n is an integer of 1, 2, 3, or 4, (CH2)CO, 
+
+GE) 
+
+US 2014/0171482 A1 
+
+Jun. 19, 2014 
+
+-continued 
+O 
+
+N 
+H 
+
+NH 
+GE) 
+
+GE) 
+NH 
+
+  
+
+  
+
+23. The method of claim 13 wherein the linker group is 
+
+(CH), where n is an integer of 1, 2, 3, or 4, (CH2)CO, 
+
+O 
+
+NH2 
+
+HN 
+
+ls 
+
+X 
+
+NN 
+
+1s 
+
+O 
+
+N 
+
+I 
+R 
+
+O 
+
++HN 
+- "n-1N 
+
+l 
+N 
+
+Y  2 
+
+Y 
+
+h  N  NH2 
+
+R 
+
+NN 
+H 
+
+N 
+H 
+
+O 
+
+wherein X is CH or nitrogen; R is hydrogen or a linker 
+group: Y is absent when R is hydrogen or is an amino 
+acid or polypeptide having an amino group covalently 
+bound to an O-carbon of the amino acid and the amino 
+group is covalently bound to the linker group R, and R. 
+is hydrogen oran aliphatic moiety, such alkyl, straight or 
+branched chain,  Saturated  or unsaturated;  and salts 
+thereof, 
+
+and one or more nucleic acids in aqueous media and soni 
+cating the mixture to cause the compounds to combine 
+with the one or more nucleic acids to  form a stable 
+complex in aqueous media. 
+
+25. The method of claim 24 wherein the linker group is 
+
+(CH), where n is an integer of 1, 2, 3, or 4, (CH2)CO, 
+
+24. A method of making a complex comprising mixing 
+
+together compounds having the formula 
+
+US 2014/0171482 A1 
+
+Jun. 19, 2014 
+
+-continued 
+
+18 
+
+  
+
+26. The method of claim 24 wherein the mixture is soni 
+
+cated and heated to boiling. 
+
+27. A method of making a complex comprising mixing 
+
+together compounds having the formula 
+
+O 
+
+NH2 
+
+HN 
+
+ls 
+
+X 
+
+NN 
+
+-N 
+
+O 
+
+N 
+
+HN 
+
+R 
+
+R 
+
+Y 
+
+wherein X is CH or nitrogen; R is hydrogen or a linker group: 
+Y is absent when R  is hydrogen or is an amino acid or 
+polypeptide having an amino group covalently bound to an 
+C-carbon of the amino acid and the amino group is covalently 
+bound to the linker group R, and R  is  hydrogen or an 
+aliphatic moiety, Such as alkyl, straight or branched chain, 
+saturated or unsaturated; and salts thereof 
+
+and one or more nucleic acids in aqueous media and Soni 
+cating the mixture to cause the compounds to combine 
+with the one or more nucleic acids to  form a stable 
+complex in aqueous media. 
+
+28. The method of claim 26 wherein the linker group is 
+
+(CH), where n is an integer of 1, 2, 3, or 4, (CH2)CO, 
+
+29. The method of claim 27 wherein the mixture is soni 
+
+cated and heated to boiling. 
+. 
+
+k 
+
+. 
+
+. 
+
+. 
+
+
