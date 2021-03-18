@@ -1,25 +1,31 @@
-import os.path
 import re
-from pathlib import Path
 import pdfminer
 from pdfminer.high_level import extract_text
 
+# HELPER FUNCTIONS
 
-from pdfminer.high_level import extract_pages
-from pdfminer.layout import LTTextContainer
+def parse_for_keywords(line, keywords):
+    '''
+    Used during main loop of parse_doc to find key terms such as 'CPC'
+    Short algorithm that iterates over line once, keeping track of consecutive matching letters
 
-def parse_line(line, keywords):
+    example input:
+        "(75)  Inventors:  Thomas J. Webster, Barrington, RI"
+    output:
+        "Inventors"
+
+    '''
     counter = {keyword: 0 for keyword in keywords}
     i = 0
     while i < len(line):
         char = line[i]
         for key, val in counter.items():
-            if val == len(key):
+            if val == len(key): # have found a match for all letters
                 return key
-            elif key[val] == char:
+            elif key[val] == char: # if the next letter matches, add to count/index
                 counter[key] += 1
             else:
-                counter[key] = 0
+                counter[key] = 0 # letter doesn't match, reset counter
         
         i += 1
     
@@ -27,6 +33,21 @@ def parse_line(line, keywords):
 
 
 def parse_cpc_uspc(line):
+    '''
+    Takes in CPC input and outputs parsed CPC and USPC values
+    Does some autocorrecting for values that are a little off
+
+    example input: 
+        "CPC ..............  CI2N 15/87 (2013.01); A61 K3I/713 
+        (2013.01); A61K 47/48061 (2013.01); C12O 
+        I/6841 (2013.01); C12N 15/115 (2013.01) 
+        USPC ..........  514/44. A 435/375; 435/455; 435/471; 
+        435/252.1435/6.11536/24.5"
+    output:
+        ['C12N 15/87', 'A61K 31/713', 'A61K 47/48061', 'C12O 1/6841', 'C12N 15/115']
+        ['514/44. A', '435/375', '435/455', '435/471', '435/252.1', '435/6.11', '536/24.5']
+
+    '''
     i_loc = []
     for i in range(len(line)):
         if line[i] == 'I':
@@ -36,6 +57,10 @@ def parse_cpc_uspc(line):
         line = line[:i] + '1' + line[i + 1:]
 
     def process(substr):
+        '''
+        CPC/USPC start with 'CPC ..............'- get rid of dots
+        TODO: TRY USING .STRIP INSTEAD
+        '''
         i = substr.index('.')
         while True:
             if substr[i] == '.':
@@ -49,7 +74,25 @@ def parse_cpc_uspc(line):
 
     i_uspc = line.index('USPC')
     cpc = process(line[:i_uspc])
-    cpc = cpc.split('; ')
+    new_cpc = parse_cpc(cpc)
+    
+    uspc = process(line[i_uspc:])
+    new_uspc = parse_uspc(uspc)
+    return new_cpc, new_uspc
+
+
+def parse_cpc(line):
+    '''
+    Called from parse_cpc_uspc
+
+    example input: 
+        "CI2N 15/87 (2013.01); A61 K3I/713 
+        (2013.01); A61K 47/48061 (2013.01); C12O 
+        I/6841 (2013.01); C12N 15/115 (2013.01) "
+    output:
+        ['C12N 15/87', 'A61K 31/713', 'A61K 47/48061', 'C12O 1/6841', 'C12N 15/115']
+    '''
+    cpc = line.split('; ')
     new_cpc = []
     for c in cpc:
         spl = c.split(" ")
@@ -60,12 +103,19 @@ def parse_cpc_uspc(line):
             s = 4 - length
             new_cpc.append(spl[0] + spl[1][:s] + " " + spl[1][s:])
     
-    uspc = process(line[i_uspc:])
-    new_uspc = parse_uspc(uspc)
-    return new_cpc, new_uspc
+    return new_cpc
 
 
 def parse_uspc(line):
+    '''
+    Called from parse_cpc_uspc
+
+    example input: 
+        "514/44. A 435/375; 435/455; 435/471; 
+        435/252.1435/6.11536/24.5"
+    output:
+        ['514/44. A', '435/375', '435/455', '435/471', '435/252.1', '435/6.11', '536/24.5']
+    '''
     # p = re.compile(r'\d{3}/{1}\d{1,3}\d*\W*\d{0,2}') # trying to match whole thing
     p = re.compile(r'\d{3}/{1}\d{1,3}')
     a = p.findall(line)
@@ -88,6 +138,16 @@ def parse_uspc(line):
 
 
 def parse_entries(key, line):
+    '''
+    Parse function for Inventors and Assignees: these are usually seperated by ';' then ','
+
+    example input: 
+        "(75)  Inventors:  Thomas J. Webster, Barrington, RI 
+        (US); Qian Chen, Barrington, RI (US); 
+        Yupeng Chen, Mansfield, MA (US) "
+    output:
+        ['Thomas J. Webster', 'Qian Chen', 'Yupeng Chen']
+    '''
     key = key + ':'
     i = 0
     while i < len(line):
@@ -129,7 +189,7 @@ def parse_doc(terms, path_to_pdf):
         if 'Sheet 1' in line or len(terms) == 0:
             break
 
-        p = parse_line(line, terms)
+        p = parse_for_keywords(line, terms)
         if p is not None:
             start = 1
             count = 1
