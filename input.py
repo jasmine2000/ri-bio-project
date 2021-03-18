@@ -1,4 +1,5 @@
 import os.path
+import re
 from pathlib import Path
 import pdfminer
 from pdfminer.high_level import extract_text
@@ -24,6 +25,68 @@ def parse_line(line, keywords):
     
     return None
 
+
+def parse_cpc_uspc(line):
+    i_loc = []
+    for i in range(len(line)):
+        if line[i] == 'I':
+            i_loc.append(i)
+    
+    for i in i_loc:
+        line = line[:i] + '1' + line[i + 1:]
+
+    def process(substr):
+        i = substr.index('.')
+        while True:
+            if substr[i] == '.':
+                i += 1
+            else:
+                break
+        
+        substr = substr[i:]
+        substr = substr.strip()
+        return substr
+
+    i_uspc = line.index('USPC')
+    cpc = process(line[:i_uspc])
+    cpc = cpc.split('; ')
+    new_cpc = []
+    for c in cpc:
+        spl = c.split(" ")
+        length = len(spl[0])
+        if length == 4:
+            new_cpc.append(spl[0] + " " + spl[1])
+        else:
+            s = 4 - length
+            new_cpc.append(spl[0] + spl[1][:s] + " " + spl[1][s:])
+    
+    uspc = process(line[i_uspc:])
+    new_uspc = parse_uspc(uspc)
+    return new_cpc, new_uspc
+
+
+def parse_uspc(line):
+    # p = re.compile(r'\d{3}/{1}\d{1,3}\d*\W*\d{0,2}') # trying to match whole thing
+    p = re.compile(r'\d{3}/{1}\d{1,3}')
+    a = p.findall(line)
+    indices = []
+    for i in a:
+        indices.append(line.index(i))
+    new_uspc = []
+    for i in range(len(indices)):
+        u_1 = indices[i]
+        if i == len(indices) - 1:
+            u_2 = len(line)
+        else:
+            u_2 = indices[i + 1]
+
+        e = line[u_1:u_2]
+        e = e.strip(" ;")
+        new_uspc.append(e)
+
+    return new_uspc
+
+
 def parse_entries(key, line):
     key = key + ':'
     i = 0
@@ -39,36 +102,11 @@ def parse_entries(key, line):
     
     return result
 
-def parse_inventors(line):
-    i = 0
-    while i < len(line):
-        if line[i:i + 10] == 'Inventors:':
-            line = line[i + 10:]
-            break
-        i += 1
-
-    line = line.strip()
-    inventors_loc = line.split('; ')
-    inventors = [i.split(',')[0] for i in inventors_loc]
-    
-    return inventors
-
-def parse_assignees(line):
-    for i in range(len(line)):
-        if line[i:i + 11] == 'Assignees: ':
-            line = line[i + 11:]
-            break
-
-    assignees_loc = line.split('; ')
-    assignees = [a.split(',')[0] for a in assignees_loc]
-    
-    return assignees
 
 def parse_doc(terms, path_to_pdf):
     patent_pdf = open(path_to_pdf, 'rb')
     text = extract_text(patent_pdf)
 
-    # paragraphs: {'Int. Cl.': 3, 'Inventors': 1, 'CPC', 'USPC', 'Assignees'}
     relevant_information = {}
 
     i = 0
@@ -97,7 +135,7 @@ def parse_doc(terms, path_to_pdf):
             count = 1
             if p == 'Int. Cl.':
                 count = 3
-            elif p == 'Assignees' or p == 'Inventors':
+            elif p == 'Assignees' or p == 'Inventors' or p == 'CPC':
                 start = 0
 
             entry, index = get_element(i, count, start)
@@ -109,9 +147,17 @@ def parse_doc(terms, path_to_pdf):
         else:
             i += 1
 
-    # relevant_information['Inventors'] = parse_inventors(relevant_information['Inventors'])
+    new_info = {}
+    for key, value in relevant_information.items():
+        if key == 'CPC':
+            cpc, uspc = parse_cpc_uspc(value)
+            new_info['CPC'] = cpc
+            new_info['USPC'] = uspc
+        else:
+            new_info[key] = parse_entries(key, value)
+    
 
-    return relevant_information
+    return new_info
 
 
 if __name__ == '__main__':
@@ -120,13 +166,10 @@ if __name__ == '__main__':
     # two = open('patent_02.txt', 'w+')
     # two.write(text)
 
-    # terms = ['Int. Cl.', 'Inventors', 'CPC', 'Assignees']
-    # path_to_pdf = './patent_files/patent_ex_01.pdf'
+    terms = ['Int. Cl.', 'Inventors', 'CPC', 'Assignees']
+    path_to_pdf = './patent_files/patent_ex_01.pdf'
 
-    # relevant_information = parse_doc(terms, path_to_pdf)
-    # for key in relevant_information:
-    #     print(key + ": " + relevant_information[key])
+    relevant_information = parse_doc(terms, path_to_pdf)
+    print(relevant_information)
 
-    i = parse_entries('Assignees', "(73)  Assignees: RHODE ISLAND HOSPITAL, ")
-    print(i)
 
