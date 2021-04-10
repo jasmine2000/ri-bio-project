@@ -96,10 +96,11 @@ def get_info(expr):
 
     phrases = expr.split(',')
     for phrase in phrases:
-        phrase = phrase.strip()
-        phrase = phrase.replace(' ', '+')
+        if len(phrase) > 0:
+            phrase = phrase.strip()
+            phrase = phrase.replace(' ', '+')
 
-        words += f"%22{phrase}%22AND"
+            words += f"%22{phrase}%22AND"
 
     words = words[:-3]
 

@@ -16,3 +16,10 @@ python3 manage.py runserver
 Follow link given and add this to end of url:
 my_project/cto_request
 (full link looks kind of like http://127.0.0.1:8000/my_project/cto_request)
+
+type in search term(s) seperated by commas. trailing commas are okay.
+examples:
+brown university, tumor
+chen, cancer,
+
+xlsx file will automatically download to computer
