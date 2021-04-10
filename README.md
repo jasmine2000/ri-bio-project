@@ -1,18 +1,17 @@
 # API Search Tool
 
-(will add more later)
+(will add description later)
 
 ## Installation
 
 Download repository from github
 
-
 ## Usage
 type in terminal:
 ```bash
-source env/bin/activate # in the Search_Tool directory
+source env/bin/activate # starting in the Search_Tool directory
 cd api_search_tool
-python3 manage.py runserver # in the bigger api_search_tool directory
+python3 manage.py runserver
 ```
 Follow link given and add this to end of url:
 my_project/cto_request
