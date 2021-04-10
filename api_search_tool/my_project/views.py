@@ -16,11 +16,17 @@ field_names = ["NCTId", "LeadSponsorName", "OverallOfficialAffiliation",
                     "Keyword", "BriefSummary"]
 
 def cto_request(request):
-    if request.method == 'POST':
+    '''Queries information from clinicaltrials.gov API.
+
+    arguments from form:
+    search_term -- term(s) to use for query
+    
+    '''
+    if request.method == 'POST': # user has submitted data
         form = SearchForm(request.POST)
         if form.is_valid():
-            expr = form.cleaned_data['search_term']
-            url = get_url(expr, field_names)
+            search_input = form.cleaned_data['search_term']
+            url = get_url(search_input, field_names)
             response = requests.get(url).json()
             df = cleaned_df(response, field_names)
             xlsx = create_xlsx(df)
@@ -34,43 +40,66 @@ def cto_request(request):
 
             return response
             
-    else:
+    else: # show empty form
         form = SearchForm()
 
     return render(request, 'search.html', {'form': form})
 
 
-def get_url(expr, field_names):
+def get_url(search_input, field_names):
+    '''Generate a clinicaltrials.gov URL.
+
+    arguments:
+    expr -- raw keyword inputs (ex: "brown university, tumor")
+    field_names -- global variable that defines the columns to return
+
+    '''
     url = "https://clinicaltrials.gov/api/query/study_fields?"
-    words = "expr="
-
-    phrases = expr.split(',')
+    
+    expr = "expr="
+    phrases = search_input.split(',')
     for phrase in phrases:
+        phrase = phrase.strip()
         if len(phrase) > 0:
-            phrase = phrase.strip()
-            phrase = phrase.replace(' ', '+')
+            phrase = phrase.replace(' ', '+') # clinical trials API expects terms like "brown+university"
+            expr += f"%22{phrase}%22AND"
 
-            words += f"%22{phrase}%22AND"
-
-    words = words[:-3]
+    expr = expr[:-3] # get rid of trailing %22
 
     fields = "fields="
     for f in field_names:
         fields += f"{f}%2C"
 
-    fields = fields[:-3]
+    fields = fields[:-3] # get rid of trailing %2C
+
     params = "min_rnk=1&max_rnk=200&fmt=json"
-    complete_url = f"{url}{words}&{fields}&{params}"
+    complete_url = f"{url}{expr}&{fields}&{params}"
 
     return complete_url
 
 def cleaned_df(response, field_names):
+    '''Put response data into a dataframe.
+
+    arguments:
+    response -- json response from API
+    field_names -- global variable that defines the columns
+
+    '''
     df = json_normalize(response['StudyFieldsResponse']['StudyFields'])
 
-    def brackets(list_):
-        list_ = list_.replace("['", "")
-        list_ = list_.replace("']", "")
-        return list_
+    def brackets(column):
+        '''Convert columns from list of strings to plaintext.
+
+        arguments:
+        expr -- raw keyword inputs (ex: "brown university, tumor")
+        field_names -- global variable that defines the columns to return
+
+        '''
+        column = column.replace("[", "")
+        column = column.replace("]", "")
+        column = column.replace("'", "")
+        column = column.replace('"', '')
+        return column
 
     for col in field_names:
         df[col]= df[col].astype(str)
@@ -79,6 +108,12 @@ def cleaned_df(response, field_names):
     return df
 
 def create_xlsx(df):
+    '''Write dataframe to xlsx file.
+
+    arguments:
+    df -- populated dataframe
+
+    '''
     xlsx = io.BytesIO()
     PandasWriter = pd.ExcelWriter(xlsx, engine='xlsxwriter')
     df.to_excel(PandasWriter, sheet_name='clinical_trials_results')
