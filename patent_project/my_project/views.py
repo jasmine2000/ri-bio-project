@@ -1,5 +1,7 @@
 import requests, json
 
+import xlsxwriter
+
 from django.shortcuts import render
 from django.http import HttpResponse
 
@@ -8,6 +10,13 @@ from fuzzywuzzy import process
 
 import os
 from os import path
+
+import pandas as pd
+from pandas.io.json import json_normalize
+
+import io
+
+from .forms import SearchForm
 
 
 lens_key = '82QDp7mcObNq6rMT2GG5KLE8VlrwjWL7TZcE0NiEOD0bBobOQqY9'
@@ -68,7 +77,76 @@ def parse_claim_text(string):
     claim_index = string.index("claim_text")
     return string[claim_index:]
 
-def cto_request(request, expr, fields):
-    url = 'ClinicalTrials.gov/api/query/study_fields?expr={expr}&fields={fields}'
-    
+def cto_request(request):
+    if request.method == 'POST':
+        form = SearchForm(request.POST)
+        if form.is_valid():
+            expr = form.cleaned_data['search_term']
+            return get_info(expr)
+
+    else:
+        form = SearchForm()
+
+    return render(request, 'search.html', {'form': form})
+
+
+def get_info(expr):
+    url = "https://clinicaltrials.gov/api/query/study_fields?"
+    words = "expr="
+
+    phrases = expr.split(',')
+    for phrase in phrases:
+        phrase = phrase.strip()
+        phrase = phrase.replace(' ', '+')
+
+        words += f"%22{phrase}%22AND"
+
+    words = words[:-3]
+
+    field_names = ["NCTId", "LeadSponsorName", "OverallOfficialAffiliation", 
+                    "OverallOfficialName", "OverallOfficialRole", "InterventionName", 
+                    "Keyword", "BriefSummary"]
+
+    fields = "fields="
+    for f in field_names:
+        fields += f"{f}%2C"
+
+    fields = fields[:-3]
+    params = "min_rnk=1&max_rnk=200&fmt=json"
+    compete_url = f"{url}{words}&{fields}&{params}"
+
+    # return HttpResponse(compete_url)
+
+    response = requests.get(compete_url).json()
+
+    df = json_normalize(response['StudyFieldsResponse']['StudyFields'])
+
+    def brackets(list_):
+        list_ = list_.replace("['", "")
+        list_ = list_.replace("']", "")
+        return list_
+
+    for col in field_names:
+        df[col]= df[col].astype(str)
+        df[col] = df[col].apply(brackets)
+
+    sio = io.BytesIO()
+    PandasWriter = pd.ExcelWriter(sio, engine='xlsxwriter')
+    df.to_excel(PandasWriter, sheet_name='clinical_trials_results')
+    PandasWriter.save()
+
+    sio.seek(0)
+    workbook = sio.getvalue()
+
+    filename = 'django_simple.xlsx'
+    response = HttpResponse(
+        sio,
+        content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+    )
+    response['Content-Disposition'] = 'attachment; filename=%s' % filename
+
+    return response
+
+
+
     # ClinicalTrials.gov/api/query/study_fields?expr=heart+attack&fields=NCTId,Condition,BriefTitle
