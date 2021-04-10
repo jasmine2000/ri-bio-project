@@ -1,23 +1,96 @@
 import requests, json
-
 import xlsxwriter
-
 from django.shortcuts import render
 from django.http import HttpResponse
+import pandas as pd
+from pandas.io.json import json_normalize
+import io
+from .forms import SearchForm
 
+# currently unused
 from fuzzywuzzy import fuzz
 from fuzzywuzzy import process
 
-import os
-from os import path
+field_names = ["NCTId", "LeadSponsorName", "OverallOfficialAffiliation", 
+                    "OverallOfficialName", "OverallOfficialRole", "InterventionName", 
+                    "Keyword", "BriefSummary"]
 
-import pandas as pd
-from pandas.io.json import json_normalize
+def cto_request(request):
+    if request.method == 'POST':
+        form = SearchForm(request.POST)
+        if form.is_valid():
+            expr = form.cleaned_data['search_term']
+            url = get_url(expr, field_names)
+            response = requests.get(url).json()
+            df = cleaned_df(response, field_names)
+            xlsx = create_xlsx(df)
 
-import io
+            filename = 'query_results.xlsx'
+            response = HttpResponse(
+                xlsx,
+                content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+            )
+            response['Content-Disposition'] = 'attachment; filename=%s' % filename
 
-from .forms import SearchForm
+            return response
+            
+    else:
+        form = SearchForm()
 
+    return render(request, 'search.html', {'form': form})
+
+
+def get_url(expr, field_names):
+    url = "https://clinicaltrials.gov/api/query/study_fields?"
+    words = "expr="
+
+    phrases = expr.split(',')
+    for phrase in phrases:
+        if len(phrase) > 0:
+            phrase = phrase.strip()
+            phrase = phrase.replace(' ', '+')
+
+            words += f"%22{phrase}%22AND"
+
+    words = words[:-3]
+
+    fields = "fields="
+    for f in field_names:
+        fields += f"{f}%2C"
+
+    fields = fields[:-3]
+    params = "min_rnk=1&max_rnk=200&fmt=json"
+    complete_url = f"{url}{words}&{fields}&{params}"
+
+    return complete_url
+
+def cleaned_df(response, field_names):
+    df = json_normalize(response['StudyFieldsResponse']['StudyFields'])
+
+    def brackets(list_):
+        list_ = list_.replace("['", "")
+        list_ = list_.replace("']", "")
+        return list_
+
+    for col in field_names:
+        df[col]= df[col].astype(str)
+        df[col] = df[col].apply(brackets)
+
+    return df
+
+def create_xlsx(df):
+    xlsx = io.BytesIO()
+    PandasWriter = pd.ExcelWriter(xlsx, engine='xlsxwriter')
+    df.to_excel(PandasWriter, sheet_name='clinical_trials_results')
+    PandasWriter.save()
+
+    xlsx.seek(0)
+
+    return xlsx
+
+
+
+# lens stuff
 
 lens_key = '82QDp7mcObNq6rMT2GG5KLE8VlrwjWL7TZcE0NiEOD0bBobOQqY9'
 
@@ -28,7 +101,7 @@ example_dict["053-482-898-165-714"] = "1. A system for passively cooling an inte
 
 # Create your views here.
 def index(request):
-    return HttpResponse("homepage")
+    return HttpResponse("index")
 
 def patent_comp(request, id_list):
     id_list = ["009-600-108-934-46X", "053-482-898-165-714"]
@@ -43,9 +116,6 @@ def patent_comp(request, id_list):
 
     ratio = fuzz.token_sort_ratio(id_list[0], id_list[1])
     return_string += f"{str(id_list[0])}, {str(id_list[1])}: {ratio} \n"
-
-    # for key, value in claims_dict:
-
     
     return HttpResponse(return_string)
 
@@ -76,78 +146,3 @@ def lens_request(id_list):
 def parse_claim_text(string):
     claim_index = string.index("claim_text")
     return string[claim_index:]
-
-def cto_request(request):
-    if request.method == 'POST':
-        form = SearchForm(request.POST)
-        if form.is_valid():
-            expr = form.cleaned_data['search_term']
-            return get_info(expr)
-
-    else:
-        form = SearchForm()
-
-    return render(request, 'search.html', {'form': form})
-
-
-def get_info(expr):
-    url = "https://clinicaltrials.gov/api/query/study_fields?"
-    words = "expr="
-
-    phrases = expr.split(',')
-    for phrase in phrases:
-        if len(phrase) > 0:
-            phrase = phrase.strip()
-            phrase = phrase.replace(' ', '+')
-
-            words += f"%22{phrase}%22AND"
-
-    words = words[:-3]
-
-    field_names = ["NCTId", "LeadSponsorName", "OverallOfficialAffiliation", 
-                    "OverallOfficialName", "OverallOfficialRole", "InterventionName", 
-                    "Keyword", "BriefSummary"]
-
-    fields = "fields="
-    for f in field_names:
-        fields += f"{f}%2C"
-
-    fields = fields[:-3]
-    params = "min_rnk=1&max_rnk=200&fmt=json"
-    compete_url = f"{url}{words}&{fields}&{params}"
-
-    # return HttpResponse(compete_url)
-
-    response = requests.get(compete_url).json()
-
-    df = json_normalize(response['StudyFieldsResponse']['StudyFields'])
-
-    def brackets(list_):
-        list_ = list_.replace("['", "")
-        list_ = list_.replace("']", "")
-        return list_
-
-    for col in field_names:
-        df[col]= df[col].astype(str)
-        df[col] = df[col].apply(brackets)
-
-    sio = io.BytesIO()
-    PandasWriter = pd.ExcelWriter(sio, engine='xlsxwriter')
-    df.to_excel(PandasWriter, sheet_name='clinical_trials_results')
-    PandasWriter.save()
-
-    sio.seek(0)
-    workbook = sio.getvalue()
-
-    filename = 'django_simple.xlsx'
-    response = HttpResponse(
-        sio,
-        content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
-    )
-    response['Content-Disposition'] = 'attachment; filename=%s' % filename
-
-    return response
-
-
-
-    # ClinicalTrials.gov/api/query/study_fields?expr=heart+attack&fields=NCTId,Condition,BriefTitle
