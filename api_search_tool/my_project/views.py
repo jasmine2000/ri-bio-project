@@ -1,10 +1,11 @@
 import requests, json
-import xlsxwriter
 from django.shortcuts import render
 from django.http import HttpResponse
+
 import pandas as pd
-from pandas.io.json import json_normalize
+import xlsxwriter
 import io
+from pandas import json_normalize
 from .forms import SearchForm
 
 # currently unused
@@ -15,7 +16,7 @@ field_names = ["NCTId", "LeadSponsorName", "OverallOfficialAffiliation",
                     "OverallOfficialName", "OverallOfficialRole", "InterventionName", 
                     "Keyword", "BriefSummary"]
 
-def cto_request(request):
+def clincialtrials_request(request):
     '''Queries information from clinicaltrials.gov API.
 
     arguments from form:
