@@ -50,7 +50,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'patent_project.urls'
+ROOT_URLCONF = 'api_search_tool.urls'
 
 TEMPLATES = [
     {
@@ -68,7 +68,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'patent_project.wsgi.application'
+WSGI_APPLICATION = 'api_search_tool.wsgi.application'
 
 
 # Database
