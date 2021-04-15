@@ -16,21 +16,32 @@ field_names = ["NCTId", "LeadSponsorName", "OverallOfficialAffiliation",
                     "OverallOfficialName", "OverallOfficialRole", "InterventionName", 
                     "Keyword", "BriefSummary"]
 
-def clincialtrials_request(request):
-    '''Queries information from clinicaltrials.gov API.
+def publications_request(request):
+    '''Queries information from clinicaltrials.gov API and lens.org API.
 
     arguments from form:
-    search_term -- term(s) to use for query
+    
+    used in both CT and Lens:
+        author, institution, keyword
+    used only in CT:
+        sponsor
     
     '''
     if request.method == 'POST': # user has submitted data
         form = SearchForm(request.POST)
         if form.is_valid():
-            search_input = form.cleaned_data['search_term']
-            url = get_url(search_input, field_names)
-            response = requests.get(url).json()
-            df = cleaned_df(response, field_names)
-            xlsx = create_xlsx(df)
+            author = form.cleaned_data['author']
+            institution = form.cleaned_data['institution']
+            sponsor = form.cleaned_data['sponsor']
+            keyword = form.cleaned_data['keyword']
+
+            url = get_url(author, institution, sponsor, keyword, field_names)
+            json_response = requests.get(url).json()
+            ct_df = cleaned_df(json_response, field_names)
+
+            lens_df = get_lens_df(author, institution, keyword)
+
+            xlsx = create_xlsx(ct_df, lens_df)
 
             filename = 'query_results.xlsx'
             response = HttpResponse(
@@ -47,7 +58,18 @@ def clincialtrials_request(request):
     return render(request, 'search.html', {'form': form})
 
 
-def get_url(search_input, field_names):
+def comma_parser(search_input):
+    phrases = search_input.split(',')
+    final_phrases = []
+    for phrase in phrases:
+        phrase = phrase.strip()
+        if len(phrase) > 0:
+            final_phrases.append(phrase)
+
+    return phrases
+
+
+def get_url(author, institution, sponsor, keyword, field_names):
     '''Generate a clinicaltrials.gov URL.
 
     arguments:
@@ -58,14 +80,24 @@ def get_url(search_input, field_names):
     url = "https://clinicaltrials.gov/api/query/study_fields?"
     
     expr = "expr="
-    phrases = search_input.split(',')
-    for phrase in phrases:
-        phrase = phrase.strip()
-        if len(phrase) > 0:
-            phrase = phrase.replace(' ', '+') # clinical trials API expects terms like "brown+university"
-            expr += f"%22{phrase}%22AND"
 
-    expr = expr[:-3] # get rid of trailing %22
+    search_terms = []
+    if keyword.lower() != 'none':
+        search_terms.append(f'"{keyword}"')
+
+    if author.lower() != 'none':
+        search_terms.append(f'AREA%5BOverallOfficialName%5D"{author}"')
+
+    if institution.lower() != 'none':
+        search_terms.append(f'AREA%5BOverallOfficialAffiliation%5D{institution}')
+
+    if sponsor.lower() != 'none':
+        search_terms.append(f'AREA%5BLeadSponsorName%5D"{sponsor}"')
+
+    for i,term in enumerate(search_terms):
+        if i != 0:
+            expr += '+AND+'
+        expr += term
 
     fields = "fields="
     for f in field_names:
@@ -106,9 +138,14 @@ def cleaned_df(response, field_names):
         df[col]= df[col].astype(str)
         df[col] = df[col].apply(brackets)
 
+    df.rename(columns={"LeadSponsorName": "Sponsor", 
+                       "OverallOfficialAffiliation": "Institution", 
+                       "OverallOfficialName": "AuthorNames",
+                       "OverallOfficialRole": "Role"})
+
     return df
 
-def create_xlsx(df):
+def create_xlsx(ct_df, lens_df):
     '''Write dataframe to xlsx file.
 
     arguments:
@@ -117,7 +154,8 @@ def create_xlsx(df):
     '''
     xlsx = io.BytesIO()
     PandasWriter = pd.ExcelWriter(xlsx, engine='xlsxwriter')
-    df.to_excel(PandasWriter, sheet_name='clinical_trials_results')
+    ct_df.to_excel(PandasWriter, sheet_name='clinical_trials_results')
+    lens_df.to_excel(PandasWriter, sheet_name='lens_results')
     PandasWriter.save()
 
     xlsx.seek(0)
@@ -125,43 +163,151 @@ def create_xlsx(df):
     return xlsx
 
 
-
 # lens stuff
 
-lens_key = '82QDp7mcObNq6rMT2GG5KLE8VlrwjWL7TZcE0NiEOD0bBobOQqY9'
+lens_key = 'qfqStKI9asHygnOGzGvvTM9M7gSd46HV4GYIQr94SN9Sg9Kn48sl'
 
-example_dict = {}
-example_dict["009-600-108-934-46X"] = "1. An insulation system for a roof, the insulation system comprising: a plurality of roof sheathing panels that extend upward at an angle away from an eave of the roof toward a ridge of the roof; a plurality of spaced apart structural members having lengths that extend upward at an angle away from the eave toward the ridge without insulation between the roof sheathing panels and the spaced apart structural members, wherein the spaced apart structural members support the roof sheathing panels, wherein the spaced apart structural members each include a top face that faces toward the roof sheathing panel and a bottom face that faces away from the roof sheathing panels; a first insulation material disposed between an adjacent pair of the spaced apart structural members, wherein a length of the first insulation material extends along the lengths of each structural member of the adjacent pair of the spaced apart structural members, wherein the first insulation material has a bottom face that is substantially flush with the bottom faces of the spaced apart structural members, wherein the first insulation material comprises a fibrous material; a second insulation material, wherein a single piece of the second insulation material has a length that extends across the bottom face of each structural member of the adjacent pair of the spaced apart structural members, such that the single piece of the second insulation material covers the bottom face of each structural member of the adjacent pair of the spaced apart structural members and the first insulation material, wherein the second insulation material comprises a fibrous material."
-example_dict["053-482-898-165-714"] = "1. A system for passively cooling an interior area within a structure comprising: a membrane assembly covering a portion of the structure, wherein the membrane assembly has an interior side facing the interior area and an exterior side, the membrane assembly defines a plurality of pores."
+def get_lens_df(author, institution, keyword):
+    key = 'qfqStKI9asHygnOGzGvvTM9M7gSd46HV4GYIQr94SN9Sg9Kn48sl'
+    url = 'https://api.lens.org/scholarly/search'
 
+    query = {"must":[]}
+    if keyword.lower() != 'none':
+        query["must"].append({"match_phrase": {"abstract": keyword}})
 
-# Create your views here.
-def index(request):
-    return HttpResponse("index")
+    if author.lower() != 'none':
+        query["must"].append({"match_phrase": {"author.display_name": author}})
 
-def patent_comp(request, id_list):
-    id_list = ["009-600-108-934-46X", "053-482-898-165-714"]
-    # response_data = lens_request(id_list)
-    # claims_dict = {}
-    # for patent in response_data:
-    #     patent_id = patent.lens_id
-    #     claims_dict[patent_id] = parse_claim_text(string)
+    if institution.lower() != 'none':
+        query["must"].append({"match_phrase": {"author.affiliation.name": institution}})
 
-    claims_dict = example_dict
-    return_string = ""
+    boolean = {"bool": query}
+    data_dict = {"query": boolean, 
+            "size": 200, 
+            "include": ["clinical_trials", "authors", "chemicals", "keywords", "abstract"]}
+    data_json = json.dumps(data_dict)
 
-    ratio = fuzz.token_sort_ratio(id_list[0], id_list[1])
-    return_string += f"{str(id_list[0])}, {str(id_list[1])}: {ratio} \n"
+    headers = {'Authorization': key, 'Content-Type': 'application/json'}
+    response = requests.post(url, data=data_json, headers=headers)
+    if response.status_code != requests.codes.ok:
+        return response.status_code
+    else:
+        full_response = json.loads(response.text)
+        all_data = full_response['data']
+        entries = get_data(all_data)
+
+        df = pd.DataFrame(entries)
+        return df
+
+def get_data(all_data):
+    response_fields = ["clinical_trials", "authors", "chemicals", "keywords", "abstract"]
+    cols = ["NCTId", "Sponsor", "Institution", "AuthorNames", "Role", "InterventionName", "Keyword", "BriefSummary"]
+
+    entries = []
+    for entry in all_data:
+        entry_dict = {col: "" for col in cols}
+        for field in response_fields:
+            try:
+                data = entry[field]
+            except:
+                continue
+            keys, values = clean_data(field, data)
+            for key, val in zip(keys, values):
+                entry_dict[key] = val
+
+        entries.append(entry_dict)
+
+    return entries
+
+def clean_data(field, data):
+    keys = []
+    values = []
+
+    if field == "clinical_trials":
+        ids = ""
+        for trial in data:
+            ids += trial['id'] + ', '
+        keys.append('NCTId')
+        values.append(ids[:-2])
+
+    elif field == "authors":
+        names = []
+        affiliations = []
+        for author in data:
+            name = ""
+            if 'first_name' in author:
+                name += author['first_name'] + " "
+            if 'last_name' in author:
+                name += author['last_name']
+            
+            names.append(name)
+            if 'affiliations' in author:
+                affiliation = author['affiliations']
+                for aff in affiliation:
+                    affiliations.append(aff['name'])
+
+        names_str = ', '.join(map(str, names))
+        aff_str = ', '.join(map(str, affiliations))
+        keys += ['AuthorNames', 'Institution']
+        values += [names_str, aff_str]
+
+    elif field == "chemicals":
+        chemicals = ""
+        for chemical in data:
+            chemicals += chemical['substance_name'] + ', '
+        keys.append('InterventionName')
+        values.append(chemicals[:-2])
+
+    elif field == "keywords":
+        words = ', '.join(map(str, data))
+        keys.append('Keyword')
+        values.append(words)
     
-    return HttpResponse(return_string)
+    elif field == "abstract":
+        keys.append('BriefSummary')
+        values.append(data)
+    
+    return keys, values
 
 
-def lens_request(id_list):
+
+# RETURNS CLAIMS OF A PATENT
+def lens_patent_request(request):
+    '''Gets claims from lens id(s).
+
+    arguments from form:
+    search_term -- term(s) to use for query
+    
+    '''
+    if request.method == 'POST': # user has submitted data
+        form = SearchForm(request.POST)
+        if form.is_valid():
+            search_input = form.cleaned_data['search_term']
+            lens_response = lens_request(search_input)
+            if lens_response.status_code != requests.codes.ok:
+                return(lens_response.status_code)
+            else:
+                response_body = parse_claim_text(lens_response.text)
+                response = HttpResponse(
+                    response_body,
+                    content_type='text/html; encoding=utf8'
+                )
+                
+                return response
+            
+    else: # show empty form
+        form = SearchForm()
+
+    return render(request, 'lens.html', {'form': form})
+
+def lens_request(search_input):
+    lens_ids = comma_parser(search_input)
+
     url = 'https://api.lens.org/patent/search'
     data_dict = {
                 "query": {
                     "terms":  {
-                        "lens_id": lens_id
+                        "lens_id": lens_ids
                     }
                 },
                 "size": 100,
@@ -170,15 +316,28 @@ def lens_request(id_list):
                 "scroll_id": ""
             }
     data = json.dumps(data_dict)
-    headers = {'Authorization': '82QDp7mcObNq6rMT2GG5KLE8VlrwjWL7TZcE0NiEOD0bBobOQqY9', 'Content-Type': 'application/json'}
+    headers = {'Authorization': lens_key, 'Content-Type': 'application/json'}
     response = requests.post(url, data=data, headers=headers)
-    return response.data
+    return response
 
-    # if response.status_code != requests.codes.ok:
-    #     print(response.status_code)
-    # else:
-    #     print(response.text)
+def parse_claim_text(response_text):
+    json_data = json.loads(response_text)
+    response_body = []
 
-def parse_claim_text(string):
-    claim_index = string.index("claim_text")
-    return string[claim_index:]
+    for result in json_data['data']:
+        lens_id = result['lens_id']
+        response_body.append(f'<h2>{lens_id}</h2>')
+        full_list = result['claims']
+        for entry in full_list:
+            if entry['lang'] == 'en':
+                all_claims = entry['claims']
+                for claim in all_claims:
+                    text = claim['claim_text'][0]
+                    response_body.append(f'<p>{text}</p>')
+
+    response_body.append('</html></body>')
+    return response_body
+
+
+def index(request):
+    return HttpResponse("index")
