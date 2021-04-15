@@ -14,12 +14,15 @@ cd api_search_tool
 python3 manage.py runserver
 ```
 Follow link given and add this to end of url:
-my_project/clincialtrials_request
-(full link looks kind of like http://127.0.0.1:8000/my_project/clincialtrials_request)
+my_project/publications_request
+(full link looks kind of like http://127.0.0.1:8000/my_project/publications_request)
 
-type in search term(s) seperated by commas. trailing commas are okay.
+type in search term(s). currently cannot handle empty boxes, enter 'none' if no term
 examples:
-brown university, tumor
-chen, cancer,
+Institution: Brown University and Keyword: tumor
+author: [none]
+institution: [Brown University]
+sponsor: [none]
+keyword: [tumor]
 
 xlsx file will automatically download to computer
