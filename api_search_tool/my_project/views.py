@@ -15,6 +15,7 @@ from fuzzywuzzy import process
 field_names = ["NCTId", "LeadSponsorName", "OverallOfficialAffiliation", 
                     "OverallOfficialName", "OverallOfficialRole", "InterventionName", 
                     "Keyword", "BriefSummary"]
+cols = ["NCTId", "Sponsor", "Institution", "AuthorNames", "Role", "InterventionName", "Keyword", "BriefSummary"]
 
 def publications_request(request):
     '''Queries information from clinicaltrials.gov API and lens.org API.
@@ -35,10 +36,7 @@ def publications_request(request):
             sponsor = form.cleaned_data['sponsor']
             keyword = form.cleaned_data['keyword']
 
-            url = get_url(author, institution, sponsor, keyword, field_names)
-            json_response = requests.get(url).json()
-            ct_df = cleaned_df(json_response, field_names)
-
+            ct_df = get_ct_df(author, institution, sponsor, keyword, field_names)
             lens_df = get_lens_df(author, institution, keyword)
 
             xlsx = create_xlsx(ct_df, lens_df)
@@ -58,18 +56,30 @@ def publications_request(request):
     return render(request, 'search.html', {'form': form})
 
 
-def comma_parser(search_input):
-    phrases = search_input.split(',')
-    final_phrases = []
-    for phrase in phrases:
-        phrase = phrase.strip()
-        if len(phrase) > 0:
-            final_phrases.append(phrase)
+def create_xlsx(ct_df, lens_df):
+    '''Write dataframe to xlsx file.
 
-    return phrases
+    arguments:
+    df -- populated dataframe
 
+    '''
+    xlsx = io.BytesIO()
+    PandasWriter = pd.ExcelWriter(xlsx, engine='xlsxwriter')
+    ct_df.to_excel(PandasWriter, sheet_name='clinical_trials_results')
+    lens_df.to_excel(PandasWriter, sheet_name='lens_results')
+    PandasWriter.save()
 
-def get_url(author, institution, sponsor, keyword, field_names):
+    xlsx.seek(0)
+
+    return xlsx
+
+# CLINCICAL TRIALS
+def get_ct_df(author, institution, sponsor, keyword, field_names):
+    response_json = make_ct_request(author, institution, sponsor, keyword, field_names)
+    ct_df = ct_json_to_df(response_json, field_names)
+    return ct_df
+
+def make_ct_request(author, institution, sponsor, keyword, field_names):
     '''Generate a clinicaltrials.gov URL.
 
     arguments:
@@ -108,9 +118,11 @@ def get_url(author, institution, sponsor, keyword, field_names):
     params = "min_rnk=1&max_rnk=200&fmt=json"
     complete_url = f"{url}{expr}&{fields}&{params}"
 
-    return complete_url
+    response_json = requests.get(complete_url).json()
 
-def cleaned_df(response, field_names):
+    return response_json
+
+def ct_json_to_df(response_json, field_names):
     '''Put response data into a dataframe.
 
     arguments:
@@ -118,7 +130,7 @@ def cleaned_df(response, field_names):
     field_names -- global variable that defines the columns
 
     '''
-    df = json_normalize(response['StudyFieldsResponse']['StudyFields'])
+    ct_df = json_normalize(response_json['StudyFieldsResponse']['StudyFields'])
 
     def brackets(column):
         '''Convert columns from list of strings to plaintext.
@@ -135,39 +147,27 @@ def cleaned_df(response, field_names):
         return column
 
     for col in field_names:
-        df[col]= df[col].astype(str)
-        df[col] = df[col].apply(brackets)
+        ct_df[col] = ct_df[col].astype(str)
+        ct_df[col] = ct_df[col].apply(brackets)
 
-    df.rename(columns={"LeadSponsorName": "Sponsor", 
-                       "OverallOfficialAffiliation": "Institution", 
-                       "OverallOfficialName": "AuthorNames",
-                       "OverallOfficialRole": "Role"})
+    rename_dict = {}
+    for init, final in zip(field_names, cols):
+        if init != final:
+            rename_dict[init] = final
 
-    return df
+    ct_df.rename(columns=rename_dict)
+    ct_df.drop(['Rank'], axis=1)
 
-def create_xlsx(ct_df, lens_df):
-    '''Write dataframe to xlsx file.
-
-    arguments:
-    df -- populated dataframe
-
-    '''
-    xlsx = io.BytesIO()
-    PandasWriter = pd.ExcelWriter(xlsx, engine='xlsxwriter')
-    ct_df.to_excel(PandasWriter, sheet_name='clinical_trials_results')
-    lens_df.to_excel(PandasWriter, sheet_name='lens_results')
-    PandasWriter.save()
-
-    xlsx.seek(0)
-
-    return xlsx
+    return ct_df
 
 
-# lens stuff
-
-lens_key = 'qfqStKI9asHygnOGzGvvTM9M7gSd46HV4GYIQr94SN9Sg9Kn48sl'
-
+# LENS
 def get_lens_df(author, institution, keyword):
+    response_json = make_lens_request(author, institution, keyword)
+    lens_df = lens_json_to_df(response_json)
+    return lens_df
+
+def make_lens_request(author, institution, keyword):
     key = 'qfqStKI9asHygnOGzGvvTM9M7gSd46HV4GYIQr94SN9Sg9Kn48sl'
     url = 'https://api.lens.org/scholarly/search'
 
@@ -192,14 +192,11 @@ def get_lens_df(author, institution, keyword):
     if response.status_code != requests.codes.ok:
         return response.status_code
     else:
-        full_response = json.loads(response.text)
-        all_data = full_response['data']
-        entries = get_data(all_data)
+        return json.loads(response.text)
 
-        df = pd.DataFrame(entries)
-        return df
-
-def get_data(all_data):
+def lens_json_to_df(response_json):
+    all_data = response_json['data']
+    
     response_fields = ["clinical_trials", "authors", "chemicals", "keywords", "abstract"]
     cols = ["NCTId", "Sponsor", "Institution", "AuthorNames", "Role", "InterventionName", "Keyword", "BriefSummary"]
 
@@ -211,15 +208,16 @@ def get_data(all_data):
                 data = entry[field]
             except:
                 continue
-            keys, values = clean_data(field, data)
+            keys, values = clean_lens_data(field, data)
             for key, val in zip(keys, values):
                 entry_dict[key] = val
 
         entries.append(entry_dict)
 
-    return entries
+    df = pd.DataFrame(entries)
+    return df
 
-def clean_data(field, data):
+def clean_lens_data(field, data):
     keys = []
     values = []
 
@@ -337,6 +335,16 @@ def parse_claim_text(response_text):
 
     response_body.append('</html></body>')
     return response_body
+
+def comma_parser(search_input):
+    phrases = search_input.split(',')
+    final_phrases = []
+    for phrase in phrases:
+        phrase = phrase.strip()
+        if len(phrase) > 0:
+            final_phrases.append(phrase)
+
+    return phrases
 
 
 def index(request):
