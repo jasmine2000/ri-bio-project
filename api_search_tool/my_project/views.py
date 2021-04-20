@@ -220,50 +220,28 @@ def lens_json_to_df(response_json):
 def clean_lens_data(field, data):
     keys = []
     values = []
+    names = {'abstract': 'BriefSummary', 'keywords': 'Keyword', 'chemicals': 'InterventionName'}
 
-    if field == "clinical_trials":
-        ids = ""
-        for trial in data:
-            ids += trial['id'] + ', '
-        keys.append('NCTId')
-        values.append(ids[:-2])
+    if field == "authors":
+        first_names = [author['first_name'] if 'first_name' in author else "" for author in data]
+        last_names = [author['last_name'] if 'last_name' in author else "" for author in data]
+        nested_affs = [[a['name'] for a in author['affiliations']] for author in data if 'affiliations' in author]
 
-    elif field == "authors":
-        names = []
-        affiliations = []
-        for author in data:
-            name = ""
-            if 'first_name' in author:
-                name += author['first_name'] + " "
-            if 'last_name' in author:
-                name += author['last_name']
-            
-            names.append(name)
-            if 'affiliations' in author:
-                affiliation = author['affiliations']
-                for aff in affiliation:
-                    affiliations.append(aff['name'])
+        names = [first + " " + last for first, last in zip(first_names, last_names)]
+        affs = [name for aff in nested_affs for name in aff]
 
-        names_str = ', '.join(map(str, names))
-        aff_str = ', '.join(map(str, affiliations))
         keys += ['AuthorNames', 'Institution']
-        values += [names_str, aff_str]
+        values += [names, affs]
 
-    elif field == "chemicals":
-        chemicals = ""
-        for chemical in data:
-            chemicals += chemical['substance_name'] + ', '
-        keys.append('InterventionName')
-        values.append(chemicals[:-2])
-
-    elif field == "keywords":
-        words = ', '.join(map(str, data))
-        keys.append('Keyword')
-        values.append(words)
+    else:
+        keys.append(names[field])
+        if field == 'chemicals':
+            interventions = [chemical['substance_name'] for chemical in data]
+            values.append(interventions)
+        else:
+            values.append(data)
     
-    elif field == "abstract":
-        keys.append('BriefSummary')
-        values.append(data)
+    values = [', '.join(map(str, val)) for val in values if type(val) != str]
     
     return keys, values
 
