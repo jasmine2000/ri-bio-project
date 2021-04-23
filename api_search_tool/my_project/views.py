@@ -36,11 +36,11 @@ def publications_request(request):
                     entries[field] = entry
 
             ct_df = get_ct_df(dict(entries))
-            # lens_s_df = get_lens_s_df(dict(entries))
+            lens_s_df = get_lens_s_df(dict(entries))
             nih_df = get_nih_df(dict(entries))
 
-            xlsx = create_xlsx(ct_df, nih_df)
-            # xlsx = create_xlsx(ct_df, lens_s_df, nih_df)
+            # xlsx = create_xlsx(ct_df, nih_df)
+            xlsx = create_xlsx(ct_df, lens_s_df, nih_df)
 
             filename = 'query_results.xlsx'
             response = HttpResponse(
@@ -56,8 +56,8 @@ def publications_request(request):
 
     return render(request, 'search.html', {'form': form})
 
-# def create_xlsx(ct_df, lens_s_df, lens_p_df, nih_df):
-def create_xlsx(ct_df, nih_df):
+def create_xlsx(ct_df, lens_s_df, nih_df):
+# def create_xlsx(ct_df, nih_df):
     '''Write dataframe to xlsx file.
 
     arguments:
@@ -67,7 +67,7 @@ def create_xlsx(ct_df, nih_df):
     xlsx = io.BytesIO()
     PandasWriter = pd.ExcelWriter(xlsx, engine='xlsxwriter')
     ct_df.to_excel(PandasWriter, sheet_name='clinical_trials_results')
-    # lens_s_df.to_excel(PandasWriter, sheet_name='lens_s_results')
+    lens_s_df.to_excel(PandasWriter, sheet_name='lens_s_results')
     # lens_p_df.to_excel(PandasWriter, sheet_name='lens_p_results')
     nih_df.to_excel(PandasWriter, sheet_name='nih_results')
     PandasWriter.save()
@@ -167,11 +167,11 @@ def ct_json_to_df(response_json, field_names):
 
 # LENS
 def get_lens_s_df(entries):
-    response_json = make_lens_request(entries)
-    lens_df = lens_json_to_df(response_json)
+    response_json = make_lens_s_request(entries)
+    lens_df = lens_s_json_to_df(response_json)
     return lens_df
 
-lens_key = 'qfqStKI9asHygnOGzGvvTM9M7gSd46HV4GYIQr94SN9Sg9Kn48sl'
+lens_key = 'JsGWcp0DKnphJq3dA71k7hkS4BVKG8ZC0AGYtWtbZB5slK1D8UTH'
 def make_lens_s_request(entries):
     url = 'https://api.lens.org/scholarly/search'
 
@@ -269,6 +269,7 @@ def make_nih_request(entries):
             "fromDate": "2000-01-01",
             "toDate": "2021-04-20"
         },
+        "limit": 300
     }
 
     additional = {
