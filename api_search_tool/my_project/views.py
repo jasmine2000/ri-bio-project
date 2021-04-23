@@ -12,9 +12,6 @@ from .forms import SearchForm
 from fuzzywuzzy import fuzz
 from fuzzywuzzy import process
 
-field_names = ["NCTId", "LeadSponsorName", "OverallOfficialAffiliation", 
-                    "OverallOfficialName", "OverallOfficialRole", "InterventionName", 
-                    "Keyword", "BriefSummary"]
 cols = ["NCTId", "Sponsor", "Institution", "AuthorNames", "Role", "InterventionName", "Keyword", "BriefSummary"]
 
 def publications_request(request):
@@ -31,15 +28,19 @@ def publications_request(request):
     if request.method == 'POST': # user has submitted data
         form = SearchForm(request.POST)
         if form.is_valid():
-            author = form.cleaned_data['author']
-            institution = form.cleaned_data['institution']
-            sponsor = form.cleaned_data['sponsor']
-            keyword = form.cleaned_data['keyword']
+            fields = ['author', 'institution', 'sponsor', 'city', 'state', 'keyword']
+            entries = {}
+            for field in fields:
+                entry = form.cleaned_data[field]
+                if entry:
+                    entries[field] = entry
 
-            ct_df = get_ct_df(author, institution, sponsor, keyword, field_names)
-            lens_df = get_lens_df(author, institution, keyword)
+            ct_df = get_ct_df(entries)
+            # lens_df = get_lens_df(entries)
+            nih_df = get_nih_df(entries)
 
-            xlsx = create_xlsx(ct_df, lens_df)
+            xlsx = create_xlsx(ct_df, nih_df)
+            # xlsx = create_xlsx(ct_df, lens_df, nih_df)
 
             filename = 'query_results.xlsx'
             response = HttpResponse(
@@ -55,8 +56,8 @@ def publications_request(request):
 
     return render(request, 'search.html', {'form': form})
 
-
-def create_xlsx(ct_df, lens_df):
+# def create_xlsx(ct_df, lens_df, nih_df):
+def create_xlsx(ct_df, nih_df):
     '''Write dataframe to xlsx file.
 
     arguments:
@@ -66,7 +67,8 @@ def create_xlsx(ct_df, lens_df):
     xlsx = io.BytesIO()
     PandasWriter = pd.ExcelWriter(xlsx, engine='xlsxwriter')
     ct_df.to_excel(PandasWriter, sheet_name='clinical_trials_results')
-    lens_df.to_excel(PandasWriter, sheet_name='lens_results')
+    # lens_df.to_excel(PandasWriter, sheet_name='lens_results')
+    nih_df.to_excel(PandasWriter, sheet_name='nih_results')
     PandasWriter.save()
 
     xlsx.seek(0)
@@ -74,12 +76,16 @@ def create_xlsx(ct_df, lens_df):
     return xlsx
 
 # CLINCICAL TRIALS
-def get_ct_df(author, institution, sponsor, keyword, field_names):
-    response_json = make_ct_request(author, institution, sponsor, keyword, field_names)
+def get_ct_df(entries):
+    field_names = ["NCTId", "LeadSponsorName", "OverallOfficialAffiliation", 
+                    "OverallOfficialName", "OverallOfficialRole", "InterventionName", 
+                    "LocationCity", "LocationState", "Keyword", "BriefSummary"]
+
+    response_json = make_ct_request(entries, field_names)
     ct_df = ct_json_to_df(response_json, field_names)
     return ct_df
 
-def make_ct_request(author, institution, sponsor, keyword, field_names):
+def make_ct_request(entries, field_names):
     '''Generate a clinicaltrials.gov URL.
 
     arguments:
@@ -91,31 +97,24 @@ def make_ct_request(author, institution, sponsor, keyword, field_names):
     
     expr = "expr="
 
-    search_terms = []
-    if keyword.lower() != 'none':
-        search_terms.append(f'"{keyword}"')
+    search_terms = [f"%22{v.replace(' ', '+')}%22" for v in entries.values()]
+    expr += 'AND'.join(search_terms)
+    expr += '+AND+AREA%5BResultsFirstPostDate%5DRANGE%5B01/01/2000, MAX%5D'
 
-    if author.lower() != 'none':
-        search_terms.append(f'AREA%5BOverallOfficialName%5D"{author}"')
+    # ct_translator = {'author': 'OverallOfficialName', 
+    #                 'institution': 'OverallOfficialAffiliation',
+    #                 'sponsor': 'LeadSponsorName'}
 
-    if institution.lower() != 'none':
-        search_terms.append(f'AREA%5BOverallOfficialAffiliation%5D{institution}')
+    # for key, val in entries.items():
+    #     search_terms.append(f'AREA%5B{ct_translator[key]}%5D"{val}"')
 
-    if sponsor.lower() != 'none':
-        search_terms.append(f'AREA%5BLeadSponsorName%5D"{sponsor}"')
-
-    for i,term in enumerate(search_terms):
-        if i != 0:
-            expr += '+AND+'
-        expr += term
+    # search_terms.append('AREA%5BResultsFirstPostDate%5DRANGE%5B01/01/2000, MAX%5D')
+    # expr = '+AND+'.join(search_terms)
 
     fields = "fields="
-    for f in field_names:
-        fields += f"{f}%2C"
+    fields += "%2C".join(field_names)
 
-    fields = fields[:-3] # get rid of trailing %2C
-
-    params = "min_rnk=1&max_rnk=200&fmt=json"
+    params = "min_rnk=1&max_rnk=1000&fmt=json"
     complete_url = f"{url}{expr}&{fields}&{params}"
 
     response_json = requests.get(complete_url).json()
@@ -162,28 +161,29 @@ def ct_json_to_df(response_json, field_names):
 
 
 # LENS
-def get_lens_df(author, institution, keyword):
-    response_json = make_lens_request(author, institution, keyword)
+def get_lens_df(entries):
+    response_json = make_lens_request(entries)
     lens_df = lens_json_to_df(response_json)
     return lens_df
 
-def make_lens_request(author, institution, keyword):
+def make_lens_request(entries):
     key = 'qfqStKI9asHygnOGzGvvTM9M7gSd46HV4GYIQr94SN9Sg9Kn48sl'
     url = 'https://api.lens.org/scholarly/search'
 
     query = {"must":[]}
-    if keyword.lower() != 'none':
-        query["must"].append({"match_phrase": {"abstract": keyword}})
+    years = {"range": {
+                "year_published": {
+                    "gte": "2000",
+                    "lte": "2021"}
+                }}
+    query["must"].append(years)
 
-    if author.lower() != 'none':
-        query["must"].append({"match_phrase": {"author.display_name": author}})
-
-    if institution.lower() != 'none':
-        query["must"].append({"match_phrase": {"author.affiliation.name": institution}})
+    for key, val in entries.items():
+        query["must"].append({"match_phrase": {"full_text": val}})
 
     boolean = {"bool": query}
     data_dict = {"query": boolean, 
-            "size": 200, 
+            # "size": 1000, 
             "include": ["clinical_trials", "authors", "chemicals", "keywords", "abstract"]}
     data_json = json.dumps(data_dict)
 
@@ -198,7 +198,7 @@ def lens_json_to_df(response_json):
     all_data = response_json['data']
     
     response_fields = ["clinical_trials", "authors", "chemicals", "keywords", "abstract"]
-    cols = ["NCTId", "Sponsor", "Institution", "AuthorNames", "Role", "InterventionName", "Keyword", "BriefSummary"]
+    cols = ["Institution", "AuthorNames", "Role", "InterventionName", "Keyword", "BriefSummary"]
 
     entries = []
     for entry in all_data:
@@ -241,10 +241,92 @@ def clean_lens_data(field, data):
         else:
             values.append(data)
     
-    values = [', '.join(map(str, val)) for val in values if type(val) != str]
+    values = [', '.join(map(str, list(set(val)))) for val in values if type(val) != str]
     
     return keys, values
 
+
+# NIH
+def get_nih_df(entries):
+    response_json = make_nih_request(entries)
+    nih_df = nih_json_to_df(response_json)
+    return nih_df
+
+def make_nih_request(entries):
+    url = 'https://api.reporter.nih.gov/v1/projects/Search'
+    criteria = {
+        "useRelevance": True,
+        "includeActiveProjects": True,
+        "projectStartDate": {
+            "fromDate": "2000-01-01",
+            "toDate": "2021-04-20"
+        },
+    }
+
+    additional = {
+        "includeFields": [
+            "ApplId", "ProjectNum", "OrgName", "OrgCity", "OrgState", "ContactPiName", "AllText", "FullStudySection"],
+        "offset": 0
+        }
+
+    translator = {'author': 'piNames', 'institution': 'orgNames', 'city': 'orgCities', 'state': 'orgStates', 'keyword': 'terms'}
+
+    for key, val in entries.items():
+        if key == 'author':
+            val = {'anyName': val}
+        criteria[translator[key]] = [val]
+
+    data_dict = {"criteria": criteria}
+    data_dict.update(additional)
+    data_json = json.dumps(data_dict)
+
+    headers = {'accept': 'application/json', 'Content-Type': 'application/json'}
+    response = requests.post(url, data=data_json, headers=headers)
+    if response.status_code != requests.codes.ok:
+        return response.status_code
+    else:
+        return json.loads(response.text)
+
+
+def nih_json_to_df(response_json):
+    results = response_json['results']
+    rows = []
+    columns = ['appl_id', 'project_title', 'investigators', 'org_name', 'org_loc', 'keywords', 'abstract_text']
+    for result in results:
+        row = {}
+        for col in columns:
+            try:
+                row[col] = result[col]
+            except KeyError:
+                row[col] = None
+        
+        people = result['principal_investigators']
+        people_entry = ""
+        for p in people:
+            people_entry += f"{p['full_name']}, "
+        row['investigators'] = people_entry[:-2]
+
+        row['org_loc'] = f"{result['org_city']}, {result['org_state']}"
+        
+        all_terms = set()
+        for t in 'terms', 'pref_terms':
+            if result[t] is not None:
+                terms = result[t].split(';')
+                terms = set([t.strip() for t in terms])
+                all_terms.update(terms)
+
+        all_terms = [term for term in list(all_terms) if len(term) > 0]
+
+        terms_string = ", ".join(all_terms)
+        row['keywords'] = terms_string
+
+        if row['abstract_text'] is not None:
+            row['abstract_text'] = row['abstract_text'].strip('\r\n')
+
+        rows.append(row)
+
+    df = pd.DataFrame.from_dict(rows)
+    return df
 
 
 # RETURNS CLAIMS OF A PATENT
