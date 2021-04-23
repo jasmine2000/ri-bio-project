@@ -7,3 +7,4 @@ class SearchForm(forms.Form):
     city = forms.CharField(label='city', max_length=100, required=False)
     state = forms.CharField(label='state', max_length=100, required=False)
     keyword = forms.CharField(label='keyword', max_length=100, required=False)
+    lens_id = forms.CharField(label='lens_id', max_length=100, required=False)
