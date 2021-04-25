@@ -35,12 +35,12 @@ def publications_request(request):
                 if entry:
                     entries[field] = entry
 
-            ct_df = get_ct_df(dict(entries))
-            lens_s_df = get_lens_s_df(dict(entries))
-            nih_df = get_nih_df(dict(entries))
+            ct_df = get_ct_df(entries)
+            lens_s_df = get_lens_s_df(entries)
+            lens_p_df = get_lens_p_df(entries)
+            nih_df = get_nih_df(entries)
 
-            # xlsx = create_xlsx(ct_df, nih_df)
-            xlsx = create_xlsx(ct_df, lens_s_df, nih_df)
+            xlsx = create_xlsx(ct_df, lens_s_df, lens_p_df, nih_df)
 
             filename = 'query_results.xlsx'
             response = HttpResponse(
@@ -56,7 +56,7 @@ def publications_request(request):
 
     return render(request, 'search.html', {'form': form})
 
-def create_xlsx(ct_df, lens_s_df, nih_df):
+def create_xlsx(ct_df, lens_s_df, lens_p_df, nih_df):
 # def create_xlsx(ct_df, nih_df):
     '''Write dataframe to xlsx file.
 
@@ -68,7 +68,7 @@ def create_xlsx(ct_df, lens_s_df, nih_df):
     PandasWriter = pd.ExcelWriter(xlsx, engine='xlsxwriter')
     ct_df.to_excel(PandasWriter, sheet_name='clinical_trials_results')
     lens_s_df.to_excel(PandasWriter, sheet_name='lens_s_results')
-    # lens_p_df.to_excel(PandasWriter, sheet_name='lens_p_results')
+    lens_p_df.to_excel(PandasWriter, sheet_name='lens_p_results')
     nih_df.to_excel(PandasWriter, sheet_name='nih_results')
     PandasWriter.save()
 
@@ -249,6 +249,98 @@ def clean_lens_data(field, data):
     
     return keys, values
 
+# LENS PATENT
+def get_lens_p_df(entries):
+    response_json = make_lens_p_request(entries)
+    lens_p_df = lens_p_json_to_df(response_json)
+    return lens_p_df
+
+def make_lens_p_request(entries):
+    url = 'https://api.lens.org/patent/search'
+
+    query = {"must":[]}
+    years = {"range": {
+                "year_published": {
+                    "gte": "2000"}
+                }}
+    query["must"].append(years)
+
+    entries = {'lens_id': '120-759-394-567-549'}
+    try:
+        lensid = entries['lens_id']
+        query["must"].append({"terms": {'lens_id': [lensid]}})
+    except:
+        for key, val in entries.items():
+            query["must"].append({"match_phrase": {"full_text": val}})
+
+    boolean = {"bool": query}
+    data_dict = {"query": boolean, 
+            "size": 10, 
+            "include": ["lens_id", "biblio", "description", "claims"]}
+
+    data = json.dumps(data_dict)
+    headers = {'Authorization': lens_key, 'Content-Type': 'application/json'}
+    response = requests.post(url, data=data, headers=headers)
+    if response.status_code != requests.codes.ok:
+        return response.status_code
+    else:
+        return json.loads(response.text)
+
+def lens_p_json_to_df(response_json):
+    rows = []
+    for result in response_json['data']:
+        rows.append(parse_lens_p(result))
+    df = pd.DataFrame.from_dict(rows)
+    return df
+
+def parse_lens_p(result):
+    row = {}
+    row['lens_id'] = result['lens_id']
+
+    bib = result['biblio']
+    parties = bib['parties']
+
+    fields = {
+        'inventors': 
+            {'extracted_name': 'inventors'}, 
+        'owners_all': 
+            {'extracted_name': 'owner', 
+            'extracted_address': 'location'}
+    }
+
+    for field, field_dict in fields.items():
+        for f in field_dict:
+            ls = set()
+            for entry in parties[field]:
+                value = entry[f]
+                if f == 'extracted_name':
+                    value = value['value']
+                ls.add(value)
+            ls_str = ', '.join(list(ls))
+            row[field_dict[f]] = ls_str
+
+    for string in ['ipcr', 'cpc']:
+        section = bib['classifications_' + string]
+        section_ls = []
+        for c in section['classifications']:
+            section_ls.append(c['symbol'])
+        section_str = ', '.join(section_ls)
+        row[string] = section_str
+
+    full_list = result['claims']
+    for entry in full_list:
+        if entry['lang'] == 'en':
+            all_claims = entry['claims']
+            full_text = ""
+            for claim in all_claims:
+                claim_text = claim['claim_text'][0]
+                if "(canceled)" in claim_text:
+                    continue
+                full_text += claim_text + " "
+            row['claims'] = full_text
+
+    return row
+
 
 # NIH
 def get_nih_df(entries):
@@ -263,26 +355,26 @@ def get_nih_df(entries):
 def make_nih_request(entries):
     url = 'https://api.reporter.nih.gov/v1/projects/Search'
     criteria = {
-        "useRelevance": True,
-        "includeActiveProjects": True,
-        "projectStartDate": {
-            "fromDate": "2000-01-01",
-            "toDate": "2021-04-20"
-        },
-        "limit": 300
+        "use_relevance": True,
+        "include_active_projects": True,
+        "project_start_date": {
+            "from_date": "2000-01-01"
+        }
     }
 
     additional = {
-        "includeFields": [
-            "ApplId", "ProjectNum", "OrgName", "OrgCity", "OrgState", "ContactPiName", "AllText", "FullStudySection"],
-        "offset": 0
+        "include_fields": [
+            'appl_id', 'project_title', 'org_name', 'org_city', 'org_state', 
+            'principal_investigators', 'terms', 'pref_terms', 'abstract_text'],
+        "offset": 0,
+        "limit": 500
         }
 
-    translator = {'author': 'piNames', 'institution': 'orgNames', 'city': 'orgCities', 'state': 'orgStates', 'keyword': 'terms'}
-
+    translator = {'author': 'pi_names', 'institution': 'org_names', 'city': 'org_cities', 'state': 'org_states', 'keyword': 'terms'}
+    entries = {'institution': 'brown', 'keyword': 'tumor'}
     for key, val in entries.items():
         if key == 'author':
-            val = {'anyName': val}
+            val = {'any_name': val}
         criteria[translator[key]] = [val]
 
     data_dict = {"criteria": criteria}
@@ -335,83 +427,6 @@ def nih_json_to_df(response_json):
 
     df = pd.DataFrame.from_dict(rows)
     return df
-
-
-# LENS PATENT
-def get_lens_p_df(entries):
-    response_json = make_lens_p_request(entries)
-    lens_p_df = lens_p_json_to_df(response_json)
-    return lens_p_df
-
-def make_lens_p_request(entries):
-    url = 'https://api.lens.org/patent/search'
-
-    query = {"must":[]}
-    years = {"range": {
-                "year_published": {
-                    "gte": "2000"}
-                }}
-    query["must"].append(years)
-
-    try:
-        lensid = entries['lens_id']
-        query.append({'term': [lensid]})
-    except:
-        for key, val in entries.items():
-            query["must"].append({"match_phrase": {"full_text": val}})
-
-    boolean = {"bool": query}
-    data_dict = {"query": boolean, 
-            # "size": 1000, 
-            "include": ["lens_id", "biblio", "description", "claims"]}
-
-    data = json.dumps(data_dict)
-    headers = {'Authorization': lens_key, 'Content-Type': 'application/json'}
-    response = requests.post(url, data=data, headers=headers)
-    if response.status_code != requests.codes.ok:
-        return response.status_code
-    else:
-        return json.loads(response.text)
-
-def lens_p_json_to_df(response_json):
-    rows = []
-    for result in response_json['data']:
-        rows.append(parse_lens_p(result))
-    df = pd.DataFrame.from_dict(rows)
-    return df
-
-def parse_lens_p(result):
-    row = {}
-    row['lens_id'] = result['lens_id']
-
-    bib = result['biblio']
-    parties = bib['parties']
-    inventors = []
-    for inventor in parties['inventors']:
-        inventors.append(inventor['extracted_name'])
-    owners = []
-    locations = set()
-    for owner in parties['owners_all']:
-        owners.append(owner['extracted_name'])
-        locations.add(owner['extracted_address'])
-    
-    inventor_str = ', '.join(inventors)
-    owners_str = ', '.join(owners)
-    loc_str = ', '.join(list(locations))
-    row['inventors'] = inventor_str
-    row['owner'] = owners_str
-    row['location'] = loc_str
-
-    full_list = result['claims']
-    for entry in full_list:
-        if entry['lang'] == 'en':
-            all_claims = entry['claims']
-            full_text = ""
-            for claim in all_claims:
-                full_text += claim['claim_text'][0] + " "
-            row['claims'] = full_text
-
-    return row
 
 
 def index(request):
