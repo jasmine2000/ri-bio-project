@@ -166,12 +166,14 @@ def ct_json_to_df(response_json, field_names):
 
 
 # LENS
+lens_key = 'JsGWcp0DKnphJq3dA71k7hkS4BVKG8ZC0AGYtWtbZB5slK1D8UTH'
+lens_size = 100
+
 def get_lens_s_df(entries):
     response_json = make_lens_s_request(entries)
     lens_df = lens_s_json_to_df(response_json)
     return lens_df
 
-lens_key = 'JsGWcp0DKnphJq3dA71k7hkS4BVKG8ZC0AGYtWtbZB5slK1D8UTH'
 def make_lens_s_request(entries):
     url = 'https://api.lens.org/scholarly/search'
 
@@ -182,12 +184,30 @@ def make_lens_s_request(entries):
                 }}
     query["must"].append(years)
 
-    for key, val in entries.items():
-        query["must"].append({"match_phrase": {"full_text": val}})
+    field_dict = {'keyword': ["title", "field_of_study", "abstract", "full_text"],
+                  'author': ["author.display_name", "full_text"],
+                  'institution': ["author.affiliation.name", "full_text"],
+                  'sponsor': ["author.affiliation.name", "full_text"]}
+    try:
+        lensid = entries['lens_id']
+        query["must"].append({"terms": {'lens_id': [lensid]}})
+    except KeyError:
+        for key, val in entries.items():
+            try:
+                query_string = {
+                    "query_string": {
+                        "query": val,
+                            "fields": field_dict[key],
+                            "default_operator": "or"
+                        }
+                    }
+                query["must"].append(query_string)
+            except KeyError:
+                continue
 
     boolean = {"bool": query}
     data_dict = {"query": boolean, 
-            # "size": 1000, 
+            "size": lens_size, 
             "include": ["clinical_trials", "authors", "chemicals", "keywords", "abstract"]}
     data_json = json.dumps(data_dict)
 
@@ -265,17 +285,29 @@ def make_lens_p_request(entries):
                 }}
     query["must"].append(years)
 
-    entries = {'lens_id': '120-759-394-567-549'}
+    field_dict = {'keyword': ["title", "claims", "description"],
+                  'author': ["inventor.name", "owner_all.name", "description"],
+                  'institution': ["applicant.name", "owner_all.name", "description"],
+                  'sponsor': ["applicant.name", "owner_all.name", "description"],
+                  'city': ["applicant.address", "inventor.address", "owner_all.address"],
+                  'state': ["applicant.address", "inventor.address", "owner_all.address"]}
     try:
         lensid = entries['lens_id']
         query["must"].append({"terms": {'lens_id': [lensid]}})
-    except:
+    except KeyError:
         for key, val in entries.items():
-            query["must"].append({"match_phrase": {"full_text": val}})
+            query_string = {
+                "query_string": {
+                    "query": val,
+                        "fields": field_dict[key],
+                        "default_operator": "or"
+                    }
+                }
+            query["must"].append(query_string)
 
     boolean = {"bool": query}
     data_dict = {"query": boolean, 
-            "size": 10, 
+            # "size": lens_size, 
             "include": ["lens_id", "biblio", "description", "claims"]}
 
     data = json.dumps(data_dict)
@@ -310,34 +342,43 @@ def parse_lens_p(result):
 
     for field, field_dict in fields.items():
         for f in field_dict:
-            ls = set()
-            for entry in parties[field]:
-                value = entry[f]
-                if f == 'extracted_name':
-                    value = value['value']
-                ls.add(value)
-            ls_str = ', '.join(list(ls))
-            row[field_dict[f]] = ls_str
+            try:
+                ls = set()
+                for entry in parties[field]:
+                    value = entry[f]
+                    if f == 'extracted_name':
+                        value = value['value']
+                    ls.add(value)
+                ls_str = ', '.join(list(ls))
+                row[field_dict[f]] = ls_str
+            except KeyError:
+                row[field_dict[f]] = ""
 
     for string in ['ipcr', 'cpc']:
-        section = bib['classifications_' + string]
-        section_ls = []
-        for c in section['classifications']:
-            section_ls.append(c['symbol'])
-        section_str = ', '.join(section_ls)
-        row[string] = section_str
+        try:
+            section = bib['classifications_' + string]
+            section_ls = []
+            for c in section['classifications']:
+                section_ls.append(c['symbol'])
+            section_str = ', '.join(section_ls)
+            row[string] = section_str
+        except KeyError:
+            row[string] = ""
 
-    full_list = result['claims']
-    for entry in full_list:
-        if entry['lang'] == 'en':
-            all_claims = entry['claims']
-            full_text = ""
-            for claim in all_claims:
-                claim_text = claim['claim_text'][0]
-                if "(canceled)" in claim_text:
-                    continue
-                full_text += claim_text + " "
-            row['claims'] = full_text
+    try:
+        full_list = result['claims']
+        for entry in full_list:
+            if entry['lang'] == 'en':
+                all_claims = entry['claims']
+                full_text = ""
+                for claim in all_claims:
+                    claim_text = claim['claim_text'][0]
+                    if "(canceled)" in claim_text:
+                        continue
+                    full_text += claim_text + " "
+                row['claims'] = full_text
+    except KeyError:
+        row['claims'] = ""
 
     return row
 
@@ -349,50 +390,53 @@ def get_nih_df(entries):
     except KeyError:
         pass
     response_json = make_nih_request(entries)
-    nih_df = nih_json_to_df(response_json)
+    nih_df = nih_list_to_df(response_json)
     return nih_df
 
 def make_nih_request(entries):
-    url = 'https://api.reporter.nih.gov/v1/projects/Search'
-    criteria = {
-        "use_relevance": True,
-        "include_active_projects": True,
-        "project_start_date": {
-            "from_date": "2000-01-01"
-        }
-    }
+    url = 'https://api.federalreporter.nih.gov/v1/Projects/search'
 
-    additional = {
-        "include_fields": [
-            'appl_id', 'project_title', 'org_name', 'org_city', 'org_state', 
-            'principal_investigators', 'terms', 'pref_terms', 'abstract_text'],
-        "offset": 0,
-        "limit": 500
-        }
+    query_string = '?query='
+    queries = []
 
-    translator = {'author': 'pi_names', 'institution': 'org_names', 'city': 'org_cities', 'state': 'org_states', 'keyword': 'terms'}
-    entries = {'institution': 'brown', 'keyword': 'tumor'}
+    if 'keyword' in entries:
+        keyword = entries['keyword']
+        queries.append(f'text%3A{keyword}%24textFields%3Aterms')
+
+    translator = {'author': 'piName', 'institution': 'orgName', 'state': 'orgState'}
     for key, val in entries.items():
-        if key == 'author':
-            val = {'any_name': val}
-        criteria[translator[key]] = [val]
+        try:
+            new_val = val.replace(' ', '%20')
+            queries.append(f'{translator[key]}%3A{new_val}')
+        except KeyError:
+            continue
 
-    data_dict = {"criteria": criteria}
-    data_dict.update(additional)
-    data_json = json.dumps(data_dict)
+    fiscal_years = ','.join(str(x) for x in range(2000, 2022))
+    queries.append(f'fy:{fiscal_years}')
 
-    headers = {'accept': 'application/json', 'Content-Type': 'application/json'}
-    response = requests.post(url, data=data_json, headers=headers)
-    if response.status_code != requests.codes.ok:
-        return response.status_code
-    else:
-        return json.loads(response.text)
+    query_string += '%24'.join(queries)
 
-def nih_json_to_df(response_json):
-    results = response_json['results']
+    complete_url = url + query_string
+    response = requests.get(complete_url).json()
+
+    all_items = []
+    size = response['totalCount']
+    items = response['items']
+    all_items += items
+
+    iterations = int(size/50)
+    for i in range(iterations):
+        new_url = complete_url + f'&offset={(i + 1)*50 + 1}'
+        response = requests.get(new_url).json()
+        items = response['items']
+        all_items += items
+        
+    return all_items
+
+def nih_list_to_df(all_items):
     rows = []
-    columns = ['appl_id', 'project_title', 'investigators', 'org_name', 'org_loc', 'keywords', 'abstract_text']
-    for result in results:
+    columns = ['title', 'fy', 'smApplId', 'piNames', 'orgName', 'orgLoc', 'keywords', 'abstract']
+    for result in all_items:
         row = {}
         for col in columns:
             try:
@@ -400,28 +444,26 @@ def nih_json_to_df(response_json):
             except KeyError:
                 row[col] = None
         
-        people = result['principal_investigators']
-        people_entry = ""
-        for p in people:
-            people_entry += f"{p['full_name']}, "
-        row['investigators'] = people_entry[:-2]
+        all_people = ""
+        people1 = result['contactPi']
+        people2 = result['otherPis']
+        for people in [people1, people2]:
+            if people is not None:
+                all_people += people
+        row['piNames'] = all_people
 
-        row['org_loc'] = f"{result['org_city']}, {result['org_state']}"
+        row['orgLoc'] = f"{result['orgCity']}, {result['orgState']}"
         
         all_terms = set()
-        for t in 'terms', 'pref_terms':
-            if result[t] is not None:
-                terms = result[t].split(';')
-                terms = set([t.strip() for t in terms])
-                all_terms.update(terms)
+        if result['terms'] is not None:
+            terms = result['terms'].split(';')
+            terms = set([t.strip() for t in terms])
+            all_terms.update(terms)
 
         all_terms = [term for term in list(all_terms) if len(term) > 0]
 
         terms_string = ", ".join(all_terms)
         row['keywords'] = terms_string
-
-        if row['abstract_text'] is not None:
-            row['abstract_text'] = row['abstract_text'].strip('\r\n')
 
         rows.append(row)
 
