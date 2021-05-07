@@ -5,6 +5,7 @@ from django.http import HttpResponse
 import pandas as pd
 import xlsxwriter
 import io
+import us
 from pandas import json_normalize
 from .forms import SearchForm
 
@@ -13,6 +14,7 @@ from fuzzywuzzy import fuzz
 from fuzzywuzzy import process
 
 cols = ["NCTId", "Sponsor", "Institution", "AuthorNames", "Role", "InterventionName", "Keyword", "BriefSummary"]
+state_to_abbrev = {'Alabama': 'AL', 'Alaska': 'AK', 'American Samoa': 'AS', 'Arizona': 'AZ', 'Arkansas': 'AR', 'California': 'CA', 'Colorado': 'CO', 'Connecticut': 'CT', 'Delaware': 'DE', 'District of Columbia': 'DC', 'Florida': 'FL', 'Georgia': 'GA', 'Guam': 'GU', 'Hawaii': 'HI', 'Idaho': 'ID', 'Illinois': 'IL', 'Indiana': 'IN', 'Iowa': 'IA', 'Kansas': 'KS', 'Kentucky': 'KY', 'Louisiana': 'LA', 'Maine': 'ME', 'Maryland': 'MD', 'Massachusetts': 'MA', 'Michigan': 'MI', 'Minnesota': 'MN', 'Mississippi': 'MS', 'Missouri': 'MO', 'Montana': 'MT', 'Nebraska': 'NE', 'Nevada': 'NV', 'New Hampshire': 'NH', 'New Jersey': 'NJ', 'New Mexico': 'NM', 'New York': 'NY', 'North Carolina': 'NC', 'North Dakota': 'ND', 'Northern Mariana Islands': 'MP', 'Ohio': 'OH', 'Oklahoma': 'OK', 'Oregon': 'OR', 'Pennsylvania': 'PA', 'Puerto Rico': 'PR', 'Rhode Island': 'RI', 'South Carolina': 'SC', 'South Dakota': 'SD', 'Tennessee': 'TN', 'Texas': 'TX', 'Utah': 'UT', 'Vermont': 'VT', 'Virgin Islands': 'VI', 'Virginia': 'VA', 'Washington': 'WA', 'West Virginia': 'WV', 'Wisconsin': 'WI', 'Wyoming': 'WY'}
 
 def publications_request(request):
     '''Queries information from clinicaltrials.gov API and lens.org API.
@@ -78,16 +80,20 @@ def create_xlsx(ct_df, lens_s_df, lens_p_df, nih_df):
 
 # CLINCICAL TRIALS
 def get_ct_df(entries):
-    field_names = ["NCTId", "LeadSponsorName", "OverallOfficialAffiliation", 
-                    "OverallOfficialName", "OverallOfficialRole", "InterventionName", 
-                    "LocationCity", "LocationState", "Keyword", "BriefSummary"]
+    field_names = [
+        "NCTId", "OfficialTitle", "LeadSponsorName", "OverallOfficialAffiliation", "OverallOfficialName", 
+        "OverallOfficialRole", "InterventionName", "LocationCity", "LocationState", "Keyword", "BriefSummary"]
+    cols = [
+        "NCTId", "Title", "Sponsor", "Institution", "AuthorNames", 
+        "Role", "InterventionName", "Location", "State", "Keyword", "BriefSummary"]
+
     try:
         del entries['lens_id']
     except KeyError:
         pass
 
     response_json = make_ct_request(entries, field_names)
-    ct_df = ct_json_to_df(response_json, field_names)
+    ct_df = ct_json_to_df(response_json, field_names, cols)
     return ct_df
 
 def make_ct_request(entries, field_names):
@@ -126,7 +132,7 @@ def make_ct_request(entries, field_names):
 
     return response_json
 
-def ct_json_to_df(response_json, field_names):
+def ct_json_to_df(response_json, field_names, cols):
     '''Put response data into a dataframe.
 
     arguments:
@@ -159,8 +165,26 @@ def ct_json_to_df(response_json, field_names):
         if init != final:
             rename_dict[init] = final
 
-    ct_df.rename(columns=rename_dict)
-    ct_df.drop(['Rank'], axis=1)
+    ct_df = ct_df.rename(columns=rename_dict)
+
+    for index, row in ct_df.iterrows():
+        cities = row['Location'].split(',')
+        states = row['State'].split(',')
+        number = len(cities)
+        if number < 20:
+            cities = [c.strip() for c in cities]
+            states = [s.strip() for s in states]
+            states = [state_to_abbrev[s] for s in states]
+            locs = [f'{c}, {s}' for c, s in zip(cities, states)]
+            locs = list(set(locs))
+            loc_str = '; '.join(locs)
+        else:
+            loc_str = '20+ locations'
+
+        ct_df.at[index, 'Location'] = loc_str
+
+    ct_df = ct_df.drop(['Rank'], axis=1)
+    ct_df = ct_df.drop(['State'], axis=1)
 
     return ct_df
 
@@ -208,7 +232,7 @@ def make_lens_s_request(entries):
     boolean = {"bool": query}
     data_dict = {"query": boolean, 
             "size": lens_size, 
-            "include": ["clinical_trials", "authors", "chemicals", "keywords", "abstract"]}
+            "include": ["clinical_trials", "authors", "chemicals", "keywords", "title"]}
     data_json = json.dumps(data_dict)
 
     headers = {'Authorization': lens_key, 'Content-Type': 'application/json'}
@@ -221,8 +245,8 @@ def make_lens_s_request(entries):
 def lens_s_json_to_df(response_json):
     all_data = response_json['data']
     
-    response_fields = ["clinical_trials", "authors", "chemicals", "keywords", "abstract"]
-    cols = ["Institution", "AuthorNames", "Role", "InterventionName", "Keyword", "BriefSummary"]
+    response_fields = ["clinical_trials", "authors", "chemicals", "keywords", "title"]
+    cols = ["Title", "Institution", "AuthorNames", "InterventionName", "Keyword"]
 
     entries = []
     for entry in all_data:
@@ -244,7 +268,7 @@ def lens_s_json_to_df(response_json):
 def clean_lens_data(field, data):
     keys = []
     values = []
-    names = {'abstract': 'BriefSummary', 'keywords': 'Keyword', 'chemicals': 'InterventionName'}
+    names = {'title': 'Title', 'keywords': 'Keyword', 'chemicals': 'InterventionName'}
 
     if field == "authors":
         first_names = [author['first_name'] if 'first_name' in author else "" for author in data]
@@ -265,8 +289,8 @@ def clean_lens_data(field, data):
         else:
             values.append(data)
     
-    values = [', '.join(map(str, list(set(val)))) for val in values if type(val) != str]
-    
+    values = [', '.join(map(str, list(set(val)))) if type(val) != str else val for val in values]
+
     return keys, values
 
 # LENS PATENT
@@ -430,7 +454,7 @@ def make_nih_request(entries):
         response = requests.get(new_url).json()
         items = response['items']
         all_items += items
-        
+
     return all_items
 
 def nih_list_to_df(all_items):
@@ -444,13 +468,19 @@ def nih_list_to_df(all_items):
             except KeyError:
                 row[col] = None
         
-        all_people = ""
+        all_people = []
         people1 = result['contactPi']
         people2 = result['otherPis']
         for people in [people1, people2]:
-            if people is not None:
-                all_people += people
-        row['piNames'] = all_people
+            if people is None:
+                continue
+            cleaned = people.strip(' ;')
+            for person in cleaned.split(';'):
+                name = person.split(',')
+                name = [n.strip() for n in name]
+                all_people.append(f'{name[1]} {name[0]}')
+            
+        row['piNames'] = ', '.join(all_people)
 
         row['orgLoc'] = f"{result['orgCity']}, {result['orgState']}"
         
@@ -459,7 +489,6 @@ def nih_list_to_df(all_items):
             terms = result['terms'].split(';')
             terms = set([t.strip() for t in terms])
             all_terms.update(terms)
-
         all_terms = [term for term in list(all_terms) if len(term) > 0]
 
         terms_string = ", ".join(all_terms)
