@@ -245,8 +245,8 @@ def make_lens_s_request(entries):
 def lens_s_json_to_df(response_json):
     all_data = response_json['data']
     
-    response_fields = ["clinical_trials", "authors", "chemicals", "keywords", "title"]
-    cols = ["Title", "Institution", "AuthorNames", "InterventionName", "Keyword"]
+    response_fields = ["title", "clinical_trials", "authors", "chemicals", "keywords", "abstract"]
+    cols = ["Title", "Institution", "AuthorNames", "InterventionName", "Keyword", "Summary"]
 
     entries = []
     for entry in all_data:
@@ -268,7 +268,7 @@ def lens_s_json_to_df(response_json):
 def clean_lens_data(field, data):
     keys = []
     values = []
-    names = {'title': 'Title', 'keywords': 'Keyword', 'chemicals': 'InterventionName'}
+    names = {'title': 'Title', 'keywords': 'Keyword', 'chemicals': 'InterventionName', 'abstract': 'Summary'}
 
     if field == "authors":
         first_names = [author['first_name'] if 'first_name' in author else "" for author in data]
@@ -284,10 +284,8 @@ def clean_lens_data(field, data):
     else:
         keys.append(names[field])
         if field == 'chemicals':
-            interventions = [chemical['substance_name'] for chemical in data]
-            values.append(interventions)
-        else:
-            values.append(data)
+            data = [chemical['substance_name'] for chemical in data]
+        values.append(data)
     
     values = [', '.join(map(str, list(set(val)))) if type(val) != str else val for val in values]
 
