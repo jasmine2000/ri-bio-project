@@ -10,7 +10,7 @@ def get_ct_df(entries):
         "NCTId", "OfficialTitle", "LeadSponsorName", "OverallOfficialAffiliation", "OverallOfficialName", 
         "OverallOfficialRole", "InterventionName", "LocationCity", "LocationState", "Keyword", "BriefSummary"]
     cols = [
-        "NCTId", "Title", "Sponsor", "Institution", "AuthorNames", 
+        "NCTId", "Title", "Sponsor", "Institution", "Authors", 
         "Role", "InterventionName", "Location", "State", "Keyword", "BriefSummary"]
 
     try:

@@ -1,9 +1,8 @@
 import requests, json
 import pandas as pd
 
-# LENS
 lens_key = 'JsGWcp0DKnphJq3dA71k7hkS4BVKG8ZC0AGYtWtbZB5slK1D8UTH'
-lens_size = 100
+lens_size = 200
 
 def get_lens_s_df(entries):
     response_json = make_lens_s_request(entries)
@@ -57,8 +56,8 @@ def make_lens_s_request(entries):
 def lens_s_json_to_df(response_json):
     all_data = response_json['data']
     
-    response_fields = ["title", "clinical_trials", "authors", "chemicals", "keywords", "abstract"]
-    cols = ["Title", "Institution", "AuthorNames", "InterventionName", "Keyword", "Summary"]
+    response_fields = ["title", "authors", "chemicals", "keywords", "abstract"]
+    cols = ["Title", "Institution", "Authors", "Interventions", "Keywords", "Summary"]
 
     entries = []
     for entry in all_data:
@@ -80,7 +79,7 @@ def lens_s_json_to_df(response_json):
 def clean_lens_data(field, data):
     keys = []
     values = []
-    names = {'title': 'Title', 'keywords': 'Keyword', 'chemicals': 'InterventionName', 'abstract': 'Summary'}
+    names = {'title': 'Title', 'keywords': 'Keywords', 'chemicals': 'Interventions', 'abstract': 'Summary'}
 
     if field == "authors":
         first_names = [author['first_name'] if 'first_name' in author else "" for author in data]
@@ -90,7 +89,7 @@ def clean_lens_data(field, data):
         names = [first + " " + last for first, last in zip(first_names, last_names)]
         affs = [name for aff in nested_affs for name in aff]
 
-        keys += ['AuthorNames', 'Institution']
+        keys += ['Authors', 'Institution']
         values += [names, affs]
 
     else:
