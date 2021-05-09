@@ -63,10 +63,10 @@ def make_author_doc(ct_df, lens_s_df, lens_p_df, nih_df):
 
     '''
     translator = {
-        'Clinical Trials': [ct_df, 'Authors', 0, -1, "Title"],
-        'Lens Scholar': [lens_s_df, 'AuthorNames', 0, -1, "Title"],
-        'Lens Patent': [lens_p_df, 'inventors', 1, 0, "title"],
-        'Federal NIH': [nih_df, 'piNames', 0, -1, "title"]
+        'Clinical Trials': [ct_df, 'Authors', 0, -1],
+        'Lens Scholar': [lens_s_df, 'Authors', 0, -1],
+        'Lens Patent': [lens_p_df, 'Inventors', 1, 0],
+        'Federal NIH': [nih_df, 'PI Names', 0, -1]
         }
 
     author_dict = populate_dict(ct_df, lens_s_df, lens_p_df, nih_df, translator)
@@ -85,7 +85,7 @@ def populate_dict(ct_df, lens_s_df, lens_p_df, nih_df, translator):
     '''
     author_dict = {}
     for db in translator:
-        df, col_name, first, last, include = translator[db]
+        df, col_name, first, last = translator[db]
         for index, row in df.iterrows():
             if pd.isnull(df.loc[index, col_name]):
                 continue
@@ -97,7 +97,7 @@ def populate_dict(ct_df, lens_s_df, lens_p_df, nih_df, translator):
                     name = (f'{names[first]} {names[last]}').title()
                 except IndexError:
                     continue
-                info = row[title].title()
+                info = row["Title"].title()
                 if name in author_dict:
                     if db in author_dict[name]:
                         author_dict[name][db].add(info)
