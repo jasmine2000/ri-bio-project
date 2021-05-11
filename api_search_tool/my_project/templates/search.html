@@ -1,7 +1,8 @@
-<form action="publications_request" method="post">
+<form action="search_tool" method="post">
     {% csrf_token %}
     <table border="1">
         {{ form }}
     </table>
-    <button type="submit">Submit</button>
+    <button type="submit" name="all_data">All Data</button>
+    <button type="submit" name="authors">Authors</button>
 </form>
