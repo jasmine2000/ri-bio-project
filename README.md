@@ -26,5 +26,6 @@ my_project/search_tool
 (full link looks like http://127.0.0.1:8000/my_project/search_tool)
 
 5. type in search term(s) and click 
+
     a. "All Data" for xlsx file of all data
     b. "Authors" for docx file organized by authors
