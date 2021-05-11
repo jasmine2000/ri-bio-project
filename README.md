@@ -28,4 +28,5 @@ my_project/search_tool
 5. type in search term(s) and click 
 
     a. "All Data" for xlsx file of all data
+    
     b. "Authors" for docx file organized by authors
