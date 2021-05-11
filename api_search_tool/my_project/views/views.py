@@ -10,11 +10,10 @@ from pandas import json_normalize
 from ..forms import SearchForm
 from docx import Document
 
-from .ct_view import *
-from .lens_s_view import *
-from .lens_p_view import *
-from .nih_view import *
-
+from .ct import *
+from .lens_s import *
+from .lens_p import *
+from .nih import *
 
 def search_tool(request):
     '''Queries information from clinicaltrials.gov, lens.org, Federal NIH reporter APIs.

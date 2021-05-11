@@ -4,25 +4,27 @@
 
 ## Installation
 
-Download repository from github
+1. Have python3 and Github Desktop installed
+2. Fork repository
+3. Open Github Desktop and click File > Clone Respository
 
 ## Usage
-type in terminal:
+
+1. Open forked repository and click Fetch Upstream > Fetch and Merge
+2. Open Github Desktop and click Fetch Origin then Pull Origin
+3. Click Repository > Open in Terminal
+4. Type in terminal:
+
 ```bash
-source env/bin/activate # starting in the Search_Tool directory
+source env/bin/activate
 cd api_search_tool
 python3 manage.py runserver
 ```
+
 Follow link given and add this to end of url:
-my_project/publications_request
-(full link looks kind of like http://127.0.0.1:8000/my_project/publications_request)
+my_project/search_tool
+(full link looks like http://127.0.0.1:8000/my_project/search_tool)
 
-type in search term(s). currently cannot handle empty boxes, enter 'none' if no term
-examples:
-Institution: Brown University and Keyword: tumor
-author: [none]
-institution: [Brown University]
-sponsor: [none]
-keyword: [tumor]
-
-xlsx file will automatically download to computer
+5. type in search term(s) and click 
+    a. "All Data" for xlsx file of all data
+    b. "Authors" for docx file organized by authors

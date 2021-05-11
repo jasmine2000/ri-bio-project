@@ -18,6 +18,9 @@ def get_ct_df(entries):
     except KeyError:
         pass
 
+    if len(entries) == 0:
+        return pd.DataFrame()
+
     response_json = make_ct_request(entries, field_names)
     ct_df = ct_json_to_df(response_json, field_names, cols)
     return ct_df
@@ -66,7 +69,10 @@ def ct_json_to_df(response_json, field_names, cols):
     field_names -- global variable that defines the columns
 
     '''
-    ct_df = json_normalize(response_json['StudyFieldsResponse']['StudyFields'])
+    try:
+        ct_df = json_normalize(response_json['StudyFieldsResponse']['StudyFields'])
+    except:
+        return pd.DataFrame()
 
     def brackets(column):
         '''Convert columns from list of strings to plaintext.

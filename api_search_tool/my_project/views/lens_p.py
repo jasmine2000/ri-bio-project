@@ -6,6 +6,9 @@ lens_size = 100
 
 # LENS PATENT
 def get_lens_p_df(entries):
+    if len(entries) == 0:
+        return pd.DataFrame()
+
     response_json = make_lens_p_request(entries)
     lens_p_df = lens_p_json_to_df(response_json)
     return lens_p_df

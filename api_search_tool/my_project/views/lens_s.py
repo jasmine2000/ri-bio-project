@@ -5,6 +5,9 @@ lens_key = 'JsGWcp0DKnphJq3dA71k7hkS4BVKG8ZC0AGYtWtbZB5slK1D8UTH'
 lens_size = 200
 
 def get_lens_s_df(entries):
+    if len(entries) == 0:
+        return pd.DataFrame()
+
     response_json = make_lens_s_request(entries)
     lens_df = lens_s_json_to_df(response_json)
     return lens_df

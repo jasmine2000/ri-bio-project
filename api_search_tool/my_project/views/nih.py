@@ -7,6 +7,10 @@ def get_nih_df(entries):
         del entries['lens_id']
     except KeyError:
         pass
+
+    if len(entries) == 0:
+        return pd.DataFrame()
+        
     response_json = make_nih_request(entries)
     nih_df = nih_list_to_df(response_json)
     return nih_df
