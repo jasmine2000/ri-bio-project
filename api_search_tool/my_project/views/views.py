@@ -5,7 +5,6 @@ from django.http import HttpResponse
 import pandas as pd
 import xlsxwriter
 import io
-import us
 from pandas import json_normalize
 from ..forms import SearchForm
 from docx import Document

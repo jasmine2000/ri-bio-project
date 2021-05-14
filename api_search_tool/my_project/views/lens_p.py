@@ -117,8 +117,8 @@ def parse_lens_p(result):
                 full_text = ""
                 for claim in all_claims:
                     claim_text = claim['claim_text'][0]
-                    if "(canceled)" in claim_text:
-                        continue
+                    # if "(canceled)" in claim_text:
+                    #     continue
                     full_text += claim_text + " "
                 row['Claims'] = full_text
     except KeyError:
