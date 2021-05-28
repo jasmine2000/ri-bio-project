@@ -134,13 +134,13 @@ def make_author_doc(ct_df, lens_s_df, lens_p_df, nih_df):
         'Federal NIH': [nih_df, 'PI Names', 0, -1]
         }
 
-    author_dict = populate_dict(ct_df, lens_s_df, lens_p_df, nih_df, translator)
+    author_dict = populate_dict(translator)
     authors_sort_filt = sort_and_filter(author_dict)
-    authors_document = make_doc(author_dict, authors_sort_filt)
+    authors_sheet = make_df_xlsx(author_dict, authors_sort_filt)
 
-    return authors_document
+    return authors_sheet
 
-def populate_dict(ct_df, lens_s_df, lens_p_df, nih_df, translator):
+def populate_dict(translator):
     '''Creates dictionary mapping authors to work across different databases
 
     arguments:
@@ -184,15 +184,23 @@ def sort_and_filter(author_dict):
 
     return authors_sort_filt
 
-def make_doc(author_dict, authors_sort_filt):
-    document = Document()
+def make_df_xlsx(author_dict, authors_sort_filt):
+    d = {'Name': [], 'Clinical Trials': [], 'Lens Scholar': [], 'Lens Patent': [], 'Federal NIH': []}
+    df = pd.DataFrame(data=d)
     for _, _, name in authors_sort_filt:
-        document.add_heading(name, level=1)
+        row_data = {'Name': name}
         data = author_dict[name]
         for database in data:
-            document.add_heading(database, level=2)
-            for title in data[database]:
-                document.add_paragraph(title)
-        document.add_page_break()
-    
-    return document
+            titles = '; '.join(data[database])
+            row_data[database] = titles
+        
+        df=df.append(row_data, ignore_index=True)
+
+    xlsx = io.BytesIO()
+    PandasWriter = pd.ExcelWriter(xlsx, engine='xlsxwriter')
+    df.to_excel(PandasWriter, sheet_name='authors')
+    PandasWriter.save()
+
+    xlsx.seek(0)
+
+    return xlsx
