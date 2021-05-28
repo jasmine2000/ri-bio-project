@@ -62,7 +62,9 @@ def publications_request(entries):
     lens_p_df = get_lens_p_df(entries)
     nih_df = get_nih_df(entries)
 
-    xlsx = create_xlsx(ct_df, lens_s_df, lens_p_df, nih_df)
+    authors_df = make_author_df(ct_df, lens_s_df, lens_p_df, nih_df)
+
+    xlsx = create_xlsx(ct_df, lens_s_df, lens_p_df, nih_df, authors_df)
 
     filename = 'query_results.xlsx'
     response = HttpResponse(
@@ -74,8 +76,7 @@ def publications_request(entries):
     return response
 
 
-def create_xlsx(ct_df, lens_s_df, lens_p_df, nih_df):
-# def create_xlsx(ct_df, nih_df):
+def create_xlsx(ct_df, lens_s_df, lens_p_df, nih_df, authors_df):
     '''Write dataframe to xlsx file.
 
     arguments:
@@ -84,12 +85,14 @@ def create_xlsx(ct_df, lens_s_df, lens_p_df, nih_df):
     '''
     xlsx = io.BytesIO()
     PandasWriter = pd.ExcelWriter(xlsx, engine='xlsxwriter')
+
     ct_df.to_excel(PandasWriter, sheet_name='clinical_trials_results')
     lens_s_df.to_excel(PandasWriter, sheet_name='lens_s_results')
     lens_p_df.to_excel(PandasWriter, sheet_name='lens_p_results')
     nih_df.to_excel(PandasWriter, sheet_name='nih_results')
-    PandasWriter.save()
+    authors_df.to_excel(PandasWriter, sheet_name='authors')
 
+    PandasWriter.save()
     xlsx.seek(0)
 
     return xlsx
@@ -111,16 +114,20 @@ def authors_request(entries):
     lens_p_df = get_lens_p_df(entries)
     nih_df = get_nih_df(entries)
 
-    author_doc = make_author_doc(ct_df, lens_s_df, lens_p_df, nih_df)
+    author_df = make_author_df(ct_df, lens_s_df, lens_p_df, nih_df)
+    author_xlsx = make_authors_xlsx(author_df)
 
-    response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.wordprocessingml.document')
-    response['Content-Disposition'] = 'attachment; filename=authors.docx'
-    author_doc.save(response)
+    filename = 'author_results.xlsx'
+    response = HttpResponse(
+        author_xlsx,
+        content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+    )
+    response['Content-Disposition'] = 'attachment; filename=%s' % filename
 
     return response
 
 
-def make_author_doc(ct_df, lens_s_df, lens_p_df, nih_df):
+def make_author_df(ct_df, lens_s_df, lens_p_df, nih_df):
     '''Sort and filter results for common authors.
 
     arguments:
@@ -136,9 +143,9 @@ def make_author_doc(ct_df, lens_s_df, lens_p_df, nih_df):
 
     author_dict = populate_dict(translator)
     authors_sort_filt = sort_and_filter(author_dict)
-    authors_sheet = make_df_xlsx(author_dict, authors_sort_filt)
+    authors_df = make_authors_df(author_dict, authors_sort_filt)
 
-    return authors_sheet
+    return authors_df
 
 def populate_dict(translator):
     '''Creates dictionary mapping authors to work across different databases
@@ -176,15 +183,16 @@ def populate_dict(translator):
 def sort_and_filter(author_dict):
     authors_sort_filt = []
     for name in author_dict:
-        categories = len(list(author_dict[name].keys()))
+        # categories = len(list(author_dict[name].keys()))
         total = sum([len(list(author_dict[name][key])) for key in author_dict[name]])
         if total > 1:
-            authors_sort_filt.append((categories, total, name))
+            # authors_sort_filt.append((categories, total, name))
+            authors_sort_filt.append((total, name))
     authors_sort_filt.sort(reverse=True)
 
     return authors_sort_filt
 
-def make_df_xlsx(author_dict, authors_sort_filt):
+def make_authors_df(author_dict, authors_sort_filt):
     d = {'Name': [], 'Clinical Trials': [], 'Lens Scholar': [], 'Lens Patent': [], 'Federal NIH': []}
     df = pd.DataFrame(data=d)
     for _, _, name in authors_sort_filt:
@@ -196,9 +204,12 @@ def make_df_xlsx(author_dict, authors_sort_filt):
         
         df=df.append(row_data, ignore_index=True)
 
+    return df
+
+def make_authors_xlsx(authors_df):
     xlsx = io.BytesIO()
     PandasWriter = pd.ExcelWriter(xlsx, engine='xlsxwriter')
-    df.to_excel(PandasWriter, sheet_name='authors')
+    authors_df.to_excel(PandasWriter, sheet_name='authors')
     PandasWriter.save()
 
     xlsx.seek(0)
