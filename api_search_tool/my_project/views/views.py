@@ -195,7 +195,8 @@ def sort_and_filter(author_dict):
 def make_authors_df(author_dict, authors_sort_filt):
     d = {'Name': [], 'Clinical Trials': [], 'Lens Scholar': [], 'Lens Patent': [], 'Federal NIH': []}
     df = pd.DataFrame(data=d)
-    for _, _, name in authors_sort_filt:
+    # for _, _, name in authors_sort_filt:
+    for _, name in authors_sort_filt:
         row_data = {'Name': name}
         data = author_dict[name]
         for database in data:
