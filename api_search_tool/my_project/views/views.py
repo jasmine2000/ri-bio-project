@@ -6,9 +6,15 @@ import pandas as pd
 import xlsxwriter
 import io
 from pandas import json_normalize
-from ..forms import SearchForm
 from docx import Document
 
+from collections import defaultdict
+from gensim import corpora
+from gensim import models
+from SetSimilaritySearch import all_pairs
+from fuzzywuzzy import fuzz
+
+from ..forms import SearchForm
 from .ct import *
 from .lens_s import *
 from .lens_p import *
@@ -63,8 +69,9 @@ def publications_request(entries):
     nih_df = get_nih_df(entries)
 
     authors_df = make_author_df(ct_df, lens_s_df, lens_p_df, nih_df)
+    claims_df = make_claims_df(lens_p_df)
 
-    xlsx = create_xlsx(ct_df, lens_s_df, lens_p_df, nih_df, authors_df)
+    xlsx = create_xlsx(ct_df, lens_s_df, lens_p_df, nih_df, authors_df, claims_df)
 
     filename = 'query_results.xlsx'
     response = HttpResponse(
@@ -76,7 +83,7 @@ def publications_request(entries):
     return response
 
 
-def create_xlsx(ct_df, lens_s_df, lens_p_df, nih_df, authors_df):
+def create_xlsx(ct_df, lens_s_df, lens_p_df, nih_df, authors_df, claims_df):
     '''Write dataframe to xlsx file.
 
     arguments:
@@ -91,6 +98,7 @@ def create_xlsx(ct_df, lens_s_df, lens_p_df, nih_df, authors_df):
     lens_p_df.to_excel(PandasWriter, sheet_name='lens_p_results')
     nih_df.to_excel(PandasWriter, sheet_name='nih_results')
     authors_df.to_excel(PandasWriter, sheet_name='authors')
+    claims_df.to_excel(PandasWriter, sheet_name='claims')
 
     PandasWriter.save()
     xlsx.seek(0)
@@ -203,7 +211,7 @@ def make_authors_df(author_dict, authors_sort_filt):
             titles = '; '.join(data[database])
             row_data[database] = titles
         
-        df=df.append(row_data, ignore_index=True)
+        df = df.append(row_data, ignore_index=True)
 
     return df
 
@@ -216,3 +224,104 @@ def make_authors_xlsx(authors_df):
     xlsx.seek(0)
 
     return xlsx
+
+def make_claims_df(lens_p_df):
+    documents = []
+    titles = []
+
+    for index, row in lens_p_df.iterrows():
+        if len(row['Claims']) > 20:
+            documents.append(row['Claims'])
+            titles.append(row['Title'])
+
+    stop_words = 'a an and are at be by claim claims claimed for from i in is it its of or that the to where whereby which with'.split()
+    stop_punc = '. , ; -'.split()
+    num_str = [str(n) for n in range(100)]
+    num_dot = [f'{str(n)}.' for n in range(100)]
+    stoplist = set(stop_words + stop_punc + num_str + num_dot)
+
+    texts = []
+    for document in documents:
+        terms = []
+        doc_words = document.lower().split()
+        for word in doc_words:
+            term = word.strip('.,:;()%')
+            if len(term) > 1 and term not in stoplist:
+                terms.append(term)
+        texts.append(terms)
+
+    frequency = defaultdict(int)
+    for text in texts:
+        for token in text:
+            frequency[token] += 1
+
+    texts = [
+        [token for token in text if frequency[token] > 1]
+        for text in texts
+    ]
+
+    dictionary = corpora.Dictionary(texts)
+    corpus = [dictionary.doc2bow(text) for text in texts]
+
+    tfidf = models.TfidfModel(corpus)
+    corpus_tfidf = tfidf[corpus]
+
+    list_words = []
+    title_and_vals = {}
+
+    index = 0
+    for doc in corpus_tfidf:
+        sub_list = []
+        info = {'title': titles[index]}
+        freqs = {}
+
+        for id, freq in doc:
+            term = dictionary[id]
+            freqs[term] = np.around(freq, decimals=4)
+            sub_list.append(term)
+
+        info['freqs'] = freqs
+        title_and_vals[index] = info
+        list_words.append(sub_list)
+        index += 1
+
+    pairs = all_pairs(list_words, similarity_func_name="jaccard", similarity_threshold=0.1)
+    pairs_1 = list(pairs)
+
+    pairs_2 = []
+    for pair in pairs_1:
+        if pair[2] < 0.3:
+            continue
+        title_1 = title_and_vals[pair[0]]['title']
+        title_2 = title_and_vals[pair[1]]['title']
+        ratio = fuzz.ratio(title_1.lower(), title_2.lower())
+        if ratio < 95:
+            pairs_2.append(pair)
+
+    sorted_pairs = sorted(pairs_2, key=lambda tup: tup[2], reverse=True)
+    print(sorted_pairs)
+
+    d = {'index1': [], 'index2': [], 'title1': [], 'title2': [], 'intersection': []}
+    df = pd.DataFrame(data=d)
+
+    for pair in sorted_pairs[:10]:
+        one = pair[0]
+        two = pair[1]
+
+        title_1 = title_and_vals[one]['title']
+        title_2 = title_and_vals[two]['title']
+
+        freqs_1 = title_and_vals[one]['freqs']
+        freqs_2 = title_and_vals[two]['freqs']
+        combined_freqs = []
+        for term in freqs_1:
+            if term in freqs_2:
+                combined_freqs.append((freqs_1[term] + freqs_2[term], term))
+        sorted_freqs = sorted(combined_freqs, reverse=True)
+
+        intersection = ', '.join([word for _, word in sorted_freqs])
+
+        row = {'index1': one, 'index2': two, 'title1': title_1, 'title2': title_2, 'intersection': intersection}
+        df = df.append(row, ignore_index=True)
+
+    return df

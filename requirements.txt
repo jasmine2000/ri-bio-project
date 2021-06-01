@@ -3,3 +3,7 @@ django
 pandas
 xlsxwriter
 docx
+gensim
+SetSimilaritySearch
+python-Levenshtein
+fuzzywuzzy
