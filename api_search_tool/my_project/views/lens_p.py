@@ -73,7 +73,7 @@ def parse_lens_p(result):
     titles = bib['invention_title']
     for title in titles:
         if title['lang'] == 'en':
-            row['Title'] = title['text']
+            row['Title'] = title['text'].title()
             break
 
     fields = {
