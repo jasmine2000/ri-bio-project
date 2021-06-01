@@ -305,7 +305,7 @@ def make_claims_df(lens_p_df):
     d = {'index1': [], 'index2': [], 'title1': [], 'title2': [], 'intersection': []}
     df = pd.DataFrame(data=d)
 
-    for pair in sorted_pairs[:10]:
+    for pair in sorted_pairs:
         one = pair[0]
         two = pair[1]
 
