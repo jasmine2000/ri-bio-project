@@ -22,8 +22,9 @@ def make_nih_request(entries):
     queries = []
 
     if 'keyword' in entries:
-        keyword = entries['keyword']
-        queries.append(f'text%3A{keyword}%24textFields%3Aterms')
+        keywords = [word.strip() for word in entries['keyword'].split(';')]
+        for word in keywords:
+            queries.append(f'text%3A{word}%24textFields%3Aterms')
 
     translator = {'author': 'piName', 'institution': 'orgName', 'state': 'orgState'}
     for key, val in entries.items():

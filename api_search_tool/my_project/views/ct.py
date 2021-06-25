@@ -37,7 +37,14 @@ def make_ct_request(entries, field_names):
     
     expr = "expr="
 
-    search_terms = [f"%22{v.replace(' ', '+')}%22" for v in entries.values()]
+    search_terms = []
+    for key, val in entries.items():
+        if key == 'keyword':
+            search_terms += [term.strip() for term in val.split(';')]
+        else:
+            search_terms.append(val)
+
+    search_terms = [f"%22{term.replace(' ', '+')}%22" for term in search_terms]
     expr += 'AND'.join(search_terms)
     expr += '+AND+AREA%5BResultsFirstPostDate%5DRANGE%5B01/01/2000, MAX%5D'
 

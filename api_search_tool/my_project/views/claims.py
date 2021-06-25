@@ -7,6 +7,16 @@ from SetSimilaritySearch import all_pairs
 from fuzzywuzzy import fuzz
 
 def make_claims_df(lens_p_df):
+    def check_index(index, title):
+        if lens_p_df.at[index, 'Title'] == title:
+            return index
+
+        for i, row in lens_p_df.iterrows():
+            if row['Title'] == title:
+                return i
+
+        return -1
+
     documents = []
     titles = []
 
@@ -106,6 +116,9 @@ def make_claims_df(lens_p_df):
 
         sorted_freqs = sorted(combined_freqs, reverse=True) # least common word should appear first
         intersection = ', '.join([word for _, word in sorted_freqs]) # put in string format
+
+        one = check_index(one, title_1)
+        two = check_index(two, title_2)
 
         row = {'ratio': overlap, 'index1': one, 'index2': two, 'title1': title_1, 'title2': title_2, 'intersection': intersection}
         df = df.append(row, ignore_index=True)

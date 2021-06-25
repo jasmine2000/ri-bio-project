@@ -32,14 +32,26 @@ def make_lens_s_request(entries):
     except KeyError:
         for key, val in entries.items():
             try:
-                query_string = {
-                    "query_string": {
-                        "query": val,
-                            "fields": field_dict[key],
-                            "default_operator": "or"
+                if key == 'keyword':
+                    words = [word.strip() for word in val.split(';')]
+                    for word in words:
+                        query_string = {
+                            "query_string": {
+                                "query": word,
+                                    "fields": field_dict[key],
+                                    "default_operator": "or"
+                                }
+                            }
+                        query["must"].append(query_string)
+                else:
+                    query_string = {
+                        "query_string": {
+                            "query": val,
+                                "fields": field_dict[key],
+                                "default_operator": "or"
+                            }
                         }
-                    }
-                query["must"].append(query_string)
+                    query["must"].append(query_string)
             except KeyError:
                 continue
 

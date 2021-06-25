@@ -7,7 +7,6 @@ import numpy as np
 import xlsxwriter
 import io
 from pandas import json_normalize
-from docx import Document
 
 from ..forms import SearchForm
 from .ct import *

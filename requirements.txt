@@ -2,7 +2,7 @@ requests
 django
 pandas
 xlsxwriter
-docx
+python-docx
 gensim
 SetSimilaritySearch
 python-Levenshtein

@@ -34,14 +34,26 @@ def make_lens_p_request(entries):
         query["must"].append({"terms": {'lens_id': [lensid]}})
     except KeyError:
         for key, val in entries.items():
-            query_string = {
-                "query_string": {
-                    "query": val,
-                        "fields": field_dict[key],
-                        "default_operator": "or"
+            if key == 'keyword':
+                words = [word.strip() for word in val.split(';')]
+                for word in words:
+                    query_string = {
+                        "query_string": {
+                            "query": word,
+                                "fields": field_dict[key],
+                                "default_operator": "or"
+                            }
+                        }
+                    query["must"].append(query_string)
+            else:
+                query_string = {
+                    "query_string": {
+                        "query": val,
+                            "fields": field_dict[key],
+                            "default_operator": "or"
+                        }
                     }
-                }
-            query["must"].append(query_string)
+                query["must"].append(query_string)
 
     boolean = {"bool": query}
     data_dict = {"query": boolean, 
