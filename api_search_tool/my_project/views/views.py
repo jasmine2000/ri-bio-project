@@ -15,6 +15,7 @@ from .lens_p import *
 from .nih import *
 from .authors import *
 from .claims import *
+from .compare_all import *
 
 def search_tool(request):
     '''Queries information from clinicaltrials.gov, lens.org, Federal NIH reporter APIs.
@@ -37,10 +38,7 @@ def search_tool(request):
                 if entry:
                     entries[field] = entry
 
-            if 'all_data' in request.POST:
-                return publications_request(entries)
-            # elif 'authors' in request.POST:
-            #     return authors_request(entries)
+            return publications_request(entries)
             
     else: # show empty form
         form = SearchForm()
@@ -66,8 +64,9 @@ def publications_request(entries):
 
     authors_df = make_author_df(ct_df, lens_s_df, lens_p_df, nih_df)
     claims_df = make_claims_df(lens_p_df)
+    compared_df = compare_dfs(ct_df, lens_s_df, lens_p_df, nih_df)
 
-    xlsx = create_xlsx(ct_df, lens_s_df, lens_p_df, nih_df, authors_df, claims_df)
+    xlsx = create_xlsx(ct_df, lens_s_df, lens_p_df, nih_df, authors_df, claims_df, compared_df)
 
     filename = 'query_results.xlsx'
     response = HttpResponse(
@@ -79,7 +78,7 @@ def publications_request(entries):
     return response
 
 
-def create_xlsx(ct_df, lens_s_df, lens_p_df, nih_df, authors_df, claims_df):
+def create_xlsx(ct_df, lens_s_df, lens_p_df, nih_df, authors_df, claims_df, compared_df):
     '''Write dataframe to xlsx file.
 
     arguments:
@@ -95,6 +94,7 @@ def create_xlsx(ct_df, lens_s_df, lens_p_df, nih_df, authors_df, claims_df):
     nih_df.to_excel(PandasWriter, sheet_name='nih_results')
     authors_df.to_excel(PandasWriter, sheet_name='authors')
     claims_df.to_excel(PandasWriter, sheet_name='claims')
+    compared_df.to_excel(PandasWriter, sheet_name='comparisons_all')
 
     PandasWriter.save()
     xlsx.seek(0)

@@ -45,7 +45,7 @@ def make_ct_request(entries, field_names):
             search_terms.append(val)
 
     search_terms = [f"%22{term.replace(' ', '+')}%22" for term in search_terms]
-    expr += 'AND'.join(search_terms)
+    expr += 'OR'.join(search_terms)
     expr += '+AND+AREA%5BResultsFirstPostDate%5DRANGE%5B01/01/2000, MAX%5D'
 
     # ct_translator = {'author': 'OverallOfficialName', 
