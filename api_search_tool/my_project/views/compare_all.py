@@ -28,7 +28,7 @@ def make_lists(ct_df, lens_s_df, lens_p_df, nih_df):
         documents.append(row['Claims'])
     
     for index, row in nih_df.iterrows():
-        info.append((row['Title'], 'NIH', 'smApplId'))
+        info.append((row['Title'], 'NIH', row['smApplId']))
         documents.append(row['Summary'])
 
     return info, documents
@@ -106,9 +106,9 @@ def find_and_sort_pairs(list_words, title_and_vals):
     # get rid of pairs where titles are the same
     pairs_2 = []
     for pair in pairs_1:
-        info_1 = title_and_vals[pair[0]]['info']
-        info_2 = title_and_vals[pair[1]]['info']
-        ratio = fuzz.ratio(info_1.lower(), info_2.lower())
+        title_1, _, _ = title_and_vals[pair[0]]['info']
+        title_2, _, _ = title_and_vals[pair[1]]['info']
+        ratio = fuzz.ratio(title_1.lower(), title_2.lower())
         if ratio < 95:
             pairs_2.append(pair)
 
@@ -117,6 +117,8 @@ def find_and_sort_pairs(list_words, title_and_vals):
     return sorted_pairs
 
 def build_df(sorted_pairs, title_and_vals):
+    d = {'ratio': [], 'id1': [], 'id2': [], 'title1': [], 'title2': [], 'intersection': []}
+    df = pd.DataFrame(data=d)
 
     for pair in sorted_pairs:
         one, two, overlap = pair
