@@ -65,11 +65,16 @@ def publications_request(entries, analysis):
     lens_p_df = get_lens_p_df(entries)
     nih_df = get_nih_df(entries)
 
-    database_dfs = {'clinical_trials_results': ct_df, 'lens_s_results': lens_s_df, 'lens_p_results': lens_p_df, 'nih_results': nih_df}
+    database_dfs = {
+        'clinical_trials_results': ct_df, 
+        'lens_s_results': lens_s_df, 
+        'lens_p_results': lens_p_df, 
+        'nih_results': nih_df
+        }
 
     if analysis == 'authors':    
-        authors_df = make_author_df(ct_df, lens_s_df, lens_p_df, nih_df)
-        database_dfs['authors'] = authors_df
+        all_author_dfs = make_author_df(ct_df, lens_s_df, lens_p_df, nih_df)
+        database_dfs.update(all_author_dfs)
     elif analysis == 'claims':
         claims_df = make_claims_df(lens_p_df)
         database_dfs['authors'] = claims_df
@@ -103,32 +108,3 @@ def create_xlsx(database_dfs):
     xlsx.seek(0)
 
     return xlsx
-
-
-def authors_request(entries):
-    '''Queries information from clinicaltrials.gov API and lens.org API.
-
-    arguments from form:
-    
-    used in both CT and Lens:
-        author, institution, keyword
-    used only in CT:
-        sponsor
-    
-    '''
-    ct_df = get_ct_df(entries)
-    lens_s_df = get_lens_s_df(entries)
-    lens_p_df = get_lens_p_df(entries)
-    nih_df = get_nih_df(entries)
-
-    author_df = make_author_df(ct_df, lens_s_df, lens_p_df, nih_df)
-    author_xlsx = make_authors_xlsx(author_df)
-
-    filename = 'author_results.xlsx'
-    response = HttpResponse(
-        author_xlsx,
-        content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
-    )
-    response['Content-Disposition'] = 'attachment; filename=%s' % filename
-
-    return response
