@@ -16,10 +16,10 @@ def make_author_df(ct_df, lens_s_df, lens_p_df, nih_df):
         }
 
     author_dict = populate_dict(translator)
-    authors_sort_filt = sort_and_filter(author_dict)
-    authors_df = make_authors_df(author_dict, authors_sort_filt)
+    authors_sort_filt, db_count_tuples = sort_and_filter(author_dict, translator)
+    all_dfs = make_authors_df(author_dict, authors_sort_filt, db_count_tuples)
 
-    return authors_df
+    return all_dfs
 
 def populate_dict(translator):
     '''Creates dictionary mapping authors to work across different databases
@@ -46,47 +46,72 @@ def populate_dict(translator):
                 info = row["Title"].title()
                 if name in author_dict:
                     if db in author_dict[name]:
-                        author_dict[name][db].add(info)
+                        author_dict[name][db].append(info)
                     else:
-                        author_dict[name][db] = {info}
+                        author_dict[name][db] = [info]
                 else:
-                    author_dict[name] = {db: {info}}
+                    author_dict[name] = {db: [info]}
 
     return author_dict
 
-def sort_and_filter(author_dict):
+author_dict = {'Jasmine Wu': {'Clinical Trials': 'fake_trial', 'Lens Scholar': 'fake scholar', 'Federal NIH': 'fake grant'}}
+
+def sort_and_filter(author_dict, translator):
     authors_sort_filt = []
-    for name in author_dict:
-        # categories = len(list(author_dict[name].keys()))
-        total = sum([len(list(author_dict[name][key])) for key in author_dict[name]])
-        if total > 1:
-            # authors_sort_filt.append((categories, total, name))
-            authors_sort_filt.append((total, name))
+    db_count_tuples = {db: [] for db in translator}
+    for name, info in author_dict.items():
+        total = sum([len(info[db]) for db in info])
+        authors_sort_filt.append((total, name))
+
+        for db in translator:
+            if db in info:
+                db_count_tuples[db].append(len(info[db]), name) # (entries in db, name)
+
     authors_sort_filt.sort(reverse=True)
+    for db, list_names in db_count_tuples:
+        list_names.sort(reverse=True)
 
-    return authors_sort_filt
+    return authors_sort_filt, db_count_tuples
 
-def make_authors_df(author_dict, authors_sort_filt):
-    d = {'Name': [], 'Clinical Trials': [], 'Lens Scholar': [], 'Lens Patent': [], 'Federal NIH': []}
-    df = pd.DataFrame(data=d)
-    # for _, _, name in authors_sort_filt:
+
+def make_authors_df(author_dict, authors_sort_filt, db_count_tuples):
+    all_dfs = {}
+
+    dbs = ['Clinical Trials', 'Lens Scholar', 'Lens Patent', 'Federal NIH']
+
+    d = {'Name': []}
+    d.update({db: [] for db in dbs})
+
+    df_titles = pd.DataFrame(data=d)
+    df_counts = pd.DataFrame(data=d)
     for _, name in authors_sort_filt:
-        row_data = {'Name': name}
-        data = author_dict[name]
-        for database in data:
-            titles = '; '.join(data[database])
-            row_data[database] = titles
+
+        titles_row = {'Name': name}
+        counts_row = {'Name': name}
+        counts_row.update({db: 0 for db in dbs})
+
+        author_info = author_dict[name]
+        for database, title_list in author_info.items():
+            title_str = '; '.join(title_list)
+            titles_row[database] = title_str
+
+            counts_row[database] = len(title_list)
         
-        df = df.append(row_data, ignore_index=True)
+        df_titles = df_titles.append(titles_row, ignore_index=True)
+        df_counts = df_counts.append(titles_row, ignore_index=True)
 
-    return df
+    all_dfs['authors_titles'] = df_titles
+    all_dfs['authors_totals'] = df_counts
 
-def make_authors_xlsx(authors_df):
-    xlsx = io.BytesIO()
-    PandasWriter = pd.ExcelWriter(xlsx, engine='xlsxwriter')
-    authors_df.to_excel(PandasWriter, sheet_name='authors')
-    PandasWriter.save()
+    for db, db_list in db_count_tuples.items():
+        format = {'Name': [], 'Count': [], 'Titles': []}
+        db_df = pd.DataFrame(data=format)
+        for total, name in db_list:
+            titles = '; '.join(author_dict[name][db])
+            row = {'Name': name, 'Count': total, 'Titles': titles}
 
-    xlsx.seek(0)
+            db_df = db_df.append(row, ignore_index=True)
+        
+        all_dfs[f'authors_{db.lower()}'] = df_titles
 
-    return xlsx
+    return all_dfs
