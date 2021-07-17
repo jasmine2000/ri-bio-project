@@ -10,8 +10,8 @@ def make_author_df(ct_df, lens_s_df, lens_p_df, nih_df):
     '''
     translator = {
         'Clinical Trials': [ct_df, 'Authors', 0, -1],
-        'Lens Scholar': [lens_s_df, 'Authors', 0, -1],
-        'Lens Patent': [lens_p_df, 'Inventors', 1, 0],
+        # 'Lens Scholar': [lens_s_df, 'Authors', 0, -1],
+        # 'Lens Patent': [lens_p_df, 'Inventors', 1, 0],
         'Federal NIH': [nih_df, 'PI Names', 0, -1]
         }
 
@@ -32,13 +32,15 @@ def populate_dict(translator):
     author_dict = {}
     for db in translator:
         df, col_name, first, last = translator[db]
-        for index, row in df.iterrows():
+        for index, row in df.iterrows(): # for every publication
             if pd.isnull(df.loc[index, col_name]):
                 continue
             entry = row[col_name]
             authors = entry.split(',')
             for author in authors:
                 names = [n.strip() for n in author.split()]
+                if len(names) < 2:
+                    continue
                 try:
                     name = (f'{names[first]} {names[last]}').title()
                 except IndexError:
@@ -65,10 +67,10 @@ def sort_and_filter(author_dict, translator):
 
         for db in translator:
             if db in info:
-                db_count_tuples[db].append(len(info[db]), name) # (entries in db, name)
+                db_count_tuples[db].append((len(info[db]), name)) # (entries in db, name)
 
     authors_sort_filt.sort(reverse=True)
-    for db, list_names in db_count_tuples:
+    for db, list_names in db_count_tuples.items():
         list_names.sort(reverse=True)
 
     return authors_sort_filt, db_count_tuples
@@ -83,8 +85,11 @@ def make_authors_df(author_dict, authors_sort_filt, db_count_tuples):
     d.update({db: [] for db in dbs})
 
     df_titles = pd.DataFrame(data=d)
+
     df_counts = pd.DataFrame(data=d)
-    for _, name in authors_sort_filt:
+    df_counts['TOTALS'] = []
+
+    for total, name in authors_sort_filt:
 
         titles_row = {'Name': name}
         counts_row = {'Name': name}
@@ -96,12 +101,14 @@ def make_authors_df(author_dict, authors_sort_filt, db_count_tuples):
             titles_row[database] = title_str
 
             counts_row[database] = len(title_list)
+
+        counts_row['TOTALS'] = total
         
         df_titles = df_titles.append(titles_row, ignore_index=True)
-        df_counts = df_counts.append(titles_row, ignore_index=True)
+        df_counts = df_counts.append(counts_row, ignore_index=True)
 
-    all_dfs['authors_titles'] = df_titles
-    all_dfs['authors_totals'] = df_counts
+    all_dfs['authors- titles'] = df_titles
+    all_dfs['authors- totals'] = df_counts
 
     for db, db_list in db_count_tuples.items():
         format = {'Name': [], 'Count': [], 'Titles': []}
@@ -112,6 +119,6 @@ def make_authors_df(author_dict, authors_sort_filt, db_count_tuples):
 
             db_df = db_df.append(row, ignore_index=True)
         
-        all_dfs[f'authors_{db.lower()}'] = df_titles
+        all_dfs[f'authors- {db.lower()}'] = db_df
 
     return all_dfs
