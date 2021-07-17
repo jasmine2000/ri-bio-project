@@ -61,14 +61,16 @@ def publications_request(entries, analysis):
     
     '''
     ct_df = get_ct_df(entries)
-    lens_s_df = get_lens_s_df(entries)
-    lens_p_df = get_lens_p_df(entries)
+    # lens_s_df = get_lens_s_df(entries)
+    # lens_p_df = get_lens_p_df(entries)
+    lens_s_df = None
+    lens_p_df = None
     nih_df = get_nih_df(entries)
 
     database_dfs = {
         'clinical_trials_results': ct_df, 
-        'lens_s_results': lens_s_df, 
-        'lens_p_results': lens_p_df, 
+        # 'lens_s_results': lens_s_df, 
+        # 'lens_p_results': lens_p_df, 
         'nih_results': nih_df
         }
 
