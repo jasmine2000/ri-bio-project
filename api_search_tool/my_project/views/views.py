@@ -38,7 +38,10 @@ def search_tool(request):
                 if entry:
                     entries[field] = entry
 
-            return publications_request(entries)
+            if 'authors' in request.POST:
+                return publications_request(entries, 'authors')
+            elif 'claims' in request.POST:
+                return publications_request(entries, 'claims')
             
     else: # show empty form
         form = SearchForm()
@@ -46,7 +49,7 @@ def search_tool(request):
     return render(request, 'search.html', {'form': form})
 
 
-def publications_request(entries):
+def publications_request(entries, analysis):
     '''Queries information from clinicaltrials.gov, lens.org, Federal NIH reporter APIs.
 
     arguments from form:
@@ -62,11 +65,16 @@ def publications_request(entries):
     lens_p_df = get_lens_p_df(entries)
     nih_df = get_nih_df(entries)
 
-    authors_df = make_author_df(ct_df, lens_s_df, lens_p_df, nih_df)
-    claims_df = make_claims_df(lens_p_df)
-    compared_df = compare_dfs(ct_df, lens_s_df, lens_p_df, nih_df)
+    database_dfs = {'clinical_trials_results': ct_df, 'lens_s_results': lens_s_df, 'lens_p_results': lens_p_df, 'nih_results': nih_df}
 
-    xlsx = create_xlsx(ct_df, lens_s_df, lens_p_df, nih_df, authors_df, claims_df, compared_df)
+    if analysis == 'authors':    
+        authors_df = make_author_df(ct_df, lens_s_df, lens_p_df, nih_df)
+        database_dfs['authors'] = authors_df
+    elif analysis == 'claims':
+        claims_df = make_claims_df(lens_p_df)
+        database_dfs['authors'] = claims_df
+
+    xlsx = create_xlsx(database_dfs)
 
     filename = 'query_results.xlsx'
     response = HttpResponse(
@@ -78,7 +86,7 @@ def publications_request(entries):
     return response
 
 
-def create_xlsx(ct_df, lens_s_df, lens_p_df, nih_df, authors_df, claims_df, compared_df):
+def create_xlsx(database_dfs):
     '''Write dataframe to xlsx file.
 
     arguments:
@@ -88,13 +96,8 @@ def create_xlsx(ct_df, lens_s_df, lens_p_df, nih_df, authors_df, claims_df, comp
     xlsx = io.BytesIO()
     PandasWriter = pd.ExcelWriter(xlsx, engine='xlsxwriter')
 
-    ct_df.to_excel(PandasWriter, sheet_name='clinical_trials_results')
-    lens_s_df.to_excel(PandasWriter, sheet_name='lens_s_results')
-    lens_p_df.to_excel(PandasWriter, sheet_name='lens_p_results')
-    nih_df.to_excel(PandasWriter, sheet_name='nih_results')
-    authors_df.to_excel(PandasWriter, sheet_name='authors')
-    claims_df.to_excel(PandasWriter, sheet_name='claims')
-    compared_df.to_excel(PandasWriter, sheet_name='comparisons_all')
+    for db, df in database_dfs.items():
+        df.to_excel(PandasWriter, sheet_name=db)
 
     PandasWriter.save()
     xlsx.seek(0)
