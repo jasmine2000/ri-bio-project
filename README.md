@@ -16,10 +16,7 @@
 4. Type in terminal:
 
 ```bash
-source env/bin/activate
-pip3 install -r requirements.txt
-cd api_search_tool
-python3 manage.py runserver
+sh runserver.sh
 ```
 
 Follow link given and add this to end of url:
@@ -28,6 +25,6 @@ my_project/search_tool
 
 5. type in search term(s) and click 
 
-    a. "All Data" for xlsx file of all data
+    a. "Authors" for xlsx file of all data + author frequency analysis
     
-    b. "Authors" for docx file organized by authors
+    b. "Claims" for xlsx file of all data + claims similarity analysis
